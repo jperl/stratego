@@ -1,0 +1,125 @@
+<head>
+    <meta charset="UTF-8"/>
+    <title>Stratego</title>
+</head>
+
+<body>
+{{> problem}}
+</body>
+
+<template name="header">
+    <h3 class="title" data-placeholder="Type the problem" style="margin-top: 40px">{{{title}}}</h3>
+    <h5 class="description" data-placeholder="Type the description">{{{description}}}</h5>
+</template>
+
+<template name="comments">
+    <ul>
+        {{> comment}}
+        {{> comment}}
+    </ul>
+</template>
+
+<template name="comment">
+    <li>
+        <div data-role="post-content" class="post-content">
+            <div class="avatar hovercard">
+                <a href="http://disqus.com/twitter-1134720630/" class="user" data-action="profile" data-user="49306214">
+                    <img src="//a.disquscdn.com/uploads/users/4930/6214/avatar92.jpg?1367343339" alt="Avatar">
+                </a>
+            </div>
+            <div class="post-body">
+                <header>
+                    <span class="post-byline">
+                            <span class="author publisher-anchor-color"><a href="#" data-action="profile"
+                                                                           data-user="49306214">jlsCreative</a></span>
+                    </span>
+
+                    <div class="post-meta">
+                        <span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+                        <a href="#comment-880595742" data-role="relative-time" class="time-ago"
+                           title="Tuesday, April 30 2013 1:35 PM">8 months ago</a>
+                    </div>
+                    <ul class="post-menu" data-role="menu">
+                        <li class="collapse">
+                            <a href="#" data-action="collapse" title="Collapse"><span>−</span></a>
+                        </li>
+                        <li class="expand">
+                            <a href="#" data-action="collapse" title="Expand"><span>+</span></a>
+                        </li>
+                        <li class="dropdown" role="menu">
+                            <a class="dropdown-toggle" href="#" data-action="flag" data-role="flag"
+                               title="Flag as inappropriate">
+                                <i aria-hidden="true" class="icon icon-untitled-3"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </header>
+                <div class="post-body-inner">
+                    <div class="post-message-container" data-role="message-container">
+                        <div class="publisher-anchor-color" data-role="message-content">
+                            <div class="post-message " data-role="message" dir="auto">
+                                <p>Absolutely beautiful! Well designed and will definitely come in handy for some
+                                    projects.
+                                    Thanks for sharing!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<footer>-->
+                <!--<menu>-->
+                <!--<li class="reply"><a href="#" data-action="reply"><i class="icon icon-mobile icon-reply"></i><span-->
+                <!--class="text">Reply</span></a></li>-->
+                <!--</menu>-->
+                <!--</footer>-->
+            </div>
+        </div>
+    </li>
+</template>
+
+<template name="problem">
+    <!-- Primary Page Layout
+    ================================================== -->
+
+    <div class="container">
+        <div class="sixteen columns">
+            {{> header}}
+        </div>
+        <div class="one-third column">
+            <!--{{> comments}}-->
+        </div>
+        <!--<div class="one-third column">-->
+        <!--<h3>About Skeleton?</h3>-->
+        <!--<p>Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone. It's based on a responsive grid, but also provides very basic CSS for typography, buttons, forms and media queries. Go ahead, resize this super basic page to see the grid in action.</p>-->
+        <!--</div>-->
+        <!--<div class="one-third column">-->
+        <!--<h3>Three Core Principles</h3>-->
+        <!--<p>Skeleton is built on three core principles:</p>-->
+        <!--<ul class="square">-->
+        <!--<li><strong>A Responsive Grid Down To Mobile</strong>: Elegant scaling from a browser to tablets to mobile.</li>-->
+        <!--<li><strong>Fast to Start</strong>: It's a tool for rapid development with best practices</li>-->
+        <!--<li><strong>Style Agnostic</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.</li>-->
+        <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="one-third column">-->
+        <!--<h3>Docs &amp; Support</h3>-->
+        <!--<p>The easiest way to really get started with Skeleton is to check out the full docs and info at <a href="http://www.getskeleton.com">www.getskeleton.com.</a>. Skeleton is also open-source and has a <a href="https://github.com/dhgamache/skeleton">project on git</a>, so check that out if you want to report bugs or create a pull request. If you have any questions, thoughts, concerns or feedback, please don't hesitate to email me at <a href="mailto:hi@getskeleton.com">hi@getskeleton.com</a>.</p>-->
+        <!--</div>-->
+
+    </div>
+    <!-- container -->
+
+    <!--<div id="container">-->
+    <!--<h2 class="header" data-placeholder="Type the issue">We are not hiring great engineers-->
+    <!--<a href="#recruiting">#recruiting</a>-->
+    <!--<a href="#engineering">#engineering</a>-->
+    <!--</h2>-->
+
+    <!--<div class="editable" data-placeholder="Type the description">-->
+    <!--&lt;!&ndash;<p>We are not getting enough of the right people to apply.</p>&ndash;&gt;-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<p style="text-align: center;">-->
+    <!--<small><a style="color: #333;" target="_blank" href="http://www.goodreads.com/reader/475-great-expectations">Source</a>-->
+    <!--</small>-->
+    <!--</p>-->
+</template>
