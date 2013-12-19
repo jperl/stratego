@@ -1,0 +1,41 @@
+@import "vendor/skeleton/base.lessimport";
+@import "vendor/skeleton/layout.lessimport";
+@import "vendor/skeleton/skeleton.lessimport";
+@import "vendor/medium-editor.lessimport";
+
+*:focus {
+    outline: none;
+}
+
+.small-space-after {
+    margin-bottom: 20px;
+}
+
+.medium-space-after {
+    margin-bottom: 40px;
+}
+
+//TODO figure out how to center this and make it responsive and the right height??
+.file-banner {
+}
+.file-thumbnail {
+    height: 200px;
+}
+
+footer {
+    bottom: 0;
+    left: 0;
+}
+
+/* All Mobile Sizes (devices and browser) */
+//TODO fix specificity of all of this
+@media only screen and (max-width: 767px) {
+    .small-space-after {
+        margin-bottom: 10px;
+    }
+
+    .medium-space-after {
+        margin-bottom: 20px;
+    }
+}
+
