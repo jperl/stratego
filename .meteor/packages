@@ -3,8 +3,13 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-standard-app-packages
-autopublish
-insecure
-preserve-inputs
+check
+ejson
+iron-router
 less
+preserve-inputs
+standard-app-packages
+stories
+
+insecure
+autopublish

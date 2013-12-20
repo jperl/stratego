@@ -1,13 +1,4 @@
-<head>
-    <meta charset="UTF-8"/>
-    <title>Stratego</title>
-</head>
-
-<body>
-{{> problem}}
-</body>
-
-<template name="header">
+<template name="storyHeader">
     <div class="container">
         <div class="sixteen columns medium-space-after">
             <h3 class="title" data-placeholder="Type the problem" style="margin-top: 40px">{{{title}}}</h3>
@@ -30,8 +21,8 @@
     </ul>
 </template>
 
-<template name="problem">
-    {{> header}}
+<template name="story">
+    {{> storyHeader}}
     {{> fileBanner}}
     <div class="container">
         <div class="two-thirds column">
@@ -56,20 +47,4 @@
             </ul>
         </div>
     </div>
-    <!-- container -->
-
-    <!--<div id="container">-->
-    <!--<h2 class="header" data-placeholder="Type the issue">We are not hiring great engineers-->
-    <!--<a href="#recruiting">#recruiting</a>-->
-    <!--<a href="#engineering">#engineering</a>-->
-    <!--</h2>-->
-
-    <!--<div class="editable" data-placeholder="Type the description">-->
-    <!--&lt;!&ndash;<p>We are not getting enough of the right people to apply.</p>&ndash;&gt;-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<p style="text-align: center;">-->
-    <!--<small><a style="color: #333;" target="_blank" href="http://www.goodreads.com/reader/475-great-expectations">Source</a>-->
-    <!--</small>-->
-    <!--</p>-->
 </template>
