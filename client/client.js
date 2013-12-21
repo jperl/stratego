@@ -2,7 +2,7 @@ Router.map(function () {
     this.route('home', {path: '/'});
 
     var subscribeStory = function () {
-        this.subscribe(this.params._id);
+        this.subscribe('stories', this.params._id);
     };
 
     var loadStory = function () {

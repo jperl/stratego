@@ -5,12 +5,16 @@ Meteor.startup(function () {
 
     Stories.allow({
         insert: function (userId, doc) {
-//            doc.userId = userId;
+            Story.check(doc);
 
-            return doc.check();
+            return true;
         },
         update: function (userId, doc, fields, modifier) {
-            return doc.check();
+            console.log(doc, fields, modifier);
+
+            Story.check(doc);
+
+            return true;
         },
         remove: function (userId, doc) {
             return false;
