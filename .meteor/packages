@@ -10,5 +10,6 @@ less
 preserve-inputs
 standard-app-packages
 stories
+underscore
 
 insecure

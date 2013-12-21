@@ -3,8 +3,8 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use('standard-app-packages');
-    api.use('underscore');
+    api.use('templating', 'client');
+    api.use('underscore', 'client');
 
     api.add_files('shared/collection.js', ['client', 'server']);
     api.add_files('shared/story.js', ['client', 'server']);

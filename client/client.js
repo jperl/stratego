@@ -1,23 +1,22 @@
 Router.map(function () {
-    this.route('home', {path: '/'});
+    var router = this;
+    router.route('home', {path: '/'});
 
-    var subscribeStory = function () {
-        this.subscribe('stories', this.params._id);
-    };
-
-    var loadStory = function () {
-        return Stories.findOne(this.params._id);
-    };
-
-    this.route('story', {
-        path: '/problem/:_id',
-        before: subscribeStory,
-        data: loadStory
-    });
-
-    this.route('story', {
-        path: '/solution/:_id',
-        before: subscribeStory,
-        data: loadStory
+    _.each(['/problem/:_id', '/solution/:_id'], function (path) {
+        router.route('story', {
+            path: path,
+            before: function () {
+                this.subscribe('stories', this.params._id);
+            },
+            unload: function () {
+                return Template.story.unload();
+            }
+        });
     });
 });
+
+//call the route unload onbeforeunload
+window.onbeforeunload = function () {
+    var currentRoute = Router.current().route;
+    if (currentRoute && currentRoute.options.unload) return currentRoute.options.unload();
+};

@@ -10,8 +10,6 @@ Meteor.startup(function () {
             return true;
         },
         update: function (userId, doc, fields, modifier) {
-            console.log(doc, fields, modifier);
-
             Story.check(doc);
 
             return true;
