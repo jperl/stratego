@@ -5,6 +5,6 @@ Stratego (Working Name)
 
 1. Install [meteor](http://docs.meteor.com/#quickstart) and [meteorite](http://oortcloud.github.com/meteorite/)
 
-2. Run the application (with the Meteor UI release)
+2. Run the application
 
-		meteor --release template-engine-preview-10
+		meteor
