@@ -9,6 +9,9 @@ Package.on_use(function (api) {
     api.add_files('shared/collection.js', ['client', 'server']);
     api.add_files('shared/story.js', ['client', 'server']);
 
+    api.add_files('templates/common.html', 'client');
+    api.add_files('templates/common.js', 'client');
+
     api.add_files('templates/problems.html', 'client');
     api.add_files('templates/problems.js', 'client');
 

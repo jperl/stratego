@@ -1,11 +1,11 @@
-<template name="sidebar">
+<template name="problemsSidebar">
     <div class="three columns sidebar">
         <ul>
-            <li><span>Top problems</span></li>
-            <li><a href="/problems/latest">Latest problems</a></li>
-            <li><a href="/problems/need-solutions">Problems without solutions</a></li>
-            <li><a href="/problems/my">My problems</a></li>
-            <li><a href="/problems/discussed">Most discussed problems</a></li>
+            <li>{{#spanOrLink '/problems/top'}}Top problems{{/spanOrLink}}</li>
+            <li>{{#spanOrLink '/problems/latest'}}Latest problems{{/spanOrLink}}</li>
+            <li>{{#spanOrLink '/problems/need-solutions'}}Problems without solutions{{/spanOrLink}}</li>
+            <li>{{#spanOrLink '/problems/my'}}My problems{{/spanOrLink}}</li>
+            <li>{{#spanOrLink '/problems/discussed'}}Most discussed problems{{/spanOrLink}}</li>
         </ul>
     </div>
 </template>
@@ -21,7 +21,7 @@
 </template>
 
 <template name="problems">
-    {{>sidebar}}
+    {{>problemsSidebar}}
     <div class="twelve columns offset-by-one content">
         {{>submitProblem}}
         <span>or</span>

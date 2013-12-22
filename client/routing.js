@@ -9,24 +9,20 @@ Router.map(function () {
 
         before: function () {
             //TODO if they are logged in
-            Router.go('problems');
+            Router.go('/problems/top');
 
             this.stop();
         }
     });
 
+    //TODO organization name
     this.route('problems', {
-        path: '/problems'
-    });
-
-    //TODO company name
-    this.route('story', {
-        path: '/problems/:param',
+        path: '/problems/:details?',
         controller: StoryController
     });
 
-    this.route('story', {
-        path: '/solutions/:param',
+    this.route('solutions', {
+        path: '/solutions/:details?',
         controller: StoryController
     });
 });

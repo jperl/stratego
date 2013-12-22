@@ -8,10 +8,28 @@ var getId = function (idParameter) {
 
 StoryController = RouteController.extend({
     before: function () {
+        var details = this.params.details;
+
+        if (!details) {
+            Router.go('/problems/top');
+            this.stop();
+            return;
+        }
+
+        if (details === "top" || details === "latest" || details === "need-solutions" ||
+            details === "my" || details === "discussed") {
+            this.render('problems');
+            this.stop();
+            return;
+        }
+
         //show the specific story
-        var storyId = getId(this.params.param);
+        var storyId = getId(details);
         this.params._id = storyId;
         this.subscribe('stories', storyId);
+
+        this.render('story');
+        this.stop();
     },
     unload: function () {
         return Template.story.unload();
