@@ -1,13 +1,11 @@
 <template name="storyHeader">
-    <div class="container">
-        <div class="sixteen columns medium-space-after">
-            <h3 class="title" data-placeholder="{{titlePlaceholder}}" style="margin-top: 40px">
-                {{{data.title}}}
-            </h3>
-            <h5 class="description" data-placeholder="Type the description">
-                {{{data.description}}}
-            </h5>
-        </div>
+    <div class="sixteen columns medium-space-after">
+        <h3 class="title" data-placeholder="{{titlePlaceholder}}">
+            {{{data.title}}}
+        </h3>
+        <h5 class="description" data-placeholder="Type the description">
+            {{{data.description}}}
+        </h5>
     </div>
 </template>
 
@@ -28,27 +26,25 @@
 <template name="story">
     {{> storyHeader}}
     {{> fileBanner}}
-    <div class="container">
-        <div class="two-thirds column">
-            {{> comments}}
-        </div>
-        <div class="one-third column">
-            <h3>Associations</h3>
+    <div class="two-thirds column">
+        {{> comments}}
+    </div>
+    <div class="one-third column">
+        <h3>Associations</h3>
 
-            <p>Problems</p>
-            <ul class="square">
-                <li>We are not getting enough of the right people to apply.</li>
-                <li>We do not have enough front end developers.</li>
-                <li>We do not have enough quality designers.</li>
-                <li>The blob makes development very slow.</li>
-            </ul>
+        <p>Problems</p>
+        <ul class="square">
+            <li>We are not getting enough of the right people to apply.</li>
+            <li>We do not have enough front end developers.</li>
+            <li>We do not have enough quality designers.</li>
+            <li>The blob makes development very slow.</li>
+        </ul>
 
-            <p>Solutions</p>
-            <ul class="square">
-                <li>Rebuild the blob from scratch.</li>
-                <li>Stalk good engineers on stack overflow.</li>
-                <li>Remove low quality engineers.</li>
-            </ul>
-        </div>
+        <p>Solutions</p>
+        <ul class="square">
+            <li>Rebuild the blob from scratch.</li>
+            <li>Stalk good engineers on stack overflow.</li>
+            <li>Remove low quality engineers.</li>
+        </ul>
     </div>
 </template>

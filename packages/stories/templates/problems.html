@@ -1,3 +1,34 @@
-<template name="problems">
+<template name="sidebar">
+    <div class="three columns sidebar">
+        <ul>
+            <li><span>Top problems</span></li>
+            <li><a href="/problems/latest">Latest problems</a></li>
+            <li><a href="/problems/need-solutions">Problems without solutions</a></li>
+            <li><a href="/problems/my">My problems</a></li>
+            <li><a href="/problems/discussed">Most discussed problems</a></li>
+        </ul>
+    </div>
+</template>
+
+<template name="submitProblem">
+    <span>Hey Jon, what problems do you see at Angie's List?</span>
+    <input type="text" placeholder="Describe the problem...">
     <button class="new-problem">Add a problem</button>
+</template>
+
+<template name="storyFeedItem">
+    <p>Hello</p>
+</template>
+
+<template name="problems">
+    {{>sidebar}}
+    <div class="twelve columns offset-by-one content">
+        {{>submitProblem}}
+        <span>or</span>
+        <br/>
+        <span>Help shed light on a problem someone else has identified</span>
+        {{#each items}}
+        {{>storyFeedItem}}
+        {{/each}}
+    </div>
 </template>

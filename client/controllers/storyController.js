@@ -10,10 +10,8 @@ StoryController = RouteController.extend({
     before: function () {
         //show the specific story
         var storyId = getId(this.params.param);
-        if (storyId) {
-            this.params._id = storyId;
-            this.subscribe('stories', storyId);
-        }
+        this.params._id = storyId;
+        this.subscribe('stories', storyId);
     },
     unload: function () {
         return Template.story.unload();

@@ -5,3 +5,7 @@ Template.problems.events({
         Router.go('/problems/' + id);
     }
 });
+
+Template.problems.items = function () {
+    return ["one", "two", "three"];
+};
