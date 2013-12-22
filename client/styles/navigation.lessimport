@@ -1,0 +1,39 @@
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 12;
+    height: 60px;
+    background-color: white;
+
+    ul {
+        padding: 5px 10px;
+        margin: 11px;
+    }
+
+    li {
+        display: inline;
+        margin: 11px;
+        color: black;
+        list-style-type: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .nav-links {
+        margin: 25px;
+    }
+}
+
+.nav-container {
+    margin-bottom: 20px;
+}
+
+#logo {
+    float: left;
+    padding: 5px 10px;
+    margin: 11px;
+}

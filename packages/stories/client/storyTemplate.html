@@ -1,7 +1,7 @@
 <template name="storyHeader">
     <div class="container">
         <div class="sixteen columns medium-space-after">
-            <h3 class="title" data-placeholder="Type the problem" style="margin-top: 40px">
+            <h3 class="title" data-placeholder="{{titlePlaceholder}}" style="margin-top: 40px">
                 {{{data.title}}}
             </h3>
             <h5 class="description" data-placeholder="Type the description">
@@ -26,6 +26,7 @@
 </template>
 
 <template name="story">
+    {{> navigation}}
     {{> storyHeader}}
     {{> fileBanner}}
     <div class="container">

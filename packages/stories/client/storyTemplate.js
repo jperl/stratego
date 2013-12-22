@@ -25,7 +25,12 @@ Template.storyHeader.data = function () {
     return story;
 };
 
-//TODO fix patching in data
+Template.storyHeader.titlePlaceholder = function () {
+    var story = Template.storyHeader.data();
+    if (!story) return '';
+
+    return 'Type the ' + (story.type === Story.Type.PROBLEM ? 'problem' : 'solution');
+};
 
 var setFields = {};
 
