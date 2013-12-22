@@ -10,10 +10,10 @@
     </div>
 </template>
 
-<template name="submitProblem">
+<template name="newProblem">
     <span>Hey Jon, what problems do you see at Angie's List?</span>
-    <input type="text" placeholder="Describe the problem...">
-    <button class="new-problem">Add a problem</button>
+    <input class="new-problem-title" type="text" placeholder="Describe the problem...">
+    <button class="add-new-problem" style="display: none;">Add a problem</button>
 </template>
 
 <template name="storyFeedItem">
@@ -23,7 +23,8 @@
 <template name="problems">
     {{>problemsSidebar}}
     <div class="twelve columns offset-by-one content">
-        {{>submitProblem}}
+        {{>newProblem}}
+        <br/>
         <span>or</span>
         <br/>
         <span>Help shed light on a problem someone else has identified</span>
