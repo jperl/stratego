@@ -9,8 +9,11 @@ Package.on_use(function (api) {
     api.add_files('shared/collection.js', ['client', 'server']);
     api.add_files('shared/story.js', ['client', 'server']);
 
-    api.add_files('client/storyTemplate.html', 'client');
-    api.add_files('client/storyTemplate.js', 'client');
+    api.add_files('templates/problems.html', 'client');
+    api.add_files('templates/problems.js', 'client');
+
+    api.add_files('templates/story.html', 'client');
+    api.add_files('templates/story.js', 'client');
 
     api.export('Stories');
     api.export('Story');

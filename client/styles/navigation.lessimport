@@ -28,10 +28,6 @@
     }
 }
 
-.nav-container {
-    margin-bottom: 20px;
-}
-
 #logo {
     float: left;
     padding: 5px 10px;
