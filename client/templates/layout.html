@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8"/>
-    <title>Stratego (Working Name)</title>
+    <title>Hive</title>
 </head>
 
 <body>
@@ -8,20 +8,23 @@
 
 <template name="header">
     <nav class="nav">
-        <div id="logo">Stratego</div>
-        <ul>
-            <span class="nav-links">
-                <li><a href="/problems">Problems</a></li>
-                <li><a href="/solutions">Solutions</a></li>
-            </span>
-        </ul>
+	<div class="container">
+	    <h1 id="logo" class="four columns">Hive</h1>
+        　　<ul class="nav-links ten columns">
+            　　<li><a class="problems" href="/problems">Problems</a></li>
+            　　<li><a class="solutions" href="/solutions">Solutions</a></li>
+        　　</ul>
+            <div class="two columns">
+	        <div class="profile"></div>
+	    </div>
+	</div>
     </nav>
 </template>
 
 <template name="layout">
     {{>header}}
 
-    <div class="container below-header">
+    <div class="container content-container">
         {{>yield}}
     </div>
 </template>

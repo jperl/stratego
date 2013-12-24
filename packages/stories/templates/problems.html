@@ -1,5 +1,5 @@
 <template name="problemsSidebar">
-    <div class="three columns sidebar">
+    <div class="four columns sidebar">
         <ul>
             <li>{{#spanOrLink '/problems/top'}}Top problems{{/spanOrLink}}</li>
             <li>{{#spanOrLink '/problems/latest'}}Latest problems{{/spanOrLink}}</li>
@@ -11,9 +11,9 @@
 </template>
 
 <template name="newProblem">
-    <span>Hey Jon, what problems do you see at Angie's List?</span>
+    <p>Hey Jon, what problems do you see at Angie's List?</p>
     <input class="new-problem-title" type="text" placeholder="Describe the problem...">
-    <button class="add-new-problem" style="display: none;">Add a problem</button>
+    <button class="add-new-problem">Add a problem</button>
 </template>
 
 <template name="storyFeedItem">
@@ -22,12 +22,10 @@
 
 <template name="problems">
     {{>problemsSidebar}}
-    <div class="twelve columns offset-by-one content">
+    <div class="twelve columns content">
         {{>newProblem}}
-        <br/>
-        <span>or</span>
-        <br/>
-        <span>Help shed light on a problem someone else has identified</span>
+        <p class="center">or</p>
+        <p>Help shed light on a problem someone else has identified</p>
         {{#each items}}
         {{>storyFeedItem}}
         {{/each}}
