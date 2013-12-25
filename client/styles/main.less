@@ -2,42 +2,57 @@
 @import "vendor/medium-editor.lessimport";
 @import "vendor/normalize.lessimport";
 
+// Variables
 @nav-height: 65px;
 
-@red:   red;
-@green: green;
-@blue: 	#2980B9;
+@red:               red;
+@green:             green;
+@blue:              #2980B9;
 
-@light-grey: #ccc;
-@dark-grey: #333;
+@off-white:         #eee;                   //#eee
 
-@problem-color: @red;
-@solution-color: @green;
+@light-grey:        lighten(@grey, 33.33%); //#ccc;
+@grey:              #777;                   //#777
+@dark-grey:         darken(@grey, 33.33%);  //#222
 
+@problem-color:     @red;
+@solution-color:    @green;
+
+// Mixins
 .border-radius(@radius: 5px) {
     -webkit-border-radius: @radius;
-       -moz-border-radius: @radius;
-	    border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
 }
 
 .border-box() {
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-    	    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
+// Utility
+.center     { text-align: center; }
+.problems   { color: @problem-color; }
+.solutions  { color: @solution-color; }
+
+// General
 body {
-    font: 1em/1.4 Arial,Helvetica,sans-serif;
+    font: 1em/1.4 Arial, Helvetica, sans-serif;
 }
 
-ul, li { margin: 0; padding: 0; }
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
 li { list-style: none; }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-a { 
+a {
     text-decoration: none;
     color: @blue;
     &:hover, &:active {
@@ -45,62 +60,65 @@ a {
     }
 }
 
-input { 
+input {
+    .border-box();
+    .border-radius(5px);
     border: 1px solid @light-grey;
     padding: 1em;
-
-    .border-radius(5px);
 }
 
-.center { text-align: center; }
-
-.problems  { color: @problem-color; }
-.solutions { color: @solution-color; }
-
+// Navigation
 .nav {
     position: fixed; top: 0; left: 0;
     width: 100%;
-    height: @nav-height - 5;
-    background: #eee;
-    border-bottom: solid 5px red;
+    height: @nav-height;
+    background: @off-white;
+    border-bottom: solid 5px @red;
 
-    .nav-links { 
-        float: left;
-        
-	> li {
+    .logo {
+        line-height: @nav-height;
+        text-transform: uppercase;
+    }
+
+    .nav-links {
+        > li {
             float: left;
-	    line-height: @nav-height;
-	    padding-right: 1em;
-	    font-size: 1.25em;
-	}
+            line-height: @nav-height;
+            padding-right: 1em;
+            font-size: 1.25em;
+        }
     }
 
-    .profile {
-        width: 35px;
-	height: 35px;
-	border: 1px solid @dark-grey;
+    .profile-link {
+        .profile-img {
+            position: absolute; top: 50%; right: 10px;
+            margin-top: -20px;
+            width: 40px;
+            height: 40px;
+            background: @light-grey;
+        }
+
+        &:hover {
+            .profile-img {
+                width: 39px;
+                height: 39px;
+                box-shadow: inset 1px 1px 1px black;
+            }
+        }
     }
 }
 
-#logo {
-    float: left;
-    line-height: @nav-height;
-    text-transform: uppercase;
-}
 
-.file-banner {}
-.file-thumbnail { height: 200px; }
-.content-container { 
+.content-container {
     margin-top: @nav-height;
     padding: 1em 0;
 }
 
-.new-problem-title {
-    width: 100%;
-}
+.file-thumbnail { height: 200px; }
 
-.add-new-problem {
-    display: none;
-}
+.new-problem-title { width: 100%; }
+
+// Hidden by default
+.add-new-problem { display: none; }
 
 @media only screen and (max-width: 767px) {}
