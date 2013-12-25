@@ -19,5 +19,5 @@ Template.newProblem.events({
 });
 
 Template.problems.items = function () {
-    return ["one", "two", "three"];
+    return Stories.find();
 };

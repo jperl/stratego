@@ -1,5 +1,6 @@
-var params = function () {
-    return Router.current().params;
+var getId = function () {
+    var details = Router.current().params.details;
+    return Story.getId(details);
 };
 
 Template.storyHeader.rendered = function () {
@@ -21,7 +22,8 @@ Template.storyHeader.rendered = function () {
 };
 
 Template.storyHeader.data = function () {
-    var story = Stories.findOne(params()._id);
+
+    var story = Stories.findOne(getId());
     return story;
 };
 
@@ -37,7 +39,7 @@ var setFields = {};
 var updateStory = function () {
     if (_.keys(setFields).length < 1) return;
 
-    Stories.update(params()._id, { $set: setFields });
+    Stories.update(getId(), { $set: setFields });
     setFields = {};
 };
 
