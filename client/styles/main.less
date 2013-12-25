@@ -35,12 +35,13 @@
 // Utility
 .center     { text-align: center; }
 .light      { color: @light-grey; }
-.problems   { color: @problem-color; }
-.solutions  { color: @solution-color; }
+
+.problems:hover   { border-color: @problem-color; }
+.solutions:hover  { border-color: @solution-color; }
 
 // General
 body {
-    font: 1em/1.4 Arial, Helvetica, sans-serif;
+    font: 1em/1.4 "Open Sans", Arial, Helvetica, sans-serif;
 }
 
 ul, li {
@@ -59,13 +60,14 @@ a {
     text-decoration: none;
     color: @blue;
     &:hover, &:active {
-        text-decoration: underline;
+        border-bottom: 1px solid;
     }
 }
 
 input {
     .border-box();
     .border-radius(5px);
+    box-shadow: 0 2px 0 @off-white;
     border: 1px solid @light-grey;
     padding: .75em;
 }
@@ -76,12 +78,24 @@ input {
     z-index: 1;
     width: 100%;
     height: @nav-height;
-    background: @off-white;
-    border-bottom: solid @problem-indicator-height @red;
+    background: @light-grey url("/images/light_honeycomb.png");
+    box-shadow: 0 2px 5px @light-grey;
+
+    a {
+        color: black;
+    }
+
+    .problem-status-indicator {
+        height: @problem-indicator-height;
+        background: @red;
+        box-shadow: inset 0 1px 1px 0 @grey, inset 0 -1px 1px white;
+        border-bottom: 2px solid @off-white;
+    }
 
     .logo {
         line-height: @nav-height;
         text-transform: uppercase;
+        font-weight: 300;
     }
 
     .nav-links {
@@ -99,7 +113,7 @@ input {
             margin-top: -20px;
             width: 40px;
             height: 40px;
-            background: @light-grey;
+            background: @grey;
         }
 
         &:hover {
@@ -142,21 +156,20 @@ input {
 
     .vote {
         .border-radius();
-        background: @light-grey;
+        background: @off-white;
         height: 50px;
         width: 50px;
         text-align: center;
         overflow: hidden;
         font-weight: bold;
+        box-shadow: 0 2px 0 @light-grey;
     }
 
     .problem-meta, .problem-discussion {
         font-size: 12px;
     }
 
-    .problem-meta-right {
-        float: right;
-    }
+    .problem-meta-right { float: right; }
 
     .problem-favorite {
         font-size: 24px;
@@ -168,6 +181,10 @@ input {
     .problem-description {
         margin: .25em 0;
         font-size: 16px;
+    }
+
+    .problem-discussion > span {
+        padding-right: 1em;
     }
 }
 
