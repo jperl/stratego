@@ -3,7 +3,8 @@
 @import "vendor/normalize.lessimport";
 
 // Variables
-@nav-height: 65px;
+@nav-height:                65px;
+@problem-indicator-height:  5px;
 
 @red:               red;
 @green:             green;
@@ -33,6 +34,7 @@
 
 // Utility
 .center     { text-align: center; }
+.light      { color: @light-grey; }
 .problems   { color: @problem-color; }
 .solutions  { color: @solution-color; }
 
@@ -50,6 +52,7 @@ li { list-style: none; }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
+    font-weight: normal;
 }
 
 a {
@@ -64,16 +67,17 @@ input {
     .border-box();
     .border-radius(5px);
     border: 1px solid @light-grey;
-    padding: 1em;
+    padding: .75em;
 }
 
 // Navigation
 .nav {
     position: fixed; top: 0; left: 0;
+    z-index: 1;
     width: 100%;
     height: @nav-height;
     background: @off-white;
-    border-bottom: solid 5px @red;
+    border-bottom: solid @problem-indicator-height @red;
 
     .logo {
         line-height: @nav-height;
@@ -108,15 +112,64 @@ input {
     }
 }
 
+// Sidebar
+.sidebar {
+    font-size: .875em;
+}
 
+// Content
 .content-container {
-    margin-top: @nav-height;
+    margin-top: @nav-height + @problem-indicator-height;
     padding: 1em 0;
+}
+
+.content {
+    font-size: 1.125em;
+
+    p:first-child {
+        margin-top: 0;
+    }
 }
 
 .file-thumbnail { height: 200px; }
 
 .new-problem-title { width: 100%; }
+
+.problem-feed-item {
+    .vote, .problem-favorite {
+        color: @red;
+    }
+
+    .vote {
+        .border-radius();
+        background: @light-grey;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        overflow: hidden;
+        font-weight: bold;
+    }
+
+    .problem-meta, .problem-discussion {
+        font-size: 12px;
+    }
+
+    .problem-meta-right {
+        float: right;
+    }
+
+    .problem-favorite {
+        font-size: 24px;
+        vertical-align: top;
+        position: relative;
+        top: -8px;
+    }
+
+    .problem-description {
+        margin: .25em 0;
+        font-size: 16px;
+    }
+}
 
 // Hidden by default
 .add-new-problem { display: none; }
