@@ -146,8 +146,9 @@ input {
             padding-right: .25em;
             color: @grey;
         }
-        .problems:hover .fa     { color: @red; }
-        .solutions:hover .fa    { color: @green; }
+
+        .problems:hover, .problems:hover .fa    { color: @red; }
+        .solutions:hover, .solutions:hover .fa  { color: @green; }
     }
 
     .profile-link {
