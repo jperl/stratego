@@ -13,11 +13,11 @@
 @profile-size: 2em;
 
 @red:               #E86D3F;  //#FF5556;
-@green:             #32FF5F; //#11AC50; //#7AB241; //#15FF99;
-@light-blue:        #00FFE2; //#198DFF;
+@green:             #44AB48; //#11AC50; //#7AB241; //#15FF99;
+@light-blue:        #5CE5D8; //#198DFF;
 @blue:              #4B98E8; //#2267AC; //#3F59BF; //#25B8CC; //#2980B9;
 @dark-blue:         #172C2E;
-@gold:              #FFE146;
+@gold:              #E8E768;
 
 @off-white:         #F6F6F6; //#eee;
 
@@ -127,6 +127,7 @@ input {
                 color: @dark-grey;
                 display: inline-block;
                 height: 100%;
+
                 &:hover {
                     text-decoration: none;
                     background: #eee;
@@ -140,6 +141,13 @@ input {
                 }
             }
         }
+
+        .fa {
+            padding-right: .25em;
+            color: @grey;
+        }
+        .problems:hover .fa     { color: @red; }
+        .solutions:hover .fa    { color: @green; }
     }
 
     .profile-link {
