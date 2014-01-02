@@ -4,30 +4,40 @@
 @import "vendor/font-awesome/font-awesome.lessimport";
 
 // Variables
+@primary-font-stack: "Open Sans", Arial, Helvetica, sans-serif;
+
 @nav-height:                65px;
 @problem-indicator-height:  5px;
+@problem-indicator-height-opened:  150px;
 
-@red:               #FF744C;  //#FF5556;
-@green:             #7AB241; //#15FF99;
-@blue:              #3F59BF; //#25B8CC; //#2980B9;
+@profile-size: 2em;
 
-@off-white:         #eee;                   //#eee
+@red:               #E86D3F;  //#FF5556;
+@green:             #32FF5F; //#11AC50; //#7AB241; //#15FF99;
+@light-blue:        #00FFE2; //#198DFF;
+@blue:              #4B98E8; //#2267AC; //#3F59BF; //#25B8CC; //#2980B9;
+@dark-blue:         #172C2E;
+@gold:              #FFE146;
+
+@off-white:         #F6F6F6; //#eee;
 
 @light-grey:        lighten(@grey, 33.33%); //#ddd;
 @grey:              #888;                   //#888
 @dark-grey:         darken(@grey, 33.33%);  //#333
 
-@primary-text: @dark-grey;
+@primary-text:      @dark-grey;
 
 @problem-color:     @red;
 @solution-color:    @green;
 
 // Mixins
-.border-radius(@radius: 5px) {
+.border-radius(@radius: .3125em) {
     -webkit-border-radius: @radius;
     -moz-border-radius: @radius;
     border-radius: @radius;
 }
+
+.circle() { .border-radius(999px); }
 
 .border-box() {
     -webkit-box-sizing: border-box;
@@ -39,12 +49,12 @@
 .center     { text-align: center; }
 .light      { color: @light-grey; }
 
-.problems   { color: @problem-color; }
-.solutions  { color: @solution-color; }
+//.problems   { color: @problem-color; }
+//.solutions  { color: @solution-color; }
 
 // General
 body {
-    font: 1em/1.4 "Open Sans", Arial, Helvetica, sans-serif;
+    font: 1em/1.4 @primary-font-stack;
     color: @primary-text;
 }
 
@@ -68,6 +78,10 @@ a {
     }
 }
 
+img {
+    height: 100%;
+}
+
 input {
     .border-box();
     .border-radius(5px);
@@ -81,35 +95,48 @@ input {
     position: fixed; top: 0; left: 0;
     z-index: 1;
     width: 100%;
-    height: @nav-height;
     background: @off-white;
-    box-shadow: 0 2px 5px @off-white;
+    box-shadow: 0 1px @light-grey;
+    line-height: @nav-height;
 
     .problem-status-indicator {
-        height: @problem-indicator-height;
-        background: @red;
-        border-bottom: 5px solid @off-white;
+        border-top: 5px solid @red;
+        height: 0;
+        background: @dark-grey;
     }
 
     .logo {
-        line-height: @nav-height;
         text-transform: uppercase;
         font-weight: 300;
     }
 
     .nav-links {
         > li {
+            &:first-child {
+                border-left: 1px solid @light-grey;
+            }
+
             float: left;
-            line-height: @nav-height;
-            padding-right: 1em;
+            text-align: center;
             font-size: 1.5em;
-            font-weight: bold;
+            font-weight: 300;
+            border-right: 1px solid @light-grey;
             > a {
+                position: relative;
+                padding: 0 1em;
+                color: @dark-grey;
                 display: inline-block;
                 height: 100%;
                 &:hover {
                     text-decoration: none;
-//                    box-shadow: inset 0 -5px;
+                    background: #eee;
+                    &:before {
+                        position: absolute; top: 0; left: 0;
+                        line-height: 0;
+                        width: 100%;
+                        color: @red;
+                        content: "▼";
+                    }
                 }
             }
         }
@@ -118,15 +145,10 @@ input {
     .profile-link {
         .profile-img {
             position: absolute; top: 50%; right: 10px;
-            margin-top: -20px;
-            width: 40px;
-            height: 40px;
+            margin-top: -@profile-size / 2;
+            width: @profile-size; height: @profile-size;
             background: @light-grey;
-            &:active {
-                box-shadow:
-                    inset 0 1px 1px 1px @dark-grey,
-                          0 0   5px 1px white;
-            }
+            .circle();
         }
     }
 }
@@ -136,22 +158,19 @@ input {
     font-size: .875em;
 }
 
-// Content
+// General Content
 .content-container {
     margin-top: @nav-height + @problem-indicator-height;
     padding: 1em 0;
 }
 
 .content {
-    font-size: 1.125em;
-
     p:first-child {
         margin-top: 0;
     }
 }
 
-.file-thumbnail { height: 200px; }
-
+// Problems Page Content
 .new-problem-title { width: 100%; }
 
 .problem-feed-item {
@@ -162,8 +181,8 @@ input {
     .vote {
         .border-radius();
         background: @off-white;
-        height: 50px;
-        width: 50px;
+        height: 3em;
+        width: 3em;
         text-align: center;
         overflow: hidden;
         font-weight: bold;
@@ -171,21 +190,20 @@ input {
     }
 
     .problem-meta, .problem-discussion {
-        font-size: 12px;
+        font-size: .75em;
     }
 
     .problem-meta-right { float: right; }
 
     .problem-favorite {
-        font-size: 24px;
+        font-size: 2em;
         vertical-align: top;
         position: relative;
-        top: -8px;
+        top: -.5em;
     }
 
     .problem-description {
         margin: .25em 0;
-        font-size: 16px;
     }
 
     .problem-discussion > span {
@@ -193,7 +211,11 @@ input {
     }
 }
 
+// Problem Content
+.file-banner {
+    height: 200px;
+    text-align: center;
+}
+
 // Hidden by default
 .add-new-problem { display: none; }
-
-@media only screen and (max-width: 767px) {}

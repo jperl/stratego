@@ -1,16 +1,14 @@
 <template name="storyHeader">
-    <div class="sixteen columns medium-space-after">
-        <h3 class="title" data-placeholder="{{titlePlaceholder}}">
-            {{{data.title}}}
-        </h3>
-        <h5 class="description" data-placeholder="Type the description">
-            {{{data.description}}}
-        </h5>
-    </div>
+    <h2 class="title" data-placeholder="{{titlePlaceholder}}">
+        {{{data.title}}}
+    </h2>
+    <h3 class="description" data-placeholder="Type the description">
+        {{{data.description}}}
+    </h3>
 </template>
 
 <template name="fileBanner">
-    <div class="file-banner medium-space-after">
+    <div class="file-banner">
         <img class="file-thumbnail" src="http://photojournal.jpl.nasa.gov/jpeg/PIA13347.jpg"/>
     </div>
 </template>
@@ -26,14 +24,14 @@
 <template name="story">
     {{> storyHeader}}
     {{> fileBanner}}
-    <div class="two-thirds column">
+    <div class="eleven columns">
         {{> comments}}
     </div>
-    <div class="one-third column">
+    <div class="five columns">
         <h3>Associations</h3>
 
         <p>Problems</p>
-        <ul class="square">
+        <ul>
             <li>We are not getting enough of the right people to apply.</li>
             <li>We do not have enough front end developers.</li>
             <li>We do not have enough quality designers.</li>
@@ -41,7 +39,7 @@
         </ul>
 
         <p>Solutions</p>
-        <ul class="square">
+        <ul>
             <li>Rebuild the blob from scratch.</li>
             <li>Stalk good engineers on stack overflow.</li>
             <li>Remove low quality engineers.</li>
