@@ -10,7 +10,7 @@
 @problem-indicator-height:  5px;
 @problem-indicator-height-opened:  150px;
 
-@profile-size: 2em;
+@profile-size: 2.5em;
 
 @red:               #E86D3F;  //#FF5556;
 @green:             #44AB48; //#11AC50; //#7AB241; //#15FF99;
@@ -157,6 +157,10 @@ input {
             margin-top: -@profile-size / 2;
             width: @profile-size; height: @profile-size;
             background: @light-grey;
+            background-image: url('/images/Jordan.png');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: @profile-size;
             .circle();
         }
     }
@@ -165,6 +169,10 @@ input {
 // Sidebar
 .sidebar {
     font-size: .875em;
+    li.active { list-style: disc; }
+    > ul {
+        margin-left: 2em;
+    }
 }
 
 // General Content

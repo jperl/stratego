@@ -1,11 +1,11 @@
 <template name="problemsSidebar">
     <div class="four columns sidebar">
         <ul>
-            <li>{{#spanOrLink '/problems/top'}}Top problems{{/spanOrLink}}</li>
-            <li>{{#spanOrLink '/problems/latest'}}Latest problems{{/spanOrLink}}</li>
-            <li>{{#spanOrLink '/problems/need-solutions'}}Problems without solutions{{/spanOrLink}}</li>
-            <li>{{#spanOrLink '/problems/my'}}My problems{{/spanOrLink}}</li>
-            <li>{{#spanOrLink '/problems/discussed'}}Most discussed problems{{/spanOrLink}}</li>
+            {{#navListItem '/problems/top'}}Top problems{{/navListItem}}
+            {{#navListItem '/problems/latest'}}Latest problems{{/navListItem}}
+            {{#navListItem '/problems/need-solutions'}}Problems without solutions{{/navListItem}}
+            {{#navListItem '/problems/my'}}My problems{{/navListItem}}
+            {{#navListItem '/problems/discussed'}}Most discussed problems{{/navListItem}}
         </ul>
     </div>
 </template>

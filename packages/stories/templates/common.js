@@ -1,7 +1,7 @@
-Handlebars.registerHelper('spanOrLink', function (path) {
+Handlebars.registerHelper('navListItem', function (path) {
     var currentRoute = Router.current();
     if (path === currentRoute.path)
-        return Template.span;
+        return Template.navListItemActive;
 
-    return Template.link.withData({href: path});
+    return Template.navListItemLink.withData({href: path});
 });
