@@ -49,9 +49,6 @@
 .center     { text-align: center; }
 .light      { color: @light-grey; }
 
-//.problems   { color: @problem-color; }
-//.solutions  { color: @solution-color; }
-
 // General
 body {
     font: 1em/1.4 @primary-font-stack;
@@ -73,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
     text-decoration: none;
     color: @blue;
-    &:hover, &:active {
+    &:hover {
         text-decoration: underline;
     }
 }
@@ -118,7 +115,7 @@ input {
 
             float: left;
             text-align: center;
-            font-size: 1.5em;
+            font-size: 18px;
             font-weight: 300;
             border-right: 1px solid @light-grey;
             > a {
@@ -131,13 +128,6 @@ input {
                 &:hover {
                     text-decoration: none;
                     background: #eee;
-                    &:before {
-                        position: absolute; top: 0; left: 0;
-                        line-height: 0;
-                        width: 100%;
-                        color: @red;
-                        content: "▼";
-                    }
                 }
             }
         }
@@ -149,6 +139,16 @@ input {
 
         .problems:hover, .problems:hover .fa    { color: @red; }
         .solutions:hover, .solutions:hover .fa  { color: @green; }
+
+        .problems:active, .problems:hover   {
+            color: @problem-color;
+            box-shadow: inset 0 -2px 0 @problem-color;
+        }
+
+        .solutions:active, .solutions:hover  {
+            color: @solution-color;
+            box-shadow: inset 0 -2px 0 @solution-color;
+        }
     }
 
     .profile-link {
