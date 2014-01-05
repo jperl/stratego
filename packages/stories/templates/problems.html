@@ -11,35 +11,37 @@
 </template>
 
 <template name="newProblem">
-    <p>Hey Jon, what problems do you see at Angie's List?</p>
     <input class="new-problem-title" type="text" placeholder="Describe the problem...">
     <button class="add-new-problem">Add a problem</button>
 </template>
 
 <template name="storyFeedItem">
-    <div class="problem-feed-item row">
-        <div class="one column alpha">
+    <div class="story-feed-item-wrapper">
+        <div class="story-feed-item clearfix">
             <div class="vote">
-                <div class="vote-up">&uarr;</div>
+                <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
+            </div>
+            <div class="story-body">
+                <div class="story-meta">
+                    <!--<span class="problem-submitter">Jonathan Perl thinks that</span>-->
+                        <span class="story-favorite"><i class="fa fa-star"></i></span>
+                </div>
+                <h2 class="story-title" title={{title}}>{{title}}</h2>
+                <!--<p class="story-description">{{{description}}}</p>-->
+            </div>
+            <div class="story-footer">
                 <div class="vote-count">28</div>
+                <a class="story-comments story-footer-link active" href="#">6 Comments</a>
+                <a class="story-solutions story-footer-link" href="#">3 Solutions</a>
+                <span class="story-time-submitted">Added 4 Days Ago</span>
             </div>
         </div>
-        <div class="eleven columns omega">
-            <div class="problem-meta">
-                <!--<span class="problem-submitter">Jonathan Perl thinks that</span>-->
-                <span class="problem-meta-right">
-                    <span class="problem-time-submitted">Added 4 Days Ago</span>
-                    <span class="problem-favorite">★</span>
-                </span>
-            </div>
-
-            <h2 class="problem-title">
-                <a href="/problems/{{_id}}">{{title}}</a>
-            </h2>
-            <p class="problem-description">{{{description}}}</p>
-            <div class="problem-discussion">
-                <span class="problem-comments"><a href="#">6 Comments</a></span>
-                <span class="problem-solutions"><a href="#">3 Solutions</a></span>
+        <div class="story-comment-section">
+            <div class="story-comment clearfix">
+                <div class="story-comment-icon-wrapper">
+                    <a class="story-comment-icon profile-link" href="#"><div class="profile-img"></div></a>
+                </div>
+                <div class="story-comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum purus sit amet ornare vulputate. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
             </div>
         </div>
     </div>
@@ -49,10 +51,10 @@
     {{>problemsSidebar}}
     <div class="twelve columns content">
         {{>newProblem}}
-        <p class="center light">or</p>
-        <p>Help shed light on a problem someone else has identified</p>
-        {{#each items}}
-        {{>storyFeedItem}}
-        {{/each}}
+        <div class="story-feed">
+            {{#each items}}
+            {{>storyFeedItem}}
+            {{/each}}
+            </div>
     </div>
 </template>

@@ -7,8 +7,6 @@
 @primary-font-stack: "Open Sans", Arial, Helvetica, sans-serif;
 
 @nav-height:                65px;
-@problem-indicator-height:  5px;
-@problem-indicator-height-opened:  150px;
 
 @profile-size: 2.5em;
 
@@ -39,6 +37,11 @@
 
 .circle() { .border-radius(999px); }
 
+//.engrave () {
+//    > i { text-shadow: 0px 1px 0 @grey; }
+//    &:hover > i { text-shadow: none; }
+//}
+
 .border-box() {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -53,6 +56,7 @@
 body {
     font: 1em/1.4 @primary-font-stack;
     color: @primary-text;
+    background: @off-white;
 }
 
 ul, li {
@@ -75,15 +79,13 @@ a {
     }
 }
 
-img {
-    height: 100%;
-}
+img { height: 100%; }
 
 input {
     .border-box();
     .border-radius(5px);
-    box-shadow: 0 2px 0 @off-white;
     border: 1px solid @light-grey;
+    box-shadow: inset 0 0 5px @light-grey;
     padding: .75em;
 }
 
@@ -92,15 +94,9 @@ input {
     position: fixed; top: 0; left: 0;
     z-index: 1;
     width: 100%;
-    background: @off-white;
-    box-shadow: 0 1px @light-grey;
+    background: white;
+    box-shadow: 0 1px 5px @light-grey;
     line-height: @nav-height;
-
-    .problem-status-indicator {
-        border-top: 5px solid @red;
-        height: 0;
-        background: @dark-grey;
-    }
 
     .logo {
         text-transform: uppercase;
@@ -125,20 +121,13 @@ input {
                 display: inline-block;
                 height: 100%;
 
-                &:hover {
-                    text-decoration: none;
-                    background: #eee;
-                }
+                &:hover { text-decoration: none; }
             }
         }
 
         .fa {
             padding-right: .25em;
-            color: @grey;
         }
-
-        .problems:hover, .problems:hover .fa    { color: @red; }
-        .solutions:hover, .solutions:hover .fa  { color: @green; }
 
         .problems:active, .problems:hover   {
             color: @problem-color;
@@ -155,83 +144,158 @@ input {
         .profile-img {
             position: absolute; top: 50%; right: 10px;
             margin-top: -@profile-size / 2;
-            width: @profile-size; height: @profile-size;
-            background: @light-grey;
-            background-image: url('/images/Jordan.png');
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: @profile-size;
-            .circle();
         }
     }
 }
 
-// Sidebar
-.sidebar {
-    font-size: .875em;
-    li.active { list-style: disc; }
-    > ul {
-        margin-left: 2em;
+.profile-link {
+    .profile-img {
+        width: @profile-size; height: @profile-size;
+        background: @light-grey;
+        background-image: url('/images/Jordan.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: @profile-size;
+        .circle();
     }
 }
 
+// Sidebar
+.sidebar { font-size: .875em; }
+
 // General Content
 .content-container {
-    margin-top: @nav-height + @problem-indicator-height;
+    margin-top: @nav-height;
     padding: 1em 0;
 }
 
 .content {
-    p:first-child {
-        margin-top: 0;
-    }
+    p:first-child { margin-top: 0; }
 }
 
 // Problems Page Content
 .new-problem-title { width: 100%; }
 
-.problem-feed-item {
-    .vote, .problem-favorite {
-        color: @red;
+.story-feed {
+    margin-top: 1em;
+
+    .story-feed-item-wrapper {
+        border: 1px solid @light-grey;
+        border-radius: 3px;
+        margin-top: 10px;
     }
 
-    .vote {
-        .border-radius();
-        background: @off-white;
-        height: 3em;
-        width: 3em;
-        text-align: center;
-        overflow: hidden;
-        font-weight: bold;
-        box-shadow: 0 2px 0 @light-grey;
-    }
-
-    .problem-meta, .problem-discussion {
-        font-size: .75em;
-    }
-
-    .problem-meta-right { float: right; }
-
-    .problem-favorite {
-        font-size: 2em;
-        vertical-align: top;
+    .story-feed-item {
         position: relative;
-        top: -.5em;
+        .border-radius(3px);
+        background: white;
+        border-left: 3px solid @red;
+        border-bottom: 1px dashed @light-grey;
+        z-index: 1;
+
+        padding: .5em 1em 0 0;
     }
 
-    .problem-description {
-        margin: .25em 0;
+    // Vote styling (left side)
+    .vote {
+        width: 10%;
+        text-align: center;
+        float: left;
     }
 
-    .problem-discussion > span {
-        padding-right: 1em;
-    }
-}
+    .vote-up {
+        font-size: 24px;
+        color: @light-grey;
 
-// Problem Content
-.file-banner {
-    height: 200px;
-    text-align: center;
+        &:hover {
+            color: @red;
+            cursor: pointer;
+        }
+    }
+
+    .vote-count {
+        width: 10%;
+        font-size: 16px;
+        display: inline-block;
+        text-align: center;
+        color: @red;
+        font-weight: bold;
+    }
+
+    // Story content styling (right side)
+    .story-body {
+        float: left;
+        width: 90%;
+    }
+
+    .story-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-bottom: .5em;
+        font-weight: 100;
+    }
+
+    .story-footer {
+        font-size: .75em;
+        position: relative; top: 1px;
+    }
+
+    .story-footer-link {
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid transparent;
+        .border-radius(3px);
+        border-bottom: none;
+
+        &.active {
+            border-color: @light-grey;
+            background: white;
+        }
+    }
+
+    .story-time-submitted, .story-favorite { float: right; }
+
+    .story-favorite {
+        &:hover, &.favorited { color: @red; }
+
+        color: @light-grey;
+        cursor: pointer;
+        font-size: 1.5em;
+    }
+
+    .story-description { margin: .25em 0; }
+
+    .story-comment-section {
+        .border-radius(3px);
+        //TODO: Make mixin
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+
+        background: white;
+        box-shadow: 0 2px 0 @light-grey;
+        position: relative;
+    }
+
+    .story-comment-icon-wrapper {
+        float: left;
+        width: 10%;
+    }
+
+    // Used on <a> tag
+    .story-comment-icon {
+        display: block;
+        margin: 1em auto;
+        width: 40px; height: 40px;
+    }
+
+    .story-comment-content {
+        .border-box();
+        float: left;
+        width: 90%;
+        padding: 1em 1em 1em 0;
+        font-size: 14px;
+    }
 }
 
 // Hidden by default
