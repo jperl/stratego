@@ -10,9 +10,7 @@ Story.check = function (story) {
         _id: String,
         description: Match.Optional(String),
         title: Match.Optional(String),
-        type: Match.Where(function (type) {
-            return type === Story.Type.PROBLEM || type === Story.Type.SOLUTION;
-        })
+        type: Utilities.MatchEnum(Story.Type)
     });
 };
 
