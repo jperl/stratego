@@ -8,6 +8,9 @@
 
 @nav-height:                65px;
 
+@nav-z-index:   2;
+@story-z-index: 1;
+
 @profile-size: 2.5em;
 
 @red:               #E86D3F;  //#FF5556;
@@ -35,6 +38,23 @@
     border-radius: @radius;
 }
 
+.border-bottom-left-radius(@radius: 3px) {
+    -webkit-border-bottom-left-radius: @radius;
+    -moz-border-bottom-left-radius: @radius;
+    border-bottom-left-radius: @radius;
+}
+
+.border-bottom-right-radius(@radius: 3px) {
+    -webkit-border-bottom-right-radius: @radius;
+    -moz-border-bottom-right-radius: @radius;
+    border-bottom-right-radius: @radius;
+}
+
+.border-bottom-radius(@radius: 3px) {
+    .border-bottom-left-radius(@radius);
+    .border-bottom-right-radius(@radius);
+}
+
 .circle() { .border-radius(999px); }
 
 //.engrave () {
@@ -56,7 +76,7 @@
 body {
     font: 1em/1.4 @primary-font-stack;
     color: @primary-text;
-    background: @off-white;
+    background: @off-white url('/images/agsquare.png');
 }
 
 ul, li {
@@ -83,16 +103,33 @@ img { height: 100%; }
 
 input {
     .border-box();
-    .border-radius(5px);
+    border: none;
+    padding: .75em;
+}
+
+.input-wrapper {
+    position: relative;
+    .border-radius(3px);
     border: 1px solid @light-grey;
     box-shadow: inset 0 0 5px @light-grey;
-    padding: .75em;
+    background: white;
+    height: 46px;   //48px total with border
+
+    > button {
+        float: left;
+        width: 20%;
+        height: 100%;
+        background: white;
+        border: none;
+        border-left: 1px solid @light-grey;
+        .border-radius(3px);
+    }
 }
 
 // Navigation
 .nav {
     position: fixed; top: 0; left: 0;
-    z-index: 1;
+    z-index: @nav-z-index;
     width: 100%;
     background: white;
     box-shadow: 0 1px 5px @light-grey;
@@ -105,23 +142,26 @@ input {
 
     .nav-links {
         > li {
-            &:first-child {
-                border-left: 1px solid @light-grey;
-            }
+//            &:first-child {
+//                border-left: 1px solid @light-grey;
+//            }
 
             float: left;
             text-align: center;
             font-size: 18px;
-            font-weight: 300;
-            border-right: 1px solid @light-grey;
             > a {
                 position: relative;
                 padding: 0 1em;
                 color: @dark-grey;
                 display: inline-block;
                 height: 100%;
+                border-left: 1px solid transparent;
+                border-right: 1px solid transparent;
 
-                &:hover { text-decoration: none; }
+                &:hover {
+                    text-decoration: none;
+                    border-color: @light-grey;
+                }
             }
         }
 
@@ -174,7 +214,10 @@ input {
 }
 
 // Problems Page Content
-.new-problem-title { width: 100%; }
+.new-problem-title {
+    float:left;
+    width: 80%;
+}
 
 .story-feed {
     margin-top: 1em;
@@ -191,7 +234,7 @@ input {
         background: white;
         border-left: 3px solid @red;
         border-bottom: 1px dashed @light-grey;
-        z-index: 1;
+        z-index: @story-z-index;
 
         padding: .5em 1em 0 0;
     }
@@ -237,8 +280,10 @@ input {
     }
 
     .story-footer {
-        font-size: .75em;
+        float: left;
+        width: 100%;
         position: relative; top: 1px;
+        font-size: .75em;
     }
 
     .story-footer-link {
@@ -267,10 +312,7 @@ input {
     .story-description { margin: .25em 0; }
 
     .story-comment-section {
-        .border-radius(3px);
-        //TODO: Make mixin
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+        .border-bottom-radius(3px);
 
         background: white;
         box-shadow: 0 2px 0 @light-grey;

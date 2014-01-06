@@ -9,7 +9,7 @@ Template.newProblem.events({
         else if (titleLength > 5) {
             submitNewProblem.animate({opacity: "show"});
         }
-    }, 2500),
+    }, 1000),
     'click .add-new-problem': function () {
         var title = $('.new-problem-title').val();
 
