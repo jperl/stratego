@@ -213,9 +213,10 @@ input {
     margin-top: 1em;
 
     .story-feed-item-wrapper {
-        border: 1px solid @light-grey;
+        //border: 1px solid @light-grey;
         border-radius: 3px;
         margin-top: 10px;
+        box-shadow: 0 2px 0 @light-grey;
     }
 
     .story-feed-item {
@@ -227,6 +228,10 @@ input {
         z-index: @story-z-index;
 
         padding: .5em 1em 0 0;
+    }
+
+    .no-comments .story-feed-item {
+        border-bottom: none;
     }
 
     // Vote styling (left side)
@@ -309,8 +314,13 @@ input {
         .border-bottom-radius(3px);
 
         background: white;
-        box-shadow: 0 2px 0 @light-grey;
         position: relative;
+    }
+
+    .story-comment {
+        border-top: 1px dashed @light-grey;
+
+        &:first-child { border-top: none; }
     }
 
     .story-comment-icon-wrapper {
@@ -318,9 +328,8 @@ input {
         width: 10%;
     }
 
-    // Used on <a> tag
     .story-comment-icon {
-        display: block;
+        display: block;     // Overrides inline from <a> tag.
         margin: 1em auto;
         width: 40px; height: 40px;
     }

@@ -14,7 +14,7 @@ Template.newProblem.events({
         var title = $('.new-problem-title').val();
 
         var id = Stories.insert({ type: Story.Type.PROBLEM, title: title });
-        Router.go('/problems/' + id);
+        //Router.go('/problems/' + id);
     }
 });
 
