@@ -20,6 +20,9 @@ Template.newProblem.events({
 Template.storyFeedItem.events({
     'click .story-footer-link': function (event) {
         $(event.target).addClass('active');
+        var parent = $(event.target).parents('.story-feed-item-wrapper').removeClass('comments-hidden');
+        parent.children('.add-comment-section').removeClass('display-none');
+        parent.children('.story-comment-section').removeClass('display-none');
     },
     'click .add-comment-button': function (event) {
         var message = $(event.target).prev().val();

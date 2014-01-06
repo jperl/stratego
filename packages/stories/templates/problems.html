@@ -27,7 +27,7 @@
 </template>
 
 <template name="storyFeedItem">
-    <div class="story-feed-item-wrapper {{#unless comments.length}}no-comments{{/unless}}">
+    <div class="story-feed-item-wrapper comments-hidden">
         <div class="story-feed-item clearfix">
             <div class="vote">
                 <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
@@ -46,13 +46,13 @@
                 <span class="story-time-submitted">Added 4 Days Ago</span>
             </div>
         </div>
-        <div class="add-comment-section">
+        <div class="add-comment-section display-none">
             <div class="input-wrapper clearfix">
                 <input class="add-comment-input" type="text" placeholder="Add a comment...">
                 <button class="add-comment-button">Add Comment</button>
             </div>
         </div>
-        <div class="story-comment-section">
+        <div class="story-comment-section display-none">
             {{#each comments}}
                 {{>storyFeedItemComments}}
             {{/each}}
