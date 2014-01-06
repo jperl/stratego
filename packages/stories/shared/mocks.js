@@ -1,5 +1,6 @@
 Mocks.stories = [
     {
+        type: 1,
         title: 'No performance management #engineering #motivation',
         votes: 99,
         comments: [
@@ -8,6 +9,7 @@ Mocks.stories = [
         ]
     },
     {
+        type: 1,
         title: 'Lacking transparency #engineering #motivation',
         votes: 50,
         comments: [
@@ -16,11 +18,13 @@ Mocks.stories = [
         ]
     },
     {
+        type: 1,
         title: 'Roof is on fire #safety #workplace #fear',
         votes: 28,
         comments: []
     },
     {
+        type: 1,
         title: 'No clear way to transfer teams #engineering #motivation',
         votes: 10,
         comments: [

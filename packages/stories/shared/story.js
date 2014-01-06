@@ -10,7 +10,9 @@ Story.check = function (story) {
         _id: String,
         description: Match.Optional(String),
         title: Match.Optional(String),
-        type: Tools.MatchEnum(Story.Type)
+        type: Tools.MatchEnum(Story.Type),
+        votes: Match.Optional(Number),
+        comments: Match.Optional(Array)
     });
 };
 

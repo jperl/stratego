@@ -14,7 +14,20 @@ Template.newProblem.events({
         var title = $('.new-problem-title').val();
 
         var id = Stories.insert({ type: Story.Type.PROBLEM, title: title });
-        //Router.go('/problems/' + id);
+    }
+});
+
+Template.storyFeedItem.events({
+    'click .story-footer-link': function (event) {
+        $(event.target).addClass('active');
+    },
+    'click .add-comment-button': function (event) {
+        var message = $(event.target).prev().val();
+        var comments = this.comments;
+        var comment = { date: new Date(), message: message, userId: 0 };
+        comments.push(comment);
+        console.log(this);
+        Stories.update({ _id: this._id}, { $set: { comments: comments } })
     }
 });
 

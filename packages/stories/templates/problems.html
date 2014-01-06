@@ -41,9 +41,15 @@
             </div>
             <div class="story-footer">
                 <div class="vote-count">{{{votes}}}</div>
-                <a class="story-comments story-footer-link {{#if comments.length}}active{{/if}}" href="#">{{{comments.length}}} Comments</a>
-                <!--<a class="story-solutions story-footer-link" href="#">3 Solutions</a>-->
+                <a class="story-comments-link story-footer-link" href="#">{{{comments.length}}} Comments</a>
+                <!--<a class="story-solutions-link story-footer-link" href="#">3 Solutions</a>-->
                 <span class="story-time-submitted">Added 4 Days Ago</span>
+            </div>
+        </div>
+        <div class="add-comment-section">
+            <div class="input-wrapper clearfix">
+                <input class="add-comment-input" type="text" placeholder="Add a comment...">
+                <button class="add-comment-button">Add Comment</button>
             </div>
         </div>
         <div class="story-comment-section">

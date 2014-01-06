@@ -113,6 +113,11 @@ input {
     background: white;
     height: 46px;   //48px total with border
 
+    > input {
+        float: left;
+        width: 80%;
+    }
+
     > button {
         float: left;
         width: 20%;
@@ -204,11 +209,6 @@ input {
 }
 
 // Problems Page Content
-.new-problem-title {
-    float:left;
-    width: 80%;
-}
-
 .story-feed {
     margin-top: 1em;
 
@@ -310,9 +310,12 @@ input {
         }
     }
 
-    .story-comment-section {
-        .border-bottom-radius(3px);
+    .add-comment-section {
+        padding: 20px;
+        border-bottom: 1px dashed @light-grey;
+    }
 
+    .add-comment-section, .story-comment-section {
         background: white;
         position: relative;
     }
