@@ -31,6 +31,13 @@ Template.storyFeedItem.events({
         comments.push(comment);
         console.log(this);
         Stories.update({ _id: this._id}, { $set: { comments: comments } })
+    },
+    'click .vote-up': function (event) {
+        $(event.currentTarget).addClass('voted');
+        //Stories.update({ _id: this._id }, { $inc: { votes: 1 } })
+    },
+    'click .story-favorite': function (event) {
+        $(event.currentTarget).addClass('favorited');
     }
 });
 
