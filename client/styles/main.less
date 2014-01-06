@@ -57,11 +57,6 @@
 
 .circle() { .border-radius(999px); }
 
-//.engrave () {
-//    > i { text-shadow: 0px 1px 0 @grey; }
-//    &:hover > i { text-shadow: none; }
-//}
-
 .border-box() {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -69,8 +64,9 @@
 }
 
 // Utility
-.center     { text-align: center; }
-.light      { color: @light-grey; }
+.center         { text-align: center; }
+.light          { color: @light-grey; }
+.display-none   { display: none; }
 
 // General
 body {
@@ -103,7 +99,9 @@ img { height: 100%; }
 
 input {
     .border-box();
+    outline: none;
     border: none;
+    background: transparent;
     padding: .75em;
 }
 
@@ -142,10 +140,6 @@ input {
 
     .nav-links {
         > li {
-//            &:first-child {
-//                border-left: 1px solid @light-grey;
-//            }
-
             float: left;
             text-align: center;
             font-size: 18px;
@@ -207,10 +201,6 @@ input {
 .content-container {
     margin-top: @nav-height;
     padding: 1em 0;
-}
-
-.content {
-    p:first-child { margin-top: 0; }
 }
 
 // Problems Page Content
@@ -279,6 +269,22 @@ input {
         font-weight: 100;
     }
 
+    .story-time-submitted, .story-favorite { float: right; }
+
+    .story-favorite {
+        &:hover, &.favorited { color: @red; }
+
+        color: @light-grey;
+        cursor: pointer;
+        font-size: 1.5em;
+    }
+
+    .story-description {
+        margin: .25em 0;
+        font-size: .875em;
+        color: @grey;
+    }
+
     .story-footer {
         float: left;
         width: 100%;
@@ -298,18 +304,6 @@ input {
             background: white;
         }
     }
-
-    .story-time-submitted, .story-favorite { float: right; }
-
-    .story-favorite {
-        &:hover, &.favorited { color: @red; }
-
-        color: @light-grey;
-        cursor: pointer;
-        font-size: 1.5em;
-    }
-
-    .story-description { margin: .25em 0; }
 
     .story-comment-section {
         .border-bottom-radius(3px);
@@ -339,6 +333,3 @@ input {
         font-size: 14px;
     }
 }
-
-// Hidden by default
-.add-new-problem { display: none; }

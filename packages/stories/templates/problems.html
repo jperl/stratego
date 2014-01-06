@@ -13,7 +13,7 @@
 <template name="newProblem">
     <div class="input-wrapper clearfix">
         <input class="new-problem-title" type="text" placeholder="Describe the problem...">
-        <button class="add-new-problem">Add a problem</button>
+        <button class="add-new-problem display-none">Add a problem</button>
     </div>
 </template>
 
@@ -25,11 +25,10 @@
             </div>
             <div class="story-body">
                 <div class="story-meta">
-                    <!--<span class="problem-submitter">Jonathan Perl thinks that</span>-->
                         <span class="story-favorite"><i class="fa fa-star"></i></span>
                 </div>
                 <h2 class="story-title" title={{title}}>{{title}}</h2>
-                <!--<p class="story-description">{{{description}}}</p>-->
+                <p class="story-description">{{{description}}}</p>
             </div>
             <div class="story-footer">
                 <div class="vote-count">28</div>
