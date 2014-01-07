@@ -2,9 +2,9 @@ StoryController = RouteController.extend({
     before: function () {
         var details = this.params.details;
 
-        var name = "problems"
-        if (this.data.page === "solutions-page") {
-            name = "solutions";
+        var name = 'problems'
+        if (this.data.page === 'solutions-page') {
+            name = 'solutions';
         }
 
         if (!details) {
@@ -25,6 +25,8 @@ StoryController = RouteController.extend({
         this.stop();
     },
     unload: function () {
-        return Template.story.unload();
+        //TODO
+        //Template.problems.unload();
+        //Template.solutions.unload();
     }
 });

@@ -1,5 +1,4 @@
 Meteor.publish('stories', function (details, skip, limit) {
-    //never send more than 25 documents
     limit = limit ? limit : 25;
     var options = {
         limit: limit

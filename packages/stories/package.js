@@ -26,9 +26,6 @@ Package.on_use(function (api) {
     api.add_files('templates/solutions.html', 'client');
     api.add_files('templates/solutions.js', 'client');
 
-    api.add_files('templates/story.html', 'client');
-    api.add_files('templates/story.js', 'client');
-
     api.export('Stories');
     api.export('Story');
 });
