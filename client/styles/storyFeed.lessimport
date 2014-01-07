@@ -12,10 +12,8 @@
     .story-feed-item {
         .border-radius(3px);
         position: relative;
-        border-left: 3px solid @red;
         border-bottom: 1px dashed @light-grey;
         z-index: @story-z-index;
-
         padding: .5em 1em 0 0;
     }
 
@@ -23,6 +21,22 @@
     .no-comments .add-comment-section, .comments-hidden .story-feed-item {
         border-bottom: none;
     }
+
+    .story-type(@name, @color) {
+        .story-type-@{name} {
+            .story-feed-item            { border-left: 3px solid @color; }
+
+            .vote-up {
+                &:hover, &.voted        { color: @color; }
+            }
+
+            .vote-count                 { color: @color; }
+            .story-favorite.favorited   { color: @color; }
+        }
+    }
+
+    .story-type(problem, @problem-color);
+    .story-type(solution, @solution-color);
 
     // Vote styling (left side)
     .vote {
@@ -36,7 +50,6 @@
         color: @light-grey;
 
         &:hover, &.voted {
-            color: @red;
             cursor: pointer;
         }
     }
@@ -47,7 +60,6 @@
         line-height: 1;
         font-size: 16px;
         text-align: center;
-        color: @red;
         font-weight: bold;
     }
 
@@ -68,8 +80,6 @@
     .story-time-submitted, .story-favorite { float: right; }
 
     .story-favorite {
-        &.favorited { color: @red; }
-
         color: @light-grey;
         cursor: pointer;
         font-size: 1.5em;

@@ -1,0 +1,44 @@
+<template name="storyFeedItemComments">
+    <div class="story-comment clearfix">
+        <div class="story-comment-icon-wrapper">
+            <a class="story-comment-icon profile-link" href="#"><div class="profile-img"></div></a>
+        </div>
+        <div class="story-comment-content">{{message}}</div>
+    </div>
+</template>
+
+<template name="storyFeedItem">
+    <div class="story-feed-item-wrapper comments-hidden {{#unless comments.length}}no-comments{{/unless}} {{getType}}">
+        <div class="story-feed-item clearfix">
+            <div class="vote">
+                <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
+            </div>
+            <div class="story-body">
+                <div class="story-meta">
+                    <span class="story-favorite"><i class="fa fa-star"></i></span>
+                </div>
+                <h2 class="story-title" title={{title}}>{{title}}</h2>
+                <p class="story-description">{{{description}}}</p>
+            </div>
+            <div class="story-footer">
+                <div class="vote-count">{{{votes}}}</div>
+                <a class="story-comments-link story-footer-link" href="#">{{{comments.length}}} Comments</a>
+                <!--<a class="story-solutions-link story-footer-link" href="#">3 Solutions</a>-->
+                <span class="story-time-submitted">Added 4 Days Ago</span>
+            </div>
+        </div>
+        <div class="comment-section-wrapper display-none">
+            <div class="add-comment-section">
+                <div class="input-wrapper clearfix">
+                    <input class="add-comment-input" type="text" placeholder="Add a comment...">
+                    <button class="add-comment-button">Add Comment</button>
+                </div>
+            </div>
+            <div class="story-comment-section">
+                {{#each comments}}
+                {{>storyFeedItemComments}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,37 @@
+<template name="solutionsSidebar">
+    <div class="four columns sidebar">
+        <ul>
+            {{#navListItem '/solutions/top'}}Top solutions{{/navListItem}}
+            {{#navListItem '/solutions/latest'}}Latest solutions{{/navListItem}}
+            {{#navListItem '/solutions/need-solutions'}}Solutions without a problem{{/navListItem}}
+            {{#navListItem '/solutions/my'}}My solutions{{/navListItem}}
+            {{#navListItem '/solutions/discussed'}}Most discussed solutions{{/navListItem}}
+        </ul>
+    </div>
+</template>
+
+<template name="newSolution">
+    <div class="input-wrapper clearfix">
+        <input class="new-solution-title" type="text" placeholder="Describe the solution...">
+        <button class="add-new-solution display-none">Add a solution</button>
+    </div>
+</template>
+
+<template name="loadMoreSolutions">
+    <div class="story-feed-item-wrapper">
+        <a href="#" class="load-stories-button">Load more solutions</a>
+    </div>
+</template>
+
+<template name="solutions">
+    {{>solutionsSidebar}}
+    <div class="twelve columns content">
+        {{>newSolution}}
+        <div class="story-feed">
+            {{#each items}}
+                {{>storyFeedItem}}
+            {{/each}}
+            {{>loadMoreSolutions}}
+        </div>
+    </div>
+</template>

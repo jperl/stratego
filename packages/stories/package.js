@@ -15,8 +15,14 @@ Package.on_use(function (api) {
 
     api.add_files('server/publishes.js', 'server');
 
+    api.add_files('templates/general.html', 'client');
+    api.add_files('templates/general.js', 'client');
+
     api.add_files('templates/problems.html', 'client');
     api.add_files('templates/problems.js', 'client');
+
+    api.add_files('templates/solutions.html', 'client');
+    api.add_files('templates/solutions.js', 'client');
 
     api.add_files('templates/story.html', 'client');
     api.add_files('templates/story.js', 'client');

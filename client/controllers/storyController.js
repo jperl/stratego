@@ -2,22 +2,25 @@ StoryController = RouteController.extend({
     before: function () {
         var details = this.params.details;
 
+        var name = "problems"
+        if (this.data.page === "solutions-page") {
+            name = "solutions";
+        }
+
         if (!details) {
-            Router.go('/problems/top');
+            Router.go('/' + name + '/top');
             this.stop();
             return;
         }
 
         this.subscribe('stories', details);
 
-        if (details === "top" || details === "latest" || details === "need-solutions" ||
-            details === "my" || details === "discussed") {
-            this.render('problems');
+        if (details) {
+            this.render(name);
             this.stop();
             return;
         }
 
-        //this.render('story');
         this.render('notFound');
         this.stop();
     },
