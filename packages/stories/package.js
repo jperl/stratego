@@ -8,11 +8,13 @@ Package.on_use(function (api) {
 
     api.use('mocks');
     api.use('tools');
+    api.use('activities');
 
     api.add_files('shared/collection.js', ['client', 'server']);
     api.add_files('shared/story.js', ['client', 'server']);
     api.add_files('shared/mocks.js', ['client', 'server']);
 
+    api.add_files('server/collection.js', 'server');
     api.add_files('server/publishes.js', 'server');
 
     api.add_files('templates/general.html', 'client');

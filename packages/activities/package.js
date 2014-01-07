@@ -1,5 +1,5 @@
 Package.describe({
-    summary: 'Activities (associations, comments, views, votes)'
+    summary: 'Activities a user performs (associations, comments, views, votes)'
 });
 
 Package.on_use(function (api) {

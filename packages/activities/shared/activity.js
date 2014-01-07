@@ -1,25 +1,27 @@
 Activity = {};
 
 Activity.Type = {
-    //TODO hashtags?? or is that an association. also associating to a user / other entities??
-    ASSOCIATION: 1,
-    COMMENT: 1,
-    VIEW: 2,
-    //TODO??
-    VOTE: 3
+    ASSOCIATE: 1,
+    CREATE: 2,
+    COMMENT: 3,
+    FAVORITE: 4,
+    MENTION: 5,
+    TAG: 6,
+    VIEW: 7,
+    VOTE: 8
 };
 
 Activity.SourceType = {
     ASSOCIATION: 1,
     COMMENT: 2,
-    PROBLEM_STORY: 3,
-    SOLUTION_STORY: 4
+    PROBLEM: 3,
+    SOLUTION: 4
 };
 
 Activity.DestinationType = {
     COMMENT: 1,
-    PROBLEM_STORY: 2,
-    SOLUTION_STORY: 3
+    PROBLEM: 2,
+    SOLUTION: 3
 };
 
 Activity.check = function (activity) {
@@ -28,30 +30,36 @@ Activity.check = function (activity) {
 
         sourceId: String,
         sourceType: Match.Where(function (sourceType) {
-            if (activity.type === Activity.Type.ASSOCIATION) {
+            if (activity.type === Activity.Type.ASSOCIATE) {
                 //this would mean they are associating a problem -> solution
-                return sourceType === Activity.SourceType.PROBLEM_STORY ||
+                return sourceType === Activity.SourceType.PROBLEM ||
                     //this would mean they are associating a solution -> problem
-                    sourceType === Activity.SourceType.SOLUTION_STORY;
+                    sourceType === Activity.SourceType.SOLUTION;
+            }
+
+            if (activity.type === Activity.Type.CREATE) {
+                return sourceType === Activity.SourceType.PROBLEM ||
+                    sourceType === Activity.SourceType.SOLUTION;
             }
 
             if (activity.type === Activity.Type.COMMENT) {
                 //we might eventually have comments on associations
                 return sourceType === Activity.SourceType.COMMENT || //sub-comment
-                    sourceType === Activity.SourceType.PROBLEM_STORY ||
-                    sourceType === Activity.SourceType.SOLUTION_STORY;
+                    sourceType === Activity.SourceType.PROBLEM ||
+                    sourceType === Activity.SourceType.SOLUTION;
             }
 
             if (activity.type === Activity.Type.VIEW) {
                 return sourceType === Activity.SourceType.COMMENT ||
-                    sourceType === Activity.SourceType.PROBLEM_STORY ||
-                    sourceType === Activity.SourceType.SOLUTION_STORY;
+                    sourceType === Activity.SourceType.PROBLEM ||
+                    sourceType === Activity.SourceType.SOLUTION;
             }
 
             if (activity.type === Activity.Type.VOTE) {
+                //we might eventually be able to vote on comments
                 //TODO this. think about what happens if we allow associations and disassociations?
-                //return sourceType === Activity.SourceType.PROBLEM_STORY ||
-                //sourceType === Activity.SourceType.ASSOCIATION;
+                return sourceType === Activity.SourceType.PROBLEM ||
+                    sourceType === Activity.SourceType.ASSOCIATION;
             }
 
             return false;
@@ -59,19 +67,19 @@ Activity.check = function (activity) {
 
         destinationId: Match.Optional(String),
         destinationType: Match.Where(function (destinationType) {
-            //right now the destination only applies for associations TODO or votes??
-            if (activity.type !== Activity.Type.ASSOCIATION) return Tools.IsNullOrUndefined(destinationType);
+            //right now the destination only applies for associations
+            if (activity.type !== Activity.Type.ASSOCIATE) return Tools.IsNullOrUndefined(destinationType);
 
             //this would mean they are associating a solution -> problem
-            return destinationType === Activity.SourceType.PROBLEM_STORY ||
+            return destinationType === Activity.SourceType.PROBLEM ||
                 // this would mean they are associating a problem -> solution
-                destinationType === Activity.SourceType.SOLUTION_STORY;
+                destinationType === Activity.SourceType.SOLUTION;
         }),
 
-        type: Tools.MatchEnum(Activity.Type),
+        type: Tools.MatchEnum(Activity.Type)
 
         //TODO votes go here, comment content goes here??
-        value: [String, Number],
-        userId: String
+//        value: Match.Optional(String),
+//        userId: String
     });
 };

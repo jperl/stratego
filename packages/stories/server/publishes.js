@@ -16,3 +16,7 @@ Meteor.publish('stories', function (details, skip, limit) {
     var storyId = Story.getId(details);
     return Stories.find(storyId, options);
 });
+
+//Meteor.publish('stories', function (id) {
+//    return Stories.find(id);
+//});
