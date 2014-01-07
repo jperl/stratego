@@ -18,13 +18,21 @@ Router.map(function () {
     //TODO organization name
     this.route('problems', {
         path: '/problems/:details?',
+        data: {
+            page: 'problems-page'
+        },
         controller: StoryController
     });
 
     this.route('solutions', {
         path: '/solutions/:details?',
+        data: {
+            page: 'solutions-page'
+        },
         controller: StoryController
     });
+
+    this.route('notFound', { path: '*' });
 });
 
 //call the route unload onbeforeunload

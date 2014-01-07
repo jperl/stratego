@@ -17,7 +17,8 @@ StoryController = RouteController.extend({
             return;
         }
 
-        this.render('story');
+        //this.render('story');
+        this.render('notFound');
         this.stop();
     },
     unload: function () {

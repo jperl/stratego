@@ -55,6 +55,23 @@
     .border-bottom-right-radius(@radius);
 }
 
+.border-top-left-radius(@radius: 3px) {
+    -webkit-border-top-left-radius: @radius;
+    -moz-border-top-left-radius: @radius;
+    border-top-left-radius: @radius;
+}
+
+.border-top-right-radius(@radius: 3px) {
+    -webkit-border-top-right-radius: @radius;
+    -moz-border-top-right-radius: @radius;
+    border-top-right-radius: @radius;
+}
+
+.border-top-radius(@radius: 3px) {
+    .border-top-left-radius(@radius);
+    .border-top-right-radius(@radius);
+}
+
 .circle() { .border-radius(999px); }
 
 .border-box() {
@@ -103,6 +120,10 @@ input {
     border: none;
     background: transparent;
     padding: .75em;
+}
+
+button {
+    color: @primary-text;
 }
 
 .input-wrapper {
@@ -163,32 +184,15 @@ input {
                 }
             }
         }
-
-        .fa {
-            padding-right: .25em;
-        }
-
-        .problems:active, .problems:hover   {
-            color: @problem-color;
-            box-shadow: inset 0 -2px 0 @problem-color;
-        }
-
-        .solutions:active, .solutions:hover  {
-            color: @solution-color;
-            box-shadow: inset 0 -2px 0 @solution-color;
-        }
     }
 
-    .profile-link {
-        .profile-img {
-            position: absolute; top: 50%; right: 10px;
-            margin-top: -@profile-size / 2;
-        }
+    .fa {
+        padding-right: .25em;
     }
-}
 
-.profile-link {
     .profile-img {
+        position: absolute; top: 50%; right: 10px;
+        margin-top: -@profile-size / 2;
         width: @profile-size; height: @profile-size;
         background: @light-grey;
         background-image: url('/images/Jordan.png');
@@ -196,6 +200,16 @@ input {
         background-repeat: no-repeat;
         background-size: @profile-size;
         .circle();
+    }
+
+    &.problems-page .nav-links .problems, .nav-links .problems:hover   {
+        color: @problem-color;
+        box-shadow: inset 0 -2px 0 @problem-color;
+    }
+
+    &.solutions-page .solutions, .nav-links .solutions:hover  {
+        color: @solution-color;
+        box-shadow: inset 0 -2px 0 @solution-color;
     }
 }
 
@@ -213,16 +227,15 @@ input {
     margin-top: 1em;
 
     .story-feed-item-wrapper {
-        //border: 1px solid @light-grey;
-        border-radius: 3px;
+        .border-radius(3px);
         margin-top: 10px;
         box-shadow: 0 2px 0 @light-grey;
+        background: white;
     }
 
     .story-feed-item {
-        position: relative;
         .border-radius(3px);
-        background: white;
+        position: relative;
         border-left: 3px solid @red;
         border-bottom: 1px dashed @light-grey;
         z-index: @story-z-index;
@@ -230,7 +243,8 @@ input {
         padding: .5em 1em 0 0;
     }
 
-    .comments-hidden .story-feed-item {
+    // States
+    .no-comments .add-comment-section, .comments-hidden .story-feed-item {
         border-bottom: none;
     }
 
@@ -253,8 +267,9 @@ input {
 
     .vote-count {
         width: 10%;
+        float: left;
+        line-height: 1;
         font-size: 16px;
-        display: inline-block;
         text-align: center;
         color: @red;
         font-weight: bold;
@@ -277,7 +292,7 @@ input {
     .story-time-submitted, .story-favorite { float: right; }
 
     .story-favorite {
-        &:hover, &.favorited { color: @red; }
+        &.favorited { color: @red; }
 
         color: @light-grey;
         cursor: pointer;
@@ -285,7 +300,6 @@ input {
     }
 
     .story-description {
-        margin: .25em 0;
         font-size: .875em;
         color: @grey;
     }
@@ -295,13 +309,16 @@ input {
         width: 100%;
         position: relative; top: 1px;
         font-size: .75em;
+        padding: 7px 0;
     }
 
     .story-footer-link {
-        display: inline-block;
-        padding: 5px;
+        position: relative;
+        left: -7px;
+
+        .border-top-radius(3px);
+        padding: 7px;
         border: 1px solid transparent;
-        .border-radius(3px);
         border-bottom: none;
 
         &.active {
@@ -343,5 +360,13 @@ input {
         width: 90%;
         padding: 1em 1em 1em 0;
         font-size: 14px;
+    }
+
+    .load-stories-button {
+        text-align: center;
+        padding: 1em;
+        display: block;
+        height: 100%;
+        box-sizing: border-box;
     }
 }

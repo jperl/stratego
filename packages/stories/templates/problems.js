@@ -13,7 +13,7 @@ Template.newProblem.events({
     'click .add-new-problem': function () {
         var title = $('.new-problem-title').val();
 
-        var id = Stories.insert({ type: Story.Type.PROBLEM, title: title });
+        var id = Stories.insert({ type: Story.Type.PROBLEM, title: title, votes: 0 });
     }
 });
 
@@ -21,23 +21,24 @@ Template.storyFeedItem.events({
     'click .story-footer-link': function (event) {
         $(event.target).addClass('active');
         var parent = $(event.target).parents('.story-feed-item-wrapper').removeClass('comments-hidden');
-        parent.children('.add-comment-section').removeClass('display-none');
-        parent.children('.story-comment-section').removeClass('display-none');
+        //parent.children('.add-comment-section').removeClass('display-none');
+        parent.children('.comment-section-wrapper').removeClass('display-none');
     },
     'click .add-comment-button': function (event) {
-        var message = $(event.target).prev().val();
+        var addCommentInput = $(event.target).prev();
+        var message = addCommentInput.val();
         var comments = this.comments;
         var comment = { date: new Date(), message: message, userId: 0 };
         comments.push(comment);
-        console.log(this);
-        Stories.update({ _id: this._id}, { $set: { comments: comments } })
+        Stories.update({ _id: this._id}, { $set: { comments: comments } });
+        addCommentInput.val('');
     },
     'click .vote-up': function (event) {
         $(event.currentTarget).addClass('voted');
         //Stories.update({ _id: this._id }, { $inc: { votes: 1 } })
     },
     'click .story-favorite': function (event) {
-        $(event.currentTarget).addClass('favorited');
+        $(event.currentTarget).toggleClass('favorited');
     }
 });
 
