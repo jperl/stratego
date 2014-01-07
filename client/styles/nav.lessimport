@@ -1,0 +1,56 @@
+// Navigation
+.nav {
+    position: fixed; top: 0; left: 0;
+    z-index: @nav-z-index;
+    width: 100%;
+    background: white;
+    box-shadow: 0 1px 5px @light-grey;
+    line-height: @nav-height;
+
+    .logo {
+        text-transform: uppercase;
+        font-weight: 300;
+        color: @primary-text;
+    }
+
+    .nav-links {
+        > li {
+            float: left;
+            text-align: center;
+            font-size: 18px;
+            > a {
+                position: relative;
+                padding: 0 1em;
+                color: @primary-text;
+                display: inline-block;
+                height: 100%;
+                border-left: 1px solid transparent;
+                border-right: 1px solid transparent;
+
+                &:hover {
+                    text-decoration: none;
+                    border-color: @light-grey;
+                }
+            }
+        }
+    }
+
+    .fa {
+        padding-right: .25em;
+    }
+
+    .profile-img {
+        position: absolute; top: 50%; right: 10px;
+        margin-top: -@profile-size / 2;
+    }
+
+    &.problems-page .nav-links .problems, .nav-links .problems:hover   {
+        color: @problem-color;
+        box-shadow: inset 0 -2px 0 @problem-color;
+    }
+
+    &.solutions-page .solutions, .nav-links .solutions:hover  {
+        color: @solution-color;
+        box-shadow: inset 0 -2px 0 @solution-color;
+    }
+}

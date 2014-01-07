@@ -1,0 +1,120 @@
+// Variables
+@primary-font-stack: "Open Sans", Arial, Helvetica, sans-serif;
+
+@nav-height:        65px;
+
+@nav-z-index:       2;
+@story-z-index:     1;
+
+@profile-size:      2.5em;
+
+@red:               #E86D3F;  //#FF5556;
+@green:             #44AB48; //#11AC50; //#7AB241; //#15FF99;
+@light-blue:        #5CE5D8; //#198DFF;
+@blue:              #4B98E8; //#2267AC; //#3F59BF; //#25B8CC; //#2980B9;
+@dark-blue:         #172C2E;
+@gold:              #E8E768;
+
+@off-white:         #F6F6F6; //#eee;
+
+@light-grey:        lighten(@grey, 33.33%); //#ddd;
+@grey:              #888;                   //#888
+@dark-grey:         darken(@grey, 33.33%);  //#333
+
+@primary-text:      @dark-grey;
+@secondary-text:    @grey;
+
+@problem-color:     @red;
+@solution-color:    @green;
+
+// Utility
+.center         { text-align: center; }
+.light          { color: @light-grey; }
+.display-none   { display: none; }
+
+// General
+body {
+    font: 1em/1.4 @primary-font-stack;
+    color: @primary-text;
+    background: @off-white url('/images/agsquare.png');
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+li { list-style: none; }
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+    color: @blue;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+img { height: 100%; }
+
+input {
+    .border-box();
+    outline: none;
+    border: none;
+    background: transparent;
+    padding: .75em;
+}
+
+button, input {
+    color: @primary-text;
+}
+
+.input-wrapper {
+    position: relative;
+    .border-radius(3px);
+    border: 1px solid @light-grey;
+    box-shadow: inset 0 0 5px @light-grey;
+    background: white;
+    height: 46px;   //48px total with border
+
+    > input {
+        float: left;
+        width: 80%;
+    }
+
+    > button {
+        float: left;
+        width: 20%;
+        height: 100%;
+        background: white;
+        border: none;
+        border-left: 1px solid @light-grey;
+        .border-radius(3px);
+    }
+}
+
+// For comments and nav
+.profile-link {
+    .profile-img {
+        width: @profile-size; height: @profile-size;
+        background: @light-grey;
+        background-image: url('/images/Jordan.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: @profile-size;
+        .circle();
+    }
+}
+
+// Sidebar
+.sidebar { font-size: .875em; }
+
+// General Content
+.content-container {
+    margin-top: @nav-height;
+    padding: 1em 0;
+}
