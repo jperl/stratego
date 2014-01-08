@@ -7,7 +7,7 @@ Story.Type = {
 
 Story.check = function (story) {
     check(story, {
-        _id: String,
+        _id: Match.Any,
         description: Match.Optional(String),
         title: Match.Optional(String),
         type: Tools.MatchEnum(Story.Type),

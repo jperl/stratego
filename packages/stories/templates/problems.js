@@ -17,7 +17,6 @@ Template.newProblem.events({
     }
 });
 
-
 Template.problems.items = function () {
     return Stories.find({type: Story.Type.PROBLEM});
 };

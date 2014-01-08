@@ -8,9 +8,19 @@ Package.on_use(function (api) {
 
     api.use('tools');
 
-    api.add_files('shared/collection.js', ['client', 'server']);
     api.add_files('shared/activity.js', ['client', 'server']);
+    api.add_files('shared/collection.js', ['client', 'server']);
+
+    api.add_files('client/comments.js', 'client');
+
+    api.add_files('templates/comments.html', 'client');
+    api.add_files('templates/comments.js', 'client');
+
+    api.add_files('server/publishes.js', 'server');
+    api.add_files('server/collection.js', 'server');
 
     api.export('Activities');
     api.export('Activity');
+
+    api.export('Comments', 'client');
 });

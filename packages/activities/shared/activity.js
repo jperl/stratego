@@ -26,10 +26,14 @@ Activity.DestinationType = {
 
 Activity.check = function (activity) {
     check(activity, {
-        _id: String,
+        _id: Match.Any,
 
-        sourceId: String,
+        type: Tools.MatchEnum(Activity.Type),
+
+        sourceId: Match.Any,
         sourceType: Match.Where(function (sourceType) {
+            return true;
+
             if (activity.type === Activity.Type.ASSOCIATE) {
                 //this would mean they are associating a problem -> solution
                 return sourceType === Activity.SourceType.PROBLEM ||
@@ -65,8 +69,8 @@ Activity.check = function (activity) {
             return false;
         }),
 
-        destinationId: Match.Optional(String),
-        destinationType: Match.Where(function (destinationType) {
+        destinationId: Match.Optional(Match.Any),
+        destinationType: Match.Optional(Match.Where(function (destinationType) {
             //right now the destination only applies for associations
             if (activity.type !== Activity.Type.ASSOCIATE) return Tools.IsNullOrUndefined(destinationType);
 
@@ -74,12 +78,9 @@ Activity.check = function (activity) {
             return destinationType === Activity.SourceType.PROBLEM ||
                 // this would mean they are associating a problem -> solution
                 destinationType === Activity.SourceType.SOLUTION;
-        }),
+        })),
 
-        type: Tools.MatchEnum(Activity.Type)
-
-        //TODO votes go here, comment content goes here??
-//        value: Match.Optional(String),
+        value: Match.Optional(Match.Any)
 //        userId: String
     });
 };

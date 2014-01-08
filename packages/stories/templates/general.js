@@ -1,18 +1,34 @@
+Template.storyFeedItem.comments = function () {
+    return Activities.find({
+        sourceId: this._id,
+        type: Activity.Type.COMMENT
+    })
+};
+
 Template.storyFeedItem.events({
     'click .story-footer-link': function (event) {
-        $(event.target).addClass('active');
-        var parent = $(event.target).parents('.story-feed-item-wrapper').removeClass('comments-hidden');
-        //parent.children('.add-comment-section').removeClass('display-none');
-        parent.children('.comment-section-wrapper').removeClass('display-none');
-    },
-    'click .add-comment-button': function (event) {
-        var addCommentInput = $(event.target).prev();
-        var message = addCommentInput.val();
-        var comments = this.comments;
-        var comment = { date: new Date(), message: message, userId: 0 };
-        comments.push(comment);
-        Stories.update({ _id: this._id}, { $set: { comments: comments } });
-        addCommentInput.val('');
+        var target = $(event.target);
+
+        var expand = !target.hasClass('active');
+
+        if (expand) target.addClass('active');
+        else target.removeClass('active');
+
+        var storyId = this._id;
+        if (target.hasClass('story-comments-link')) {
+            var parent = target.parents('.story-feed-item-wrapper');
+            if (expand) {
+                Comments.subscribe(storyId);
+
+                parent.removeClass('comments-hidden');
+                parent.children('.comment-section-wrapper').removeClass('display-none');
+            } else {
+                Comments.unsubscribe(storyId);
+
+                parent.addClass('comments-hidden');
+                parent.children('.comment-section-wrapper').addClass('display-none');
+            }
+        }
     },
     'click .vote-up': function (event) {
         $(event.currentTarget).addClass('voted');
@@ -25,7 +41,7 @@ Template.storyFeedItem.events({
 
 Template.storyFeedItem.getType = function () {
     var type = this.type;
-    switch(type){
+    switch (type) {
         case 1:
             return "story-type-problem";
             break;

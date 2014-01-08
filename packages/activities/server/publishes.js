@@ -5,7 +5,8 @@ Meteor.publish('comments', function (sourceId, skip, limit) {
     };
     if (skip) options.skip = skip;
 
-    return Stories.find({
+
+    return Activities.find({
         sourceId: sourceId,
         type: Activity.Type.COMMENT
     }, options);

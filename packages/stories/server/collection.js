@@ -1,13 +1,21 @@
+Stories._insertHelper = function (doc) {
+    doc.commentsCount = 0;
+
+    if (!doc._id) doc._id = new Meteor.Collection.ObjectID();
+
+    Activities.insert({
+        sourceId: doc._id,
+        sourceType: doc.type === Story.Type.PROBLEM ? Activity.SourceType.PROBLEM : Activity.SourceType.SOLUTION,
+        type: Activity.Type.CREATE
+//                userId: userId
+    });
+};
+
 Stories.allow({
     insert: function (userId, doc) {
         Story.check(doc);
 
-        Activities.insert({
-            sourceId: doc._id,
-            sourceType: doc.type === Story.Type.PROBLEM ? Activity.SourceType.PROBLEM : Activity.SourceType.SOLUTION,
-            type: Activity.Type.CREATE
-//                userId: userId
-        });
+        Stories._insertHelper(doc);
 
         return true;
     },
