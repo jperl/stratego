@@ -7,9 +7,11 @@ Package.on_use(function (api) {
     api.use('underscore', 'client');
 
     api.use('tools');
+    api.use('mocks');
 
     api.add_files('shared/activity.js', ['client', 'server']);
     api.add_files('shared/collection.js', ['client', 'server']);
+    api.add_files('shared/mocks.js', ['client', 'server']);
 
     api.add_files('client/comments.js', 'client');
 

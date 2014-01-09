@@ -11,3 +11,13 @@ Tools.MatchEnum = function (enumObject, optional) {
         return _.contains(_.values(enumObject), value);
     });
 };
+
+Tools.getRandomItem = function (array) {
+    var index = Tools.getRandomInt(0, array.length);
+    console.log("index", index, array.length);
+    return array[index];
+};
+
+Tools.getRandomInt = function (minInclusive, maxExclusive) {
+    return Math.floor(Math.random() * (maxExclusive - minInclusive)) + minInclusive;
+};

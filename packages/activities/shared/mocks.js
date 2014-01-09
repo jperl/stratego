@@ -1,9 +1,9 @@
-// { userId: 0, message: 'Who cares??', date: new Date() }
-// { userId: 0, message: 'Can\'t believe we are not doing this yet.', date: new Date() },
-// { userId: 0, message: 'This is a test comment, this is only a test.', date: new Date() },
-// { userId: 0, message: 'Hello world.', date: new Date() }
-// { userId: 0, message: 'Stripe and Khan Academy do it.', date: new Date() },
-// { userId: 0, message: 'Yeah but not sure this will fly here.', date: new Date() }
-// { userId: 0, message: 'Where?!?!', date: new Date() }
-
-//TODO Activities._insertHelper(doc);
+Mocks.comments = [
+    { type: Activity.Type.COMMENT, value: 'Who cares??' },
+    { type: Activity.Type.COMMENT, value: 'Can\'t believe we are not doing this yet.' },
+    { type: Activity.Type.COMMENT, value: 'Let\'s do it.' },
+    { type: Activity.Type.COMMENT, value: 'Dave Chapelle is going to love this.' },
+    { type: Activity.Type.COMMENT, value: 'Yeah but not sure Rick James will like that.' },
+    { type: Activity.Type.COMMENT, value: 'Not going to fly here bud.' },
+    { type: Activity.Type.COMMENT, value: 'That is the worst idea ever. You should be fired.' }
+];

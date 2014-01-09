@@ -12,16 +12,16 @@ Activity.Type = {
 };
 
 Activity.SourceType = {
-    ASSOCIATION: 1,
-    COMMENT: 2,
-    PROBLEM: 3,
-    SOLUTION: 4
+    PROBLEM: 1, //the same as Story.Type.PROBLEM
+    SOLUTION: 2, //the same as Story.Type.SOLUTION
+    ASSOCIATION: 3,
+    COMMENT: 4
 };
 
 Activity.DestinationType = {
-    COMMENT: 1,
-    PROBLEM: 2,
-    SOLUTION: 3
+    PROBLEM: 1, //the same as Story.Type.PROBLEM
+    SOLUTION: 2, //the same as Story.Type.SOLUTION
+    COMMENT: 3
 };
 
 Activity.check = function (activity) {

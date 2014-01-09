@@ -14,7 +14,7 @@ Template.commentsWidget.events({
             type: Activity.Type.COMMENT,
 
             sourceId: this._id,
-            sourceType: this.type === Story.Type.PROBLEM ? Activity.SourceType.PROBLEM : Activity.SourceType.SOLUTION,
+            sourceType: this.type,
 
             value: message
         });

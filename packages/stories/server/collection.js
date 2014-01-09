@@ -5,7 +5,7 @@ Stories._insertHelper = function (doc) {
 
     Activities.insert({
         sourceId: doc._id,
-        sourceType: doc.type === Story.Type.PROBLEM ? Activity.SourceType.PROBLEM : Activity.SourceType.SOLUTION,
+        sourceType: doc.type,
         type: Activity.Type.CREATE
 //                userId: userId
     });

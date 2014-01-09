@@ -35,6 +35,16 @@ if (Meteor.isServer) {
         _.each(Mocks.stories, function (story) {
             Stories._insertHelper(story);
             Stories.insert(story);
+
+            //add a few comments
+            for (var i = 0; i < Tools.getRandomInt(0, 4); i++) {
+                var comment = EJSON.clone(Tools.getRandomItem(Mocks.comments));
+                comment.sourceId = story._id;
+                comment.sourceType = story.type;
+
+                Activities._insertHelper(comment);
+                Activities.insert(comment);
+            }
         });
     });
 }
