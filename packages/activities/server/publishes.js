@@ -1,4 +1,4 @@
-Meteor.publish('comments', function (sourceId, skip, limit) {
+Meteor.publish('comments', function (storyId, skip, limit) {
     limit = limit ? limit : 25;
     var options = {
         limit: limit
@@ -7,7 +7,7 @@ Meteor.publish('comments', function (sourceId, skip, limit) {
 
 
     return Activities.find({
-        sourceId: sourceId,
+        $or: [{ problemId: storyId }, { solutionId: storyId }],
         type: Activity.Type.COMMENT
     }, options);
 });

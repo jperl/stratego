@@ -1,7 +1,6 @@
-Activities._insertHelper = function (doc) {
-    if (doc.type === Activity.Type.COMMENT &&
-        (doc.sourceType === Activity.SourceType.PROBLEM || doc.sourceType === Activity.SourceType.SOLUTION)) {
-        Stories.update({ _id: doc.sourceId}, { $inc: { commentsCount: 1 } });
+Activities._insertHelper = function (activity) {
+    if (activity.type === Activity.Type.COMMENT) {
+        Stories.update({ _id: activity.problemId || activity.solutionId}, { $inc: { commentsCount: 1 } });
     }
 };
 

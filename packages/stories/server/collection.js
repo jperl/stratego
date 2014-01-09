@@ -1,14 +1,13 @@
-Stories._insertHelper = function (doc) {
-    doc.commentsCount = 0;
+Stories._insertHelper = function (story) {
+    story.commentsCount = 0;
 
-    if (!doc._id) doc._id = new Meteor.Collection.ObjectID();
+    if (!story._id) story._id = new Meteor.Collection.ObjectID();
 
-    Activities.insert({
-        sourceId: doc._id,
-        sourceType: doc.type,
+    var activity = Activity.create({
         type: Activity.Type.CREATE
 //                userId: userId
-    });
+    }, story);
+    Activities.insert(activity);
 };
 
 Stories.allow({

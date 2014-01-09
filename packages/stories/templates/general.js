@@ -1,10 +1,3 @@
-Template.storyFeedItem.comments = function () {
-    return Activities.find({
-        sourceId: this._id,
-        type: Activity.Type.COMMENT
-    })
-};
-
 Template.storyFeedItem.events({
     'click .story-footer-link': function (event) {
         var target = $(event.target);
@@ -43,11 +36,11 @@ Template.storyFeedItem.getType = function () {
     var type = this.type;
     switch (type) {
         case 1:
-            return "story-type-problem";
+            return 'story-type-problem';
             break;
         case 2:
-            return "story-type-solution";
+            return 'story-type-solution';
             break;
     }
-    return "";
+    return '';
 };

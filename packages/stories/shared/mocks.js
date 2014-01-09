@@ -38,10 +38,7 @@ if (Meteor.isServer) {
 
             //add a few comments
             for (var i = 0; i < Tools.getRandomInt(0, 4); i++) {
-                var comment = EJSON.clone(Tools.getRandomItem(Mocks.comments));
-                comment.sourceId = story._id;
-                comment.sourceType = story.type;
-
+                var comment = Activity.create(Tools.getRandomItem(Mocks.comments), story);
                 Activities._insertHelper(comment);
                 Activities.insert(comment);
             }

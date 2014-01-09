@@ -1,6 +1,6 @@
 Template.commentsWidget.comments = function () {
     return Activities.find({
-        sourceId: this._id,
+        $or: [{ problemId: this._id }, { solutionId: this._id }],
         type: Activity.Type.COMMENT
     })
 };
@@ -10,14 +10,11 @@ Template.commentsWidget.events({
         var addCommentInput = $(event.target).prev();
         var message = addCommentInput.val();
 
-        Activities.insert({
+        var activity = Activity.create({
             type: Activity.Type.COMMENT,
-
-            sourceId: this._id,
-            sourceType: this.type,
-
             value: message
-        });
+        }, this);
+        Activities.insert(activity);
 
         addCommentInput.val('');
     }

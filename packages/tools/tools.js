@@ -14,7 +14,6 @@ Tools.MatchEnum = function (enumObject, optional) {
 
 Tools.getRandomItem = function (array) {
     var index = Tools.getRandomInt(0, array.length);
-    console.log("index", index, array.length);
     return array[index];
 };
 

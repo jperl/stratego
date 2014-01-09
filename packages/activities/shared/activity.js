@@ -1,27 +1,14 @@
 Activity = {};
 
 Activity.Type = {
-    ASSOCIATE: 1,
+    COMMENT: 1,
     CREATE: 2,
-    COMMENT: 3,
+    DELETE: 3,
     FAVORITE: 4,
-    MENTION: 5,
-    TAG: 6,
-    VIEW: 7,
+//    MENTION: 5,
+//    TAG: 6,
+//    VIEW: 7,
     VOTE: 8
-};
-
-Activity.SourceType = {
-    PROBLEM: 1, //the same as Story.Type.PROBLEM
-    SOLUTION: 2, //the same as Story.Type.SOLUTION
-    ASSOCIATION: 3,
-    COMMENT: 4
-};
-
-Activity.DestinationType = {
-    PROBLEM: 1, //the same as Story.Type.PROBLEM
-    SOLUTION: 2, //the same as Story.Type.SOLUTION
-    COMMENT: 3
 };
 
 Activity.check = function (activity) {
@@ -30,57 +17,19 @@ Activity.check = function (activity) {
 
         type: Tools.MatchEnum(Activity.Type),
 
-        sourceId: Match.Any,
-        sourceType: Match.Where(function (sourceType) {
-            return true;
-
-            if (activity.type === Activity.Type.ASSOCIATE) {
-                //this would mean they are associating a problem -> solution
-                return sourceType === Activity.SourceType.PROBLEM ||
-                    //this would mean they are associating a solution -> problem
-                    sourceType === Activity.SourceType.SOLUTION;
-            }
-
-            if (activity.type === Activity.Type.CREATE) {
-                return sourceType === Activity.SourceType.PROBLEM ||
-                    sourceType === Activity.SourceType.SOLUTION;
-            }
-
-            if (activity.type === Activity.Type.COMMENT) {
-                //we might eventually have comments on associations
-                return sourceType === Activity.SourceType.COMMENT || //sub-comment
-                    sourceType === Activity.SourceType.PROBLEM ||
-                    sourceType === Activity.SourceType.SOLUTION;
-            }
-
-            if (activity.type === Activity.Type.VIEW) {
-                return sourceType === Activity.SourceType.COMMENT ||
-                    sourceType === Activity.SourceType.PROBLEM ||
-                    sourceType === Activity.SourceType.SOLUTION;
-            }
-
-            if (activity.type === Activity.Type.VOTE) {
-                //we might eventually be able to vote on comments
-                //TODO this. think about what happens if we allow associations and disassociations?
-                return sourceType === Activity.SourceType.PROBLEM ||
-                    sourceType === Activity.SourceType.ASSOCIATION;
-            }
-
-            return false;
-        }),
-
-        destinationId: Match.Optional(Match.Any),
-        destinationType: Match.Optional(Match.Where(function (destinationType) {
-            //right now the destination only applies for associations
-            if (activity.type !== Activity.Type.ASSOCIATE) return Tools.IsNullOrUndefined(destinationType);
-
-            //this would mean they are associating a solution -> problem
-            return destinationType === Activity.SourceType.PROBLEM ||
-                // this would mean they are associating a problem -> solution
-                destinationType === Activity.SourceType.SOLUTION;
-        })),
+        problemId: Match.Optional(Match.Any),
+        solutionId: Match.Optional(Match.Any),
 
         value: Match.Optional(Match.Any)
 //        userId: String
     });
+};
+
+Activity.create = function (options, story) {
+    var activity = EJSON.clone(options);
+
+    if (story.type === Activity.Type.PROBLEM) activity.problemId = story._id;
+    else activity.solutionId = story._id;
+
+    return activity;
 };
