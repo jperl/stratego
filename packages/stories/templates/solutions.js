@@ -13,7 +13,13 @@ Template.newSolution.events({
     'click .add-new-solution': function () {
         var title = $('.new-solution-title').val();
 
-        var id = Stories.insert({ type: Story.Type.SOLUTION, title: title, votes: 0 });
+        Stories.insert({ type: Story.Type.SOLUTION, title: title, votes: 0 });
+    }
+});
+
+Template.loadMoreSolutions.events({
+    'click .load-stories-button': function () {
+        StoryTools.loadMore();
     }
 });
 

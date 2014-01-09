@@ -8,11 +8,11 @@ Story.Type = {
 Story.check = function (story) {
     check(story, {
         _id: Match.Any,
-        description: Match.Optional(String),
-        title: Match.Optional(String),
         type: Tools.MatchEnum(Story.Type),
+        title: Match.Optional(String),
+        description: Match.Optional(String),
         votes: Match.Optional(Number),
-        comments: Match.Optional(Array)
+        commentsCount: Number
     });
 };
 

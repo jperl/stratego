@@ -17,6 +17,8 @@ Package.on_use(function (api) {
     api.add_files('server/collection.js', 'server');
     api.add_files('server/publishes.js', 'server');
 
+    api.add_files('client/storyTools.js', 'client');
+
     api.add_files('templates/general.html', 'client');
     api.add_files('templates/general.js', 'client');
 
@@ -28,4 +30,5 @@ Package.on_use(function (api) {
 
     api.export('Stories');
     api.export('Story');
+    api.export('StoryTools');
 });

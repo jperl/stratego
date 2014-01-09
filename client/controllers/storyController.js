@@ -1,8 +1,10 @@
+var pageSize = 10;
+
 StoryController = RouteController.extend({
     before: function () {
         var details = this.params.details;
 
-        var name = 'problems'
+        var name = 'problems';
         if (this.data.page === 'solutions-page') {
             name = 'solutions';
         }
@@ -13,7 +15,10 @@ StoryController = RouteController.extend({
             return;
         }
 
-        this.subscribe('stories', details);
+        var type = name === 'problems' ? Story.Type.PROBLEM : Story.Type.SOLUTION;
+
+        this.subscribe('stories', type, details, 0, pageSize);
+        StoryTools.setSubscription(type, details, pageSize);
 
         if (details) {
             this.render(name);
@@ -25,8 +30,6 @@ StoryController = RouteController.extend({
         this.stop();
     },
     unload: function () {
-        //TODO
-        //Template.problems.unload();
-        //Template.solutions.unload();
+        StoryTools.unload();
     }
 });

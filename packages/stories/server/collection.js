@@ -7,15 +7,14 @@ Stories._insertHelper = function (story) {
         type: Activity.Type.CREATE
 //                userId: userId
     }, story);
+
     Activities.insert(activity);
 };
 
 Stories.allow({
     insert: function (userId, doc) {
-        Story.check(doc);
-
         Stories._insertHelper(doc);
-
+        Story.check(doc);
         return true;
     },
     update: function (userId, doc, fields, modifier) {
