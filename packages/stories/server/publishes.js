@@ -1,9 +1,12 @@
-Meteor.publish('stories', function (type, details, skip, limit) {
-    limit = limit ? limit : 25;
-    var options = {
-        limit: limit
-    };
-    if (skip) options.skip = skip;
+Meteor.publish('stories', function (type, details, options) {
+    if (!options) {
+        options = {
+            limit: 25
+        };
+    }
+
+    //this will change
+    options.sort = { votesCount: -1 };
 
     return Stories.find({
         type: type

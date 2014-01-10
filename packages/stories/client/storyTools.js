@@ -12,14 +12,17 @@ StoryTools.setSubscription = function (type, details, pageSize) {
 
 StoryTools.canLoadMore = function () {
     var storiesCount = StoriesCount.findOne();
-    if(!storiesCount) return;
+    if (!storiesCount) return;
 
     return storiesCount.count > Stories.find().count();
 };
 
 StoryTools.loadMore = function () {
     var subscription = Meteor.subscribe('stories', currentPageStoryType, currentPageDetails,
-        currentPage * currentPageSize, currentPageSize);
+        {
+            skip: currentPage * currentPageSize,
+            limit: currentPageSize
+        });
 
     currentPage++;
 

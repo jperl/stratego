@@ -17,7 +17,7 @@ StoryController = RouteController.extend({
 
         var type = name === 'problems' ? Story.Type.PROBLEM : Story.Type.SOLUTION;
 
-        this.subscribe('stories', type, details, 0, pageSize);
+        this.subscribe('stories', type, details, { limit: pageSize });
         this.subscribe('stories-count', type, details);
         StoryTools.setSubscription(type, details, pageSize);
 

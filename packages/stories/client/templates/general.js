@@ -24,7 +24,15 @@ Template.storyFeedItem.events({
         }
     },
     'click .vote-up': function (event) {
-        $(event.currentTarget).addClass('voted');
+        var target = $(event.currentTarget);
+        var upVoted = target.hasClass('voted');
+        if (!upVoted) {
+            Activities.insert(Activity.create({
+                type: Activity.Type.VOTE,
+                value: 1
+            }, this));
+            target.addClass('voted');
+        }
     },
     'click .story-favorite': function (event) {
         $(event.currentTarget).toggleClass('favorited');
