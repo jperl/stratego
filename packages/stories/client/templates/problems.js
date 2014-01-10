@@ -1,3 +1,12 @@
+var addNewProblem = function () {
+    var titleElement = $('.new-problem-title'), title = titleElement.val();
+    if (title.length <= 5) return;
+
+    Stories.insert({ type: Story.Type.PROBLEM, title: title, votes: 0 });
+    titleElement.val('');
+    $('.add-new-problem').animate({opacity: "hide"});
+};
+
 Template.newProblem.events({
     'keyup .new-problem-title': _.throttle(function (event) {
         var submitNewProblem = $('.add-new-problem');
@@ -10,31 +19,15 @@ Template.newProblem.events({
             submitNewProblem.animate({opacity: "show"});
         }
     }, 1000),
-    'click .add-new-problem': function (event) {
-        var titleElement = $('.new-problem-title'), title = titleElement.val();
-
-        Stories.insert({ type: Story.Type.PROBLEM, title: title, votes: 0 });
-        titleElement.val('');
-        $('.add-new-problem').animate({opacity: "hide"});
-    },
+    'click .add-new-problem': addNewProblem,
     'keypress .new-problem-title': function (event) {
-        var titleElement = $('.new-problem-title'), title = titleElement.val();
-        if (event.keyCode === 13 && title.length > 5) {
-            Stories.insert({ type: Story.Type.PROBLEM, title: title, votes: 0 });
-            titleElement.val('');
-            $('.add-new-problem').animate({opacity: "hide"});
-        }
+        if (event.keyCode === 13) addNewProblem();
     }
 });
 
-Template.problems.canLoadMore = function () {
-    return StoryTools.canLoadMore();
-};
-
+Template.loadMoreProblems.canLoadMore = StoryTools.canLoadMore;
 Template.loadMoreProblems.events({
-    'click .load-stories-button': function () {
-        StoryTools.loadMore();
-    }
+    'click .load-stories-button': StoryTools.loadMore
 });
 
 Template.problems.items = function () {

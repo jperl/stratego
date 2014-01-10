@@ -18,9 +18,11 @@
 </template>
 
 <template name="loadMoreSolutions">
+    {{#if canLoadMore}}
     <div class="story-feed-item-wrapper">
         <a class="load-stories-button">Load more solutions</a>
     </div>
+    {{/if}}
 </template>
 
 <template name="solutions">
@@ -31,9 +33,7 @@
             {{#each items}}
                 {{>storyFeedItem}}
             {{/each}}
-            {{#if canLoadMore}}
             {{>loadMoreSolutions}}
-            {{/if}}
         </div>
     </div>
 </template>
