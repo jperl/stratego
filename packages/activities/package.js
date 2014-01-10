@@ -15,8 +15,8 @@ Package.on_use(function (api) {
 
     api.add_files('client/comments.js', 'client');
 
-    api.add_files('templates/comments.html', 'client');
-    api.add_files('templates/comments.js', 'client');
+    api.add_files('client/templates/comments.html', 'client');
+    api.add_files('client/templates/comments.js', 'client');
 
     api.add_files('server/publishes.js', 'server');
     api.add_files('server/collection.js', 'server');

@@ -19,14 +19,14 @@ Package.on_use(function (api) {
 
     api.add_files('client/storyTools.js', 'client');
 
-    api.add_files('templates/general.html', 'client');
-    api.add_files('templates/general.js', 'client');
+    api.add_files('client/templates/general.html', 'client');
+    api.add_files('client/templates/general.js', 'client');
 
-    api.add_files('templates/problems.html', 'client');
-    api.add_files('templates/problems.js', 'client');
+    api.add_files('client/templates/problems.html', 'client');
+    api.add_files('client/templates/problems.js', 'client');
 
-    api.add_files('templates/solutions.html', 'client');
-    api.add_files('templates/solutions.js', 'client');
+    api.add_files('client/templates/solutions.html', 'client');
+    api.add_files('client/templates/solutions.js', 'client');
 
     api.export('Stories');
     api.export('Story');
