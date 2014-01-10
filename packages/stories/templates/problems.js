@@ -10,12 +10,26 @@ Template.newProblem.events({
             submitNewProblem.animate({opacity: "show"});
         }
     }, 1000),
-    'click .add-new-problem': function () {
-        var title = $('.new-problem-title').val();
+    'click .add-new-problem': function (event) {
+        var titleElement = $('.new-problem-title'), title = titleElement.val();
 
         Stories.insert({ type: Story.Type.PROBLEM, title: title, votes: 0 });
+        titleElement.val('');
+        $('.add-new-problem').animate({opacity: "hide"});
+    },
+    'keypress .new-problem-title': function (event) {
+        var titleElement = $('.new-problem-title'), title = titleElement.val();
+        if (event.keyCode === 13 && title.length > 5) {
+            Stories.insert({ type: Story.Type.PROBLEM, title: title, votes: 0 });
+            titleElement.val('');
+            $('.add-new-problem').animate({opacity: "hide"});
+        }
     }
 });
+
+Template.problems.canLoadMore = function () {
+    return StoryTools.canLoadMore();
+};
 
 Template.loadMoreProblems.events({
     'click .load-stories-button': function () {

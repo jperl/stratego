@@ -11,9 +11,18 @@ Template.newSolution.events({
         }
     }, 1000),
     'click .add-new-solution': function () {
-        var title = $('.new-solution-title').val();
-
+        var titleElement = $('.new-solution-title'), title = titleElement.val();
         Stories.insert({ type: Story.Type.SOLUTION, title: title, votes: 0 });
+        titleElement.val('');
+        $('.add-new-solution').animate({opacity: "hide"});
+    },
+    'keypress .new-solution-title': function (event) {
+        var titleElement = $('.new-solution-title'), title = titleElement.val();
+        if (event.keyCode === 13 && title.length > 5) {
+            Stories.insert({ type: Story.Type.SOLUTION, title: title, votes: 0 });
+            titleElement.val('');
+            $('.add-new-solution').animate({opacity: "hide"});
+        }
     }
 });
 
@@ -25,4 +34,8 @@ Template.loadMoreSolutions.events({
 
 Template.solutions.items = function () {
     return Stories.find({type: Story.Type.SOLUTION});
+};
+
+Template.solutions.canLoadMore = function () {
+    return StoryTools.canLoadMore();
 };

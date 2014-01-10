@@ -3,17 +3,23 @@ Meteor.publish('stories', function (type, details, skip, limit) {
     var options = {
         limit: limit
     };
-
     if (skip) options.skip = skip;
 
-    if (details === "top" || details === "latest" || details === "need-solutions" ||
-        details === "my" || details === "discussed") {
-        return Stories.find({
-            type: type
-        }, options);
-    }
+    return Stories.find({
+        type: type
+    }, options);
+});
 
-    //show the specific story
-    var storyId = Story.getId(details);
-    return Stories.find(storyId, options);
+
+Meteor.publish('stories-count', function (type, details) {
+    var params = {
+        type: type
+    };
+
+    return Tools.publishCounter({
+        handle: this,
+        name: 'stories-count',
+        collection: Stories,
+        filter: params
+    });
 });

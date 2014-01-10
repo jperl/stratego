@@ -31,7 +31,9 @@
             {{#each items}}
                 {{>storyFeedItem}}
             {{/each}}
+            {{#if canLoadMore}}
             {{>loadMoreProblems}}
+            {{/if}}
         </div>
     </div>
 </template>

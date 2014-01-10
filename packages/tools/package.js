@@ -8,6 +8,8 @@ Package.on_use(function (api) {
 
     api.add_files('tools.js', ['client', 'server']);
 
+    api.add_files('serverTools.js', 'server');
+
     api.add_files('templates/navListItem.html', 'client');
     api.add_files('templates/navListItem.js', 'client');
 
