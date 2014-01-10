@@ -28,8 +28,14 @@ Activity.check = function (activity) {
 Activity.create = function (options, story) {
     var activity = EJSON.clone(options);
 
-    if (story.type === Activity.Type.PROBLEM) activity.problemId = story._id;
-    else activity.solutionId = story._id;
+    if (!activity._id) activity._id = new Meteor.Collection.ObjectID();
+
+    if (story) {
+        if (story.type === Story.Type.PROBLEM) activity.problemId = story._id;
+        else activity.solutionId = story._id;
+    }
+
+    Activity.check(activity);
 
     return activity;
 };

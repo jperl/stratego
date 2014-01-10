@@ -11,8 +11,8 @@ Story.check = function (story) {
         type: Tools.MatchEnum(Story.Type),
         title: Match.Optional(String),
         description: Match.Optional(String),
-        votes: Match.Optional(Number),
-        commentsCount: Number
+        commentsCount: Number,
+        votesCount: Match.Optional(Number)
     });
 };
 

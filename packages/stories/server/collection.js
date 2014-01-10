@@ -1,5 +1,6 @@
 Stories._insertHelper = function (story) {
     story.commentsCount = 0;
+    story.votesCount = 0;
 
     if (!story._id) story._id = new Meteor.Collection.ObjectID();
 

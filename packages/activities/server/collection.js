@@ -1,6 +1,10 @@
 Activities._insertHelper = function (activity) {
     if (activity.type === Activity.Type.COMMENT) {
-        Stories.update({ _id: activity.problemId || activity.solutionId}, { $inc: { commentsCount: 1 } });
+        Stories.update({ _id: activity.problemId || activity.solutionId }, { $inc: { commentsCount: 1 } });
+    }
+    //this will probably change
+    else if (activity.type === Activity.Type.VOTE && !!activity.problemId) {
+        Stories.update({ _id: activity.problemId }, { $inc: { votesCount: 1 } });
     }
 };
 

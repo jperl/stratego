@@ -1,30 +1,25 @@
 Mocks.stories = [
     {
         type: Story.Type.PROBLEM,
-        title: 'No engineering performance management.',
-        votes: 99
+        title: 'No engineering performance management.'
     },
     {
         type: Story.Type.SOLUTION,
-        title: 'Have monthly manager / employee performance reviews.',
-        votes: 5
+        title: 'Have monthly manager / employee performance reviews.'
     },
     {
         type: Story.Type.PROBLEM,
         title: 'Lacking transparency.',
-        description: 'It would be nice if we could get more transparency from top to bottom throughout the company. #engineering #motivation',
-        votes: 50
+        description: 'It would be nice if we could get more transparency from top to bottom throughout the company. #engineering #motivation'
     },
     {
         type: Story.Type.SOLUTION,
-        title: 'Create email list archives that are internally accessible.',
-        votes: 5
+        title: 'Create email list archives that are internally accessible.'
     },
     {
         type: Story.Type.PROBLEM,
         title: 'Roof is on fire.',
-        description: '#safety #workplace #fear',
-        votes: 28
+        description: '#safety #workplace #fear'
     }
 ];
 
@@ -41,6 +36,20 @@ if (Meteor.isServer) {
                 var comment = Activity.create(Tools.getRandomItem(Mocks.comments), story);
                 Activities._insertHelper(comment);
                 Activities.insert(comment);
+            }
+
+            //add a few votes
+            if (story.type === Story.Type.PROBLEM) {
+                for (var v = 0; v < Tools.getRandomInt(0, 10); v++) {
+                    var vote = Activity.create({
+                        type: Activity.Type.VOTE,
+                        value: 1
+                    }, story);
+
+                    Activities._insertHelper(vote);
+
+                    Activities.insert(vote);
+                }
             }
         });
     });

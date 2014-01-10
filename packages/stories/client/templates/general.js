@@ -25,7 +25,6 @@ Template.storyFeedItem.events({
     },
     'click .vote-up': function (event) {
         $(event.currentTarget).addClass('voted');
-        //Stories.update({ _id: this._id }, { $inc: { votes: 1 } })
     },
     'click .story-favorite': function (event) {
         $(event.currentTarget).toggleClass('favorited');
