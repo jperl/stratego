@@ -2,7 +2,7 @@ var addNewSolution = function () {
     var titleElement = $('.new-solution-title'), title = titleElement.val();
     if (title.length <= 5) return;
 
-    Stories.insert({ type: Story.Type.SOLUTION, title: title });
+    Story.create(Story.Type.SOLUTION, title);
     titleElement.val('');
     $('.add-new-solution').animate({opacity: "hide"});
 };

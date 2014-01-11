@@ -1,15 +1,9 @@
 var addNewComment = function (story) {
     var addCommentInput = $('.add-comment-input');
     var message = addCommentInput.val();
-
     if (message.length <= 0) return;
 
-    var activity = Activity.create({
-        type: Activity.Type.COMMENT,
-        value: message
-    }, story);
-
-    Activities.insert(activity);
+    Activity.comment(message, story);
     addCommentInput.val('');
 };
 

@@ -28,27 +28,17 @@ if (Meteor.isServer) {
         if (Stories.find().count() > 0) return;
 
         _.each(Mocks.stories, function (story) {
-            Stories._insertHelper(story);
-            Stories.insert(story);
+            var story = Story.create(story.type, story.title, story.description);
 
             //add a few comments
             for (var i = 0; i < Tools.getRandomInt(0, 4); i++) {
-                var comment = Activity.create(Tools.getRandomItem(Mocks.comments), story);
-                Activities._insertHelper(comment);
-                Activities.insert(comment);
+                Activity.comment(Tools.getRandomItem(Mocks.comments), story);
             }
 
             //add a few votes
             if (story.type === Story.Type.PROBLEM) {
                 for (var v = 0; v < Tools.getRandomInt(0, 10); v++) {
-                    var vote = Activity.create({
-                        type: Activity.Type.VOTE,
-                        value: 1
-                    }, story);
-
-                    Activities._insertHelper(vote);
-
-                    Activities.insert(vote);
+                    Activity.vote(story);
                 }
             }
         });

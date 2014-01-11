@@ -2,7 +2,8 @@ var addNewProblem = function () {
     var titleElement = $('.new-problem-title'), title = titleElement.val();
     if (title.length <= 5) return;
 
-    Stories.insert({ type: Story.Type.PROBLEM, title: title, votesCount: 0 });
+    Story.create(Story.Type.PROBLEM, title);
+
     titleElement.val('');
     $('.add-new-problem').animate({opacity: "hide"});
 };

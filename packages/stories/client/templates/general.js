@@ -27,10 +27,7 @@ Template.storyFeedItem.events({
         var target = $(event.currentTarget);
         var upVoted = target.hasClass('voted');
         if (!upVoted) {
-            Activities.insert(Activity.create({
-                type: Activity.Type.VOTE,
-                value: 1
-            }, this));
+            Activity.vote(this);
             target.addClass('voted');
         }
     },

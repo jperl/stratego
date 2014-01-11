@@ -16,6 +16,33 @@ Story.check = function (story) {
     });
 };
 
+var constructor = function (type, title, description) {
+    var options = {
+        _id: new Meteor.Collection.ObjectID(),
+        type: type,
+        title: title,
+        commentsCount: 0,
+        votesCount: 0
+    };
+    if (description) options.description = description;
+
+    var story = EJSON.clone(options);
+    Story.check(story);
+    return story;
+};
+
+Story.create = function (type, title, description) {
+    var story = constructor(type, title, description);
+
+    if (Meteor.isServer) {
+        Stories._insertHelper(story);
+    }
+
+    Stories.insert(story);
+
+    return story;
+};
+
 //remove the slash, and anything after it
 //ex. DhsjvoA34CRH4739T-fix-the-coffee-machine
 Story.getId = function (idParameter) {

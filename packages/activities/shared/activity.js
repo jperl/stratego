@@ -25,17 +25,55 @@ Activity.check = function (activity) {
     });
 };
 
-Activity.create = function (options, story) {
-    var activity = EJSON.clone(options);
+var constructor = function (type, value, story, secondStory) {
+    var doc = {
+        _id: new Meteor.Collection.ObjectID(),
+        type: type
+    };
+    if (value) doc.value = value;
 
-    if (!activity._id) activity._id = new Meteor.Collection.ObjectID();
-
+    var activity = EJSON.clone(doc);
     if (story) {
         if (story.type === Story.Type.PROBLEM) activity.problemId = story._id;
         else activity.solutionId = story._id;
     }
 
+    if (secondStory) {
+        if (secondStory.type === Story.Type.PROBLEM) activity.problemId = secondStory._id;
+        else activity.solutionId = secondStory._id;
+    }
+
     Activity.check(activity);
+
+    return activity;
+};
+
+Activity.create = function (story) {
+    var activity = constructor(Activity.Type.CREATE, null, story);
+
+    Activities.insert(activity);
+};
+
+Activity.comment = function (content, story) {
+    var activity = constructor(Activity.Type.COMMENT, content, story);
+
+    if (Meteor.isServer) {
+        Activities._insertHelper(activity);
+    }
+
+    Activities.insert(activity);
+
+    return activity;
+};
+
+Activity.vote = function (sourceStory, associatedStory) {
+    var activity = constructor(Activity.Type.VOTE, 1, sourceStory, associatedStory);
+
+    if (Meteor.isServer) {
+        Activities._insertHelper(activity);
+    }
+
+    Activities.insert(activity);
 
     return activity;
 };

@@ -1,15 +1,9 @@
 Stories._insertHelper = function (story) {
+    //reset these
     story.commentsCount = 0;
     story.votesCount = 0;
 
-    if (!story._id) story._id = new Meteor.Collection.ObjectID();
-
-    var activity = Activity.create({
-        type: Activity.Type.CREATE
-//                userId: userId
-    }, story);
-
-    Activities.insert(activity);
+    Activity.create(story);
 };
 
 Stories.allow({
@@ -19,9 +13,7 @@ Stories.allow({
         return true;
     },
     update: function (userId, doc, fields, modifier) {
-        Story.check(doc);
-
-        return true;
+        return false;
     },
     remove: function (userId, doc) {
         return false;
