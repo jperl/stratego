@@ -20,3 +20,10 @@ Tools.getRandomItem = function (array) {
 Tools.getRandomInt = function (minInclusive, maxExclusive) {
     return Math.floor(Math.random() * (maxExclusive - minInclusive)) + minInclusive;
 };
+
+Tools.randomTimes = function (minInclusive, maxExclusive, func, items) {
+    for (var i = 0; i < Tools.getRandomInt(minInclusive, maxExclusive); i++) {
+        if (items) func(Tools.getRandomItem(items));
+        else func();
+    }
+};
