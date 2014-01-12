@@ -1,10 +1,10 @@
 var addNewComment = function (story) {
-    var addCommentInput = $('.add-comment-input');
-    var message = addCommentInput.val();
+    var addItemInput = $('.add-item-input');
+    var message = addItemInput.val();
     if (message.length <= 0) return;
 
     Activity.comment(message, story);
-    addCommentInput.val('');
+    addItemInput.val('');
 };
 
 Template.commentsWidget.comments = function () {

@@ -1,34 +1,42 @@
 Template.storyFeedItem.events({
     'click .story-footer-link': function (event) {
         var target = $(event.target);
+        var parent = target.parents('.story-feed-item-wrapper');
 
-        var expand = !target.hasClass('active');
-
-        if (expand) target.addClass('active');
-        else target.removeClass('active');
+        var expanded = !target.hasClass('active');
+        parent.find(".story-footer-link.active").removeClass("active");
+        if (expanded) target.addClass('active');
 
         var storyId = this._id;
-        if (target.hasClass('story-comments-link')) {
-            var parent = target.parents('.story-feed-item-wrapper');
-            if (expand) {
-                Comments.subscribe(storyId);
 
-                parent.removeClass('comments-hidden');
+        parent.children('.comment-section-wrapper').addClass('display-none');
+        parent.children('.association-section-wrapper').addClass('display-none');
+
+        if (target.hasClass('story-comments-link')) {
+            if (expanded) {
+                Comments.subscribe(storyId);
                 parent.children('.comment-section-wrapper').removeClass('display-none');
             } else {
                 Comments.unsubscribe(storyId);
-
-                parent.addClass('comments-hidden');
-                parent.children('.comment-section-wrapper').addClass('display-none');
+            }
+        } else if (target.hasClass('story-associations-link')) {
+            if (expanded) {
+                Comments.subscribe(storyId);
+                parent.children('.association-section-wrapper').removeClass('display-none');
+            } else {
+                Comments.unsubscribe(storyId);
             }
         }
     },
     'click .vote-up': function (event) {
         var target = $(event.currentTarget);
-        var upVoted = target.hasClass('voted');
-        if (!upVoted) {
+        if (!target.hasClass('voted')) {
             Activity.vote(this);
             target.addClass('voted');
+        } else {
+            //TODO: Add unvote and fix backend multiple voting.
+            //Activity.unvote(this);
+            //target.removeClass('voted');
         }
     },
     'click .story-favorite': function (event) {

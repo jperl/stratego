@@ -5,21 +5,15 @@
     .story-feed-item-wrapper {
         .border-radius(3px);
         margin-top: 10px;
-        box-shadow: 0 2px 0 @light-grey;
-        background: white;
     }
 
     .story-feed-item {
         .border-radius(3px);
         position: relative;
-        border-bottom: 1px dashed @light-grey;
         z-index: @story-z-index;
         padding: .5em 1em 0 0;
-    }
-
-    // States
-    .no-comments .add-comment-section, .comments-hidden .story-feed-item {
-        border-bottom: none;
+        box-shadow: 0 2px 0 @light-grey;
+        background: white;
     }
 
     .story-type(@name, @color) {
@@ -59,6 +53,7 @@
         float: left;
         line-height: 1;
         font-size: 16px;
+        min-height: 16px;   //Note: Only used to prevent div collapse w/o content. Possibly remove.
         text-align: center;
         font-weight: bold;
     }
@@ -104,29 +99,23 @@
 
         .border-top-radius(3px);
         padding: 7px;
-        border: 1px solid transparent;
-        border-bottom: none;
+        //border: 1px solid transparent;
+        //border-bottom: none;
 
         &.active {
-            border-color: @light-grey;
-            background: white;
+            //border-color: @grey;
+            background: @light-grey;
         }
     }
 
-    .add-comment-section {
+    .footer-section-wrapper {
+        //border: 1px solid @light-grey;
+        background: @light-grey;
         padding: 20px;
-        border-bottom: 1px dashed @light-grey;
     }
 
-    .add-comment-section, .story-comment-section {
-        background: white;
+    .add-item-section, .item-section {
         position: relative;
-    }
-
-    .story-comment {
-        border-top: 1px dashed @light-grey;
-
-        &:first-child { border-top: none; }
     }
 
     .story-comment-icon-wrapper {

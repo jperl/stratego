@@ -1,8 +1,8 @@
 <template name="commentWidget">
-    <div class="story-comment clearfix">
+    <div class="comment clearfix">
         <div class="story-comment-icon-wrapper">
             <a class="story-comment-icon profile-link" href="#">
-                <div class="profile-img"></div>
+                <img src="/images/Jordan.png" class="profile-img" alt="Profile Image" />
             </a>
         </div>
         <div class="story-comment-content">{{value}}</div>
@@ -10,13 +10,13 @@
 </template>
 
 <template name="commentsWidget">
-    <div class="add-comment-section">
+    <div class="add-item-section">
         <div class="input-wrapper clearfix">
-            <input class="add-comment-input" type="text" placeholder="Add a comment...">
-            <button class="add-comment-button">Add Comment</button>
+            <input class="add-item-input" type="text" placeholder="Add a comment...">
+            <button class="add-item-button">Add Comment</button>
         </div>
     </div>
-    <div class="story-comment-section">
+    <div class="item-section">
         {{#each comments}}
         {{>commentWidget}}
         {{/each}}

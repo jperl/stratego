@@ -17,7 +17,7 @@
 
 @off-white:         #F6F6F6; //#eee;
 
-@light-grey:        lighten(@grey, 33.33%); //#ddd;
+@light-grey:        #e6e6e6; //lighten(@grey, 33.33%); //#ddd;
 @grey:              #888;                   //#888
 @dark-grey:         darken(@grey, 33.33%);  //#333
 
@@ -29,14 +29,16 @@
 
 // Utility
 .center         { text-align: center; }
-.light          { color: @light-grey; }
 .display-none   { display: none; }
 
 // General
 body {
     font: 1em/1.4 @primary-font-stack;
+    background: @off-white;
+}
+
+body, button, input {
     color: @primary-text;
-    background: @off-white url('/images/agsquare.png');
 }
 
 ul, li {
@@ -52,11 +54,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    text-decoration: none;
     color: @blue;
-    &:hover {
-        text-decoration: underline;
-    }
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
 }
 
 img { height: 100%; }
@@ -67,10 +67,6 @@ input {
     border: none;
     background: transparent;
     padding: .75em;
-}
-
-button, input {
-    color: @primary-text;
 }
 
 .input-wrapper {
@@ -99,13 +95,11 @@ button, input {
 
 // For comments and nav
 .profile-link {
+    width: 40px;
+    height: 40px;
+
     .profile-img {
-        width: @profile-size; height: @profile-size;
         background: @light-grey;
-        background-image: url('/images/Jordan.png');
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: @profile-size;
         .circle();
     }
 }

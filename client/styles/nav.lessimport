@@ -39,7 +39,7 @@
         padding-right: .25em;
     }
 
-    .profile-img {
+    .profile-link {
         position: absolute; top: 50%; right: 10px;
         margin-top: -@profile-size / 2;
     }
