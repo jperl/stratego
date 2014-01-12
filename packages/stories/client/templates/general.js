@@ -36,15 +36,12 @@ Template.storyFeedItem.events({
     }
 });
 
-Template.storyFeedItem.getType = function () {
+Template.storyFeedItem.typeClass = function () {
     var type = this.type;
-    switch (type) {
-        case 1:
-            return 'story-type-problem';
-            break;
-        case 2:
-            return 'story-type-solution';
-            break;
-    }
-    return '';
+    if (type === 1) return 'story-type-problem';
+    return 'story-type-solution';
+};
+
+Template.storyFeedItem.isProblem = function () {
+    return this.type === Story.Type.PROBLEM;
 };

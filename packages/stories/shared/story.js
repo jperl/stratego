@@ -11,6 +11,7 @@ Story.check = function (story) {
         type: Tools.MatchEnum(Story.Type),
         title: Match.Optional(String),
         description: Match.Optional(String),
+        associationIds: [Match.Any],
         commentsCount: Number,
         votesCount: Match.Optional(Number)
     });
@@ -21,6 +22,7 @@ var constructor = function (type, title, description) {
         _id: new Meteor.Collection.ObjectID(),
         type: type,
         title: title,
+        associationIds: [],
         commentsCount: 0,
         votesCount: 0
     };

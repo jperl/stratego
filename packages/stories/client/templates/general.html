@@ -1,6 +1,6 @@
 
 <template name="storyFeedItem">
-    <div class="story-feed-item-wrapper comments-hidden {{#unless comments.length}}no-comments{{/unless}} {{getType}}">
+    <div class="story-feed-item-wrapper comments-hidden {{#unless comments.length}}no-comments{{/unless}} {{typeClass}}">
         <div class="story-feed-item clearfix">
             <div class="vote">
                 <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
@@ -15,7 +15,11 @@
             <div class="story-footer">
                 <div class="vote-count">{{{votesCount}}}</div>
                 <a class="story-comments-link story-footer-link" href="#">{{{commentsCount}}} Comments</a>
-                <!--<a class="story-solutions-link story-footer-link" href="#">3 Solutions</a>-->
+                {{#if isProblem}}
+                <a class="story-solutions-link story-footer-link" href="#">{{associationIds.length}} Solutions</a>
+                {{else}}
+                <a class="story-problems-link story-footer-link" href="#">{{associationIds.length}} Problems</a>
+                {{/if}}
                 <span class="story-time-submitted">Added 4 Days Ago</span>
             </div>
         </div>
