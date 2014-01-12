@@ -18,10 +18,10 @@ Template.commentsWidget.comments = function () {
 };
 
 Template.commentsWidget.events({
-    'click .add-comment-button': function (){
+    'click .add-item-button': function () {
         addNewComment(this);
     },
-    'keypress .add-comment-input': function (event) {
+    'keypress .add-item-input': function (event) {
         if (event.keyCode === 13) addNewComment(this);
     }
 });

@@ -5,7 +5,7 @@ var addNewProblem = function () {
     Story.create(Story.Type.PROBLEM, title);
 
     titleElement.val('');
-    $('.add-new-problem').animate({opacity: "hide"});
+    $('.add-new-problem').animate({opacity: 'hide'});
 };
 
 Template.newProblem.events({
@@ -14,10 +14,10 @@ Template.newProblem.events({
 
         var titleLength = $(event.target).val().length;
         if (titleLength === 0) {
-            submitNewProblem.animate({opacity: "hide"});
+            submitNewProblem.animate({opacity: 'hide'});
         }
         else if (titleLength > 5) {
-            submitNewProblem.animate({opacity: "show"});
+            submitNewProblem.animate({opacity: 'show'});
         }
     }, 1000),
     'click .add-new-problem': addNewProblem,

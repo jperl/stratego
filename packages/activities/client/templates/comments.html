@@ -10,12 +10,7 @@
 </template>
 
 <template name="commentsWidget">
-    <div class="add-item-section">
-        <div class="input-wrapper clearfix">
-            <input class="add-item-input" type="text" placeholder="Add a comment...">
-            <button class="add-item-button">Add Comment</button>
-        </div>
-    </div>
+    {{>addItem placeholder='Add a comment...' buttonText='Add Comment'}}
     <div class="item-section">
         {{#each comments}}
         {{>commentWidget}}

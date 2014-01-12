@@ -20,12 +20,7 @@
 </template>
 
 <template name="associationsWidget">
-    <div class="add-item-section">
-        <div class="input-wrapper clearfix">
-            <input class="add-item-input" type="text" placeholder="Add a solution...">
-            <button class="add-item-button">Add Solution</button>
-        </div>
-    </div>
+    {{>addItem}}
     <div class="item-section">
         {{#each items}}
         {{>associationWidget}}

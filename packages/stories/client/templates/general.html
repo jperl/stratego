@@ -13,12 +13,8 @@
             </div>
             <div class="story-footer">
                 <div class="vote-count">{{{votesCount}}}</div>
-                <a class="story-comments-link story-footer-link" href="#">{{{commentsCount}}} Comments</a>
-                {{#if isProblem}}
-                <a class="story-associations-link story-footer-link" href="#">{{associationIds.length}} Solutions</a>
-                {{else}}
-                <a class="story-associations-link story-footer-link" href="#">{{associationIds.length}} Problems</a>
-                {{/if}}
+                <a class="story-comments-link story-footer-link" href="#">{{commentsText}}</a>
+                <a class="story-associations-link story-footer-link" href="#">{{associationIds.length}} {{associationText}}</a>
                 <span class="story-time-submitted">Added 4 Days Ago</span>
             </div>
         </div>
