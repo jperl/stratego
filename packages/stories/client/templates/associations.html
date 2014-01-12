@@ -1,3 +1,24 @@
+<template name="associationWidget">
+    <div class="story-feed-item-wrapper story-type-solution">
+        <div class="story-feed-item clearfix">
+            <div class="vote">
+                <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
+            </div>
+            <div class="story-body">
+                <div class="story-meta">
+                    <span class="story-favorite"><i class="fa fa-star"></i></span>
+                </div>
+                <h2 class="story-title" title="Title">{{title}}</h2>
+                <!--<p class="story-description">Test Description</p>-->
+            </div>
+            <div class="story-footer">
+                <div class="vote-count">0</div>
+                <span class="story-time-submitted">Added 4 Days Ago</span>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="associationsWidget">
     <div class="add-item-section">
         <div class="input-wrapper clearfix">
@@ -6,25 +27,8 @@
         </div>
     </div>
     <div class="item-section">
-
-        <div class="story-feed-item-wrapper story-type-solution">
-            <div class="story-feed-item clearfix">
-                <div class="vote">
-                    <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
-                </div>
-                <div class="story-body">
-                    <div class="story-meta">
-                        <span class="story-favorite"><i class="fa fa-star"></i></span>
-                    </div>
-                    <h2 class="story-title" title="Title">Title</h2>
-                    <!--<p class="story-description">Test Description</p>-->
-                </div>
-                <div class="story-footer">
-                    <div class="vote-count">0</div>
-                    <span class="story-time-submitted">Added 4 Days Ago</span>
-                </div>
-            </div>
-        </div>
-
+        {{#each items}}
+        {{>associationWidget}}
+        {{/each}}
     </div>
 </template>

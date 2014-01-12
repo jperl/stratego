@@ -65,7 +65,8 @@ if (Meteor.isServer) {
             //setup the associations
             if (mockProblem.solutions) {
                 for (var s = 0; s < mockProblem.solutions.length; s++) {
-                    Activity.vote(problem, solutions[s]);
+                    var solutionIndex = mockProblem.solutions[s];
+                    Activity.vote(problem, solutions[solutionIndex]);
                 }
             }
         });

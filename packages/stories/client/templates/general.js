@@ -21,10 +21,10 @@ Template.storyFeedItem.events({
             }
         } else if (target.hasClass('story-associations-link')) {
             if (expanded) {
-                Comments.subscribe(storyId);
+                Associations.subscribe(storyId);
                 parent.children('.association-section-wrapper').removeClass('display-none');
             } else {
-                Comments.unsubscribe(storyId);
+                Associations.unsubscribe(storyId);
             }
         }
     },

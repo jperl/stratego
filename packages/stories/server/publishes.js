@@ -26,3 +26,7 @@ Meteor.publish('stories-count', function (type, details) {
         filter: params
     });
 });
+
+Meteor.publish('associations', function (storyId) {
+    return Stories.find({ associationIds: storyId });
+});

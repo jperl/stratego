@@ -8,11 +8,11 @@ var addNewAssociation = function (story) {
 };
 
 Template.associationsWidget.items = function () {
-    return Stories.find({ type: Story.Type.PROBLEM });
+    return Stories.find({ associationIds: this._id });
 };
 
 Template.associationsWidget.events({
-    'click .add-item-button': function (){
+    'click .add-item-button': function () {
         addNewComment(this);
     },
     'keypress .add-item-input': function (event) {
