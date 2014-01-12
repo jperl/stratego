@@ -32,11 +32,18 @@
     .story-type(problem, @problem-color);
     .story-type(solution, @solution-color);
 
+    .vote, .vote-count, .story-comment-icon-wrapper {
+        float: left;
+        width: 10%;
+    }
+    .story-body, .story-comment-content {
+        float: left;
+        width: 90%;
+    }
+
     // Vote styling (left side)
     .vote {
-        width: 10%;
         text-align: center;
-        float: left;
     }
 
     .vote-up {
@@ -49,8 +56,6 @@
     }
 
     .vote-count {
-        width: 10%;
-        float: left;
         line-height: 1;
         font-size: 16px;
         min-height: 16px;   //Note: Only used to prevent div collapse w/o content. Possibly remove.
@@ -59,11 +64,6 @@
     }
 
     // Story content styling (right side)
-    .story-body {
-        float: left;
-        width: 90%;
-    }
-
     .story-title {
         text-overflow: ellipsis;
         overflow: hidden;
@@ -88,7 +88,7 @@
     .story-footer {
         float: left;
         width: 100%;
-        position: relative; top: 1px;
+        position: relative; top: 2px;
         font-size: .75em;
         padding: 7px 0;
     }
@@ -99,28 +99,27 @@
 
         .border-top-radius(3px);
         padding: 7px;
-        //border: 1px solid transparent;
-        //border-bottom: none;
+        border: 1px solid transparent;
+        border-bottom: none;
 
         &.active {
-            //border-color: @grey;
-            background: @light-grey;
+            border-color: @light-grey;
+            box-shadow: inset 0 1px 0 @light-grey;
+            background: @lighter-grey;
         }
     }
 
     .footer-section-wrapper {
-        //border: 1px solid @light-grey;
-        background: @light-grey;
+        border: 1px solid @light-grey;
+        background: @lighter-grey;
         padding: 20px;
     }
 
-    .add-item-section, .item-section {
-        position: relative;
-    }
-
-    .story-comment-icon-wrapper {
-        float: left;
-        width: 10%;
+    .comment {
+        margin-top: 10px;
+        background: white;
+        border-radius: 3px;
+        box-shadow: 0 2px 0 @light-grey;
     }
 
     .story-comment-icon {
@@ -131,8 +130,6 @@
 
     .story-comment-content {
         .border-box();
-        float: left;
-        width: 90%;
         padding: 1em 1em 1em 0;
         font-size: 14px;
     }
