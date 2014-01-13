@@ -1,29 +1,8 @@
-<template name="associationWidget">
-    <div class="story-feed-item-wrapper story-type-solution">
-        <div class="story-feed-item clearfix">
-            <div class="vote">
-                <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
-            </div>
-            <div class="story-body">
-                <div class="story-meta">
-                    <span class="story-favorite"><i class="fa fa-star"></i></span>
-                </div>
-                <h2 class="story-title" title="Title">{{title}}</h2>
-                <!--<p class="story-description">Test Description</p>-->
-            </div>
-            <div class="story-footer">
-                <div class="vote-count">{{votesCount ..}}</div>
-                <span class="story-time-submitted">Added 4 Days Ago</span>
-            </div>
-        </div>
-    </div>
-</template>
-
 <template name="associationsWidget">
     {{>addItem}}
     <div class="item-section">
         {{#each items this}}
-        {{>associationWidget}}
+        {{#storyCard sourceStory=..}}{{/storyCard}}
         {{/each}}
     </div>
 </template>

@@ -28,41 +28,46 @@ Template.storyFeedItem.events({
             }
         }
     },
-    'click .vote-up': function (event) {
+    'click .vote-up': function (event, template) {
         event.stopPropagation();
+
+        var sourceStory = template.__component__.templateInstance.data;
+        var associatedStory = this;
+        if (sourceStory._id === associatedStory._id) associatedStory = null;
 
         var target = $(event.currentTarget);
         if (!target.hasClass('voted')) {
-            Activity.vote(this);
+            if (sourceStory) Activity.vote(sourceStory, associatedStory);
+            else Activity.vote(this);
+
             target.addClass('voted');
         } else {
-            Activity.unvote(this);
+            if (sourceStory) Activity.unvote(sourceStory, associatedStory);
+            else Activity.unvote(this);
+
             target.removeClass('voted');
         }
     }
-//    'click .story-favorite': function (event) {
-//        $(event.currentTarget).toggleClass('favorited');
-//    }
 });
 
-Template.storyFeedItem.typeClass = function () {
-    var type = this.type;
-    if (type === 1) return 'story-type-problem';
-    return 'story-type-solution';
+//is a solution (and not an association)
+Template.storyCard.isSolution = function (sourceStory) {
+    return this.type === Story.Type.SOLUTION && !sourceStory;
 };
 
-Template.storyFeedItem.associationText = function () {
-    return (this.type === Story.Type.PROBLEM ? 'Solution' : 'Problem') +
-        //plural or singular
-        (this.associationIds.length === 1 ? '' : 's');
+Template.storyCard.typeClass = function () {
+    return this.type === Activity.Type.PROBLEM ?
+        'story-type-problem' : 'story-type-solution';
 };
 
-Template.storyFeedItem.isProblem = function () {
-    return this.type === Story.Type.PROBLEM;
-};
-
-Template.storyFeedItem.commentsText = function () {
+Template.storyCard.commentsText = function () {
     return this.commentsCount + ' ' + 'Comment' +
         //plural or singular
         (this.commentsCount === 1 ? '' : 's');
+};
+
+Template.storyCard.associationText = function () {
+    return (this.type === Story.Type.PROBLEM ? 'Solution' : 'Problem') +
+        //plural or singular
+        (this.associationIds.length === 1 ? '' : 's');
 };

@@ -1,32 +1,40 @@
-<template name="storyFeedItem">
+<template name="storyCard">
     <div class="story-feed-item-wrapper comments-hidden associations-hidden {{typeClass}}">
         <div class="story-feed-item clearfix">
-            {{#if isProblem}}
+            {{#unless isSolution sourceStory}}
             <div class="vote">
                 <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
             </div>
-            {{/if}}
+            {{/unless}}
             <div class="story-body">
                 <!--<div class="story-meta">-->
-                    <!--<span class="story-favorite"><i class="fa fa-star"></i></span>-->
+                <!--<span class="story-favorite"><i class="fa fa-star"></i></span>-->
                 <!--</div>-->
                 <h2 class="story-title" title={{title}}>{{title}}</h2>
                 <p class="story-description">{{{description}}}</p>
             </div>
             <div class="story-footer">
-                {{#if isProblem}}
-                <div class="vote-count">{{votesCount}}</div>
-                {{/if}}
+                {{#unless isSolution sourceStory}}
+                <div class="vote-count">{{votesCount sourceStory}}</div>
+                {{/unless}}
+                {{#unless sourceStory}}
                 <a class="story-comments-link story-footer-link" href="#">{{commentsText}}</a>
                 <a class="story-associations-link story-footer-link" href="#">{{associationIds.length}} {{associationText}}</a>
                 <span class="story-time-submitted">Added 4 Days Ago</span>
+                {{/unless}}
             </div>
         </div>
-        <div class="footer-section-wrapper comment-section-wrapper display-none">
-            {{>commentsWidget}}
-        </div>
-        <div class="footer-section-wrapper association-section-wrapper display-none">
-            {{>associationsWidget}}
-        </div>
+        {{> content}}
     </div>
+</template>
+
+<template name="storyFeedItem">
+    {{#storyCard}}
+    <div class="footer-section-wrapper comment-section-wrapper display-none">
+        {{>commentsWidget}}
+    </div>
+    <div class="footer-section-wrapper association-section-wrapper display-none">
+        {{>associationsWidget}}
+    </div>
+    {{/storyCard}}
 </template>
