@@ -7,10 +7,17 @@ Stories._insertHelper = function (story) {
 };
 
 Stories._removeHelper = function (story) {
-    Activity.remove(story);
+    //remove all the associations
+    Stories.update({ associationIds: story._id }, { $pull: { associationIds: story._id } }, { multi: true });
 
-    //TODO remove from all associations
-    //TODO remove all votes
+    Activities.remove({
+        $or: [
+            { problemId: story._id },
+            { solutionId: story._id }
+        ]
+    });
+
+    Activity.remove(story);
 };
 
 Stories.allow({
@@ -24,6 +31,7 @@ Stories.allow({
     },
     remove: function (userId, doc) {
         Stories._removeHelper(doc);
+
         return true;
     }
 });

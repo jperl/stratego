@@ -1,10 +1,21 @@
 Template.storyFeedItem.events({
+    'click .story-delete-link': function (event, template) {
+        var sourceStory = template.data;
+        var confirmationMessage = 'Are you sure you want to delete the ' + (sourceStory.type === Story.Type.PROBLEM ? 'problem' : 'solution') + '?';
+        if (confirm(confirmationMessage)) {
+            var associatedStory = this;
+            if (sourceStory._id === associatedStory._id) associatedStory = null;
+
+            if (!associatedStory) Story.remove(sourceStory);
+            else throw 'Associations delete not implemented yet';
+        }
+    },
     'click .story-footer-link': function (event) {
         var target = $(event.target);
         var parent = target.parents('.story-feed-item-wrapper');
 
         var expanded = !target.hasClass('active');
-        parent.find(".story-footer-link.active").removeClass("active");
+        parent.find('.story-footer-link.active').removeClass('active');
         if (expanded) target.addClass('active');
 
         var storyId = this._id;

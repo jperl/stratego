@@ -91,10 +91,14 @@ Activity.comment = function (content, story) {
     return activity;
 };
 
-Activity.remove = function (story) {
-    var activity = constructor(Activity.Type.REMOVE, story, story);
-
-    Activities.insert(activity);
+Activity.remove = function (source) {
+    if (source.associationIds) {
+        //it is a story, create a remove activity
+        var activity = constructor(Activity.Type.REMOVE, source, source);
+        Activities.insert(activity);
+    } else {
+        Activities.remove(source._id);
+    }
 };
 
 Activity.vote = function (sourceStory, associatedStory) {

@@ -30,7 +30,7 @@ Activities.allow({
         return true;
     },
     remove: function (userId, doc) {
-        return false;
+        return true;
     }
 });
 

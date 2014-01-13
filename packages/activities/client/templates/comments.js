@@ -9,3 +9,13 @@ Template.commentsWidget.comments = function () {
         type: Activity.Type.COMMENT
     })
 };
+
+Template.commentsWidget.events({
+    'click .story-delete-link': function (event) {
+        event.stopPropagation();
+
+        if (confirm('Are you sure you want to delete the comment?')) {
+            Activity.remove(this);
+        }
+    }
+});
