@@ -50,14 +50,10 @@ Template.storyFeedItem.events({
     }
 });
 
-//is a solution (and not an association)
-Template.storyCard.isSolution = function (sourceStory) {
-    return this.type === Story.Type.SOLUTION && !sourceStory;
-};
-
-Template.storyCard.typeClass = function () {
-    return this.type === Activity.Type.PROBLEM ?
-        'story-type-problem' : 'story-type-solution';
+Template.storyCard.associationText = function () {
+    return (this.type === Story.Type.PROBLEM ? 'Solution' : 'Problem') +
+        //plural or singular
+        (this.associationIds.length === 1 ? '' : 's');
 };
 
 Template.storyCard.commentsText = function () {
@@ -66,8 +62,12 @@ Template.storyCard.commentsText = function () {
         (this.commentsCount === 1 ? '' : 's');
 };
 
-Template.storyCard.associationText = function () {
-    return (this.type === Story.Type.PROBLEM ? 'Solution' : 'Problem') +
-        //plural or singular
-        (this.associationIds.length === 1 ? '' : 's');
+Template.storyCard.isSolution = function (sourceStory) {
+    //is a solution (and not an association)
+    return this.type === Story.Type.SOLUTION && !sourceStory;
+};
+
+Template.storyCard.typeClass = function () {
+    return this.type === Activity.Type.PROBLEM ?
+        'story-type-problem' : 'story-type-solution';
 };
