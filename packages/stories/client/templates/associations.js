@@ -54,9 +54,12 @@ Template.associationsWidget.events({
         if (event.keyCode === 13) addNewAssociation(this, event);
     },
     'click .vote-up': function (event, template) {
+        event.stopPropagation();
+
         var target = $(event.currentTarget);
 
         var sourceStory = template.__component__.parent.templateInstance.data;
+
         if (!target.hasClass('voted')) {
             Activity.vote(sourceStory, this);
             target.addClass('voted');
@@ -64,5 +67,5 @@ Template.associationsWidget.events({
             Activity.unvote(sourceStory, this);
             target.removeClass('voted');
         }
-    },
+    }
 });

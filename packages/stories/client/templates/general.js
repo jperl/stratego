@@ -29,6 +29,8 @@ Template.storyFeedItem.events({
         }
     },
     'click .vote-up': function (event) {
+        event.stopPropagation();
+
         var target = $(event.currentTarget);
         if (!target.hasClass('voted')) {
             Activity.vote(this);
