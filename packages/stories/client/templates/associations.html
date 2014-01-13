@@ -12,7 +12,7 @@
                 <!--<p class="story-description">Test Description</p>-->
             </div>
             <div class="story-footer">
-                <div class="vote-count">0</div>
+                <div class="vote-count">{{votesCount ..}}</div>
                 <span class="story-time-submitted">Added 4 Days Ago</span>
             </div>
         </div>
@@ -22,7 +22,7 @@
 <template name="associationsWidget">
     {{>addItem}}
     <div class="item-section">
-        {{#each items}}
+        {{#each items this}}
         {{>associationWidget}}
         {{/each}}
     </div>

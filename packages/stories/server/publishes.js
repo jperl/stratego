@@ -13,7 +13,6 @@ Meteor.publish('stories', function (type, details, options) {
     }, options);
 });
 
-
 Meteor.publish('stories-count', function (type, details) {
     var params = {
         type: type

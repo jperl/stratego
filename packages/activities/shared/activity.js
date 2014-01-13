@@ -11,11 +11,18 @@ Activity.Type = {
     VOTE: 8
 };
 
+Activity.VoteType = {
+    PROBLEM: 1,
+    PROBLEM_ON_SOLUTION: 2,
+    SOLUTION_ON_PROBLEM: 3
+};
+
 Activity.check = function (activity) {
     check(activity, {
         _id: Match.Any,
 
         type: Tools.MatchEnum(Activity.Type),
+        voteType: Match.Optional(Tools.MatchEnum(Activity.VoteType)),
 
         problemId: Match.Optional(Match.Any),
         solutionId: Match.Optional(Match.Any),
@@ -25,22 +32,40 @@ Activity.check = function (activity) {
     });
 };
 
-var constructor = function (type, value, story, secondStory) {
-    var doc = {
+Activity.getVoteType = function (sourceStory, isAssociatedStory) {
+    if (sourceStory && isAssociatedStory) {
+        return sourceStory.type === Story.Type.PROBLEM ?
+            Activity.VoteType.SOLUTION_ON_PROBLEM : Activity.VoteType.PROBLEM_ON_SOLUTION;
+    } else if (sourceStory) {
+        if (sourceStory.type === Story.Type.PROBLEM) return Activity.VoteType.PROBLEM;
+
+        throw 'If you are not voting on an association, you can only vote on a problem';
+    }
+
+    throw 'Cannot vote on an associated story without a source story';
+};
+
+var constructor = function (type, value, sourceStory, associatedStory) {
+    var options = {
         _id: new Meteor.Collection.ObjectID(),
         type: type
     };
-    if (value) doc.value = value;
+    if (value) options.value = value;
 
-    var activity = EJSON.clone(doc);
-    if (story) {
-        if (story.type === Story.Type.PROBLEM) activity.problemId = story._id;
-        else activity.solutionId = story._id;
+    var activity = EJSON.clone(options);
+    if (sourceStory) {
+        if (sourceStory.type === Story.Type.PROBLEM) activity.problemId = sourceStory._id;
+        else activity.solutionId = sourceStory._id;
     }
 
-    if (secondStory) {
-        if (secondStory.type === Story.Type.PROBLEM) activity.problemId = secondStory._id;
-        else activity.solutionId = secondStory._id;
+    if (associatedStory) {
+        if (associatedStory.type === Story.Type.PROBLEM) activity.problemId = associatedStory._id;
+        else activity.solutionId = associatedStory._id;
+    }
+
+    //setup the vote type
+    if (type === Activity.Type.VOTE) {
+        activity.voteType = Activity.getVoteType(sourceStory, associatedStory);
     }
 
     Activity.check(activity);
@@ -76,4 +101,23 @@ Activity.vote = function (sourceStory, associatedStory) {
     Activities.insert(activity);
 
     return activity;
+};
+
+Activity._voteFilter = function (sourceId, associationId, voteType) {
+    var filter = {
+        type: Activity.Type.VOTE,
+        voteType: voteType
+    };
+
+    if (voteType === Activity.VoteType.PROBLEM_ON_SOLUTION) {
+        filter.problemId = associationId;
+        filter.solutionId = sourceId;
+    } else if (voteType === Activity.VoteType.SOLUTION_ON_PROBLEM) {
+        filter.problemId = sourceId;
+        filter.solutionId = associationId;
+    } else {
+        throw 'Vote type not supported';
+    }
+
+    return filter;
 };

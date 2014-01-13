@@ -1,7 +1,7 @@
 Tools.publishCounter = function (params) {
     var collection = params.collection,
         count = 0,
-        id = Random.id(),
+        id = params.id || Random.id(),
         init = true,
         pub = params.handle,
         handle = collection.find(params.filter, params.options).observeChanges({
