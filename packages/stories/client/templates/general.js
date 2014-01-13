@@ -68,6 +68,5 @@ Template.storyCard.isSolution = function (sourceStory) {
 };
 
 Template.storyCard.typeClass = function () {
-    return this.type === Activity.Type.PROBLEM ?
-        'story-type-problem' : 'story-type-solution';
+    return this.type === Story.Type.PROBLEM ? 'story-type-problem' : 'story-type-solution';
 };
