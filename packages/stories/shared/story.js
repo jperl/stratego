@@ -45,6 +45,14 @@ Story.create = function (type, title, description) {
     return story;
 };
 
+Story.remove = function (story) {
+    if (Meteor.isServer) {
+        Stories._removeHelper(story);
+    }
+
+    return Stories.remove(story._id);
+};
+
 //remove the slash, and anything after it
 //ex. DhsjvoA34CRH4739T-fix-the-coffee-machine
 Story.getId = function (idParameter) {

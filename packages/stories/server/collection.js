@@ -3,7 +3,14 @@ Stories._insertHelper = function (story) {
     story.commentsCount = 0;
     story.votesCount = 0;
 
-    Activity.create(story);
+    Activity.add(story);
+};
+
+Stories._removeHelper = function (story) {
+    Activity.remove(story);
+
+    //TODO remove from all associations
+    //TODO remove all votes
 };
 
 Stories.allow({
@@ -16,6 +23,7 @@ Stories.allow({
         return false;
     },
     remove: function (userId, doc) {
-        return false;
+        Stories._removeHelper(doc);
+        return true;
     }
 });

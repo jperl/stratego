@@ -1,9 +1,9 @@
 Activity = {};
 
 Activity.Type = {
-    COMMENT: 1,
-    CREATE: 2,
-    DELETE: 3,
+    ADD: 1,
+    COMMENT: 2,
+    REMOVE: 3,
     FAVORITE: 4,
 //    MENTION: 5,
 //    TAG: 6,
@@ -73,8 +73,8 @@ var constructor = function (type, value, sourceStory, associatedStory) {
     return activity;
 };
 
-Activity.create = function (story) {
-    var activity = constructor(Activity.Type.CREATE, null, story);
+Activity.add = function (story) {
+    var activity = constructor(Activity.Type.ADD, null, story);
 
     Activities.insert(activity);
 };
@@ -89,6 +89,12 @@ Activity.comment = function (content, story) {
     Activities.insert(activity);
 
     return activity;
+};
+
+Activity.remove = function (story) {
+    var activity = constructor(Activity.Type.REMOVE, story, story);
+
+    Activities.insert(activity);
 };
 
 Activity.vote = function (sourceStory, associatedStory) {
