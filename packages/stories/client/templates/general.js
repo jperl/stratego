@@ -31,7 +31,7 @@ Template.storyFeedItem.events({
     'click .vote-up': function (event, template) {
         event.stopPropagation();
 
-        var sourceStory = template.__component__.templateInstance.data;
+        var sourceStory = template.data;
         var associatedStory = this;
         if (sourceStory._id === associatedStory._id) associatedStory = null;
 
