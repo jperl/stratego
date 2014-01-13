@@ -1,11 +1,12 @@
 <template name="commentWidget">
     <div class="comment clearfix">
-        <div class="story-comment-icon-wrapper">
-            <a class="story-comment-icon profile-link" href="#">
+        <div class="comment-icon-wrapper">
+            <a class="comment-icon profile-link" href="#">
                 <img src="/images/Jordan.png" class="profile-img" alt="Profile Image" />
             </a>
         </div>
-        <div class="story-comment-content">{{value}}</div>
+        <p class="comment-content">{{value}}</p>
+        <footer class="story-footer"><a class="story-delete-link story-footer-link" href="#">Delete</a><time class="timestamp right">4 days ago</time></footer>
     </div>
 </template>
 

@@ -108,6 +108,10 @@ input {
 // Sidebar
 .sidebar { font-size: .875em; }
 
+.category-links {
+    margin-bottom: 1em;
+}
+
 // General Content
 .content-container {
     margin-top: @nav-height;

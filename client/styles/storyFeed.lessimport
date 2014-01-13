@@ -32,11 +32,17 @@
     .story-type(problem, @problem-color);
     .story-type(solution, @solution-color);
 
-    .vote, .vote-count, .story-comment-icon-wrapper {
+    //TODO: Simplify layout.
+    .story-type-solution .story-feed-item {
+        padding-left: 1em;
+    }
+
+    .vote, .vote-count, .comment-icon-wrapper {
         float: left;
         width: 10%;
     }
-    .story-body, .story-comment-content {
+
+    .story-body, .comment-content {
         float: left;
         width: 90%;
     }
@@ -72,7 +78,7 @@
         font-weight: 100;
     }
 
-    .story-time-submitted, .story-favorite { float: right; }
+    .story-favorite { float: right; }
 
     .story-favorite {
         color: @light-grey;
@@ -117,21 +123,22 @@
 
     .comment {
         margin-top: 10px;
+        padding: 0 .5em;
         background: white;
         border-radius: 3px;
         box-shadow: 0 2px 0 @light-grey;
     }
 
-    .story-comment-icon {
+    .comment-icon {
         display: block;     // Overrides inline from <a> tag.
         margin: 1em auto;
         width: 40px; height: 40px;
     }
 
-    .story-comment-content {
-        .border-box();
-        padding: 1em 1em 1em 0;
+    .comment-content {
         font-size: 14px;
+        padding-left: 1em;
+        .border-box();
     }
 
     .load-stories-button {
@@ -141,4 +148,9 @@
         height: 100%;
         box-sizing: border-box;
     }
+}
+
+.timestamp, .story-favorite {
+    float: right;
+    font-size: 12px;
 }
