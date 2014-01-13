@@ -17,6 +17,12 @@ Activities._insertHelper = function (activity) {
     }
 };
 
+Activities._deleteHelper = function (activity) {
+    if (activity.type === Activity.Type.COMMENT) {
+        Stories.update({ _id: activity.problemId || activity.solutionId }, { $inc: { commentsCount: -1 } });
+    }
+};
+
 Activities.allow({
     insert: function (userId, doc) {
         Activity.check(doc);
@@ -30,6 +36,7 @@ Activities.allow({
         return true;
     },
     remove: function (userId, doc) {
+        Activities._deleteHelper(doc);
         return true;
     }
 });
