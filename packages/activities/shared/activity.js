@@ -103,6 +103,11 @@ Activity.vote = function (sourceStory, associatedStory) {
     return activity;
 };
 
+Activity.unvote = function (sourceStory, associatedStory) {
+    var associatedStoryId = associatedStory ? associatedStory._id : null;
+    Meteor.call('unvote', sourceStory._id, associatedStoryId, Activity.getVoteType(sourceStory, associatedStory));
+};
+
 Activity._voteFilter = function (sourceId, associationId, voteType) {
     var filter = {
         type: Activity.Type.VOTE,

@@ -33,3 +33,31 @@ Activities.allow({
         return false;
     }
 });
+
+Meteor.methods({
+    unvote: function (sourceId, associationId, voteType) {
+        var query = {
+            type: Activity.Type.VOTE,
+            voteType: voteType
+        };
+
+        if (voteType === Activity.VoteType.PROBLEM_ON_SOLUTION) {
+            query.problemId = associationId;
+            query.solutionId = sourceId;
+        } else {
+            query.problemId = sourceId;
+
+            if (voteType === Activity.VoteType.SOLUTION_ON_PROBLEM) {
+                query.solutionId = associationId;
+            }
+            else if (voteType === Activity.VoteType.PROBLEM) {
+                Stories.update({ _id: sourceId }, { $inc: { votesCount: -1 } });
+            } else {
+                throw 'Vote type not supported: ' + voteType;
+            }
+        }
+
+        var item = Activities.findOne(query);
+        Activities.remove(item._id);
+    }
+});

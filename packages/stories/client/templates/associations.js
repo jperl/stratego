@@ -41,7 +41,6 @@ Template.associationsWidget.items = function (sourceStory) {
     return cursor;
 };
 
-
 Template.associationsWidget.votesCount = function (sourceStory) {
     var votesCount = VotesCount.findOne(Associations.getSubscriptionId(sourceStory, this._id));
     return votesCount ? votesCount.count : 0;
@@ -62,9 +61,8 @@ Template.associationsWidget.events({
             Activity.vote(sourceStory, this);
             target.addClass('voted');
         } else {
-            //TODO: Add unvote and fix backend multiple voting.
-            //Activity.unvote(this);
-            //target.removeClass('voted');
+            Activity.unvote(sourceStory, this);
+            target.removeClass('voted');
         }
     },
 });

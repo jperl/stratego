@@ -34,9 +34,8 @@ Template.storyFeedItem.events({
             Activity.vote(this);
             target.addClass('voted');
         } else {
-            //TODO: Add unvote and fix backend multiple voting.
-            //Activity.unvote(this);
-            //target.removeClass('voted');
+            Activity.unvote(this);
+            target.removeClass('voted');
         }
     },
     'click .story-favorite': function (event) {
