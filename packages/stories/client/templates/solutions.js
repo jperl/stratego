@@ -1,29 +1,6 @@
-var addNewSolution = function () {
-    var titleElement = $('.new-solution-title'), title = titleElement.val();
-    if (title.length <= 5) return;
-
+Template.solutions.addItem = function (title) {
     Story.create(Story.Type.SOLUTION, title);
-    titleElement.val('');
-    $('.add-new-solution').animate({opacity: "hide"});
 };
-
-Template.newSolution.events({
-    'keyup .new-solution-title': _.throttle(function (event) {
-        var submitSolution = $('.add-new-solution');
-
-        var titleLength = $(event.target).val().length;
-        if (titleLength === 0) {
-            submitSolution.animate({opacity: "hide"});
-        }
-        else if (titleLength > 5) {
-            submitSolution.animate({opacity: "show"});
-        }
-    }, 1000),
-    'click .add-new-solution': addNewSolution,
-    'keypress .new-solution-title': function (event) {
-        if (event.keyCode === 13) addNewSolution();
-    }
-});
 
 Template.loadMoreSolutions.canLoadMore = StoryTools.canLoadMore;
 Template.loadMoreSolutions.events({

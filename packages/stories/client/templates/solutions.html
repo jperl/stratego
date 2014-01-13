@@ -10,13 +10,6 @@
     </div>
 </template>
 
-<template name="newSolution">
-    <div class="input-wrapper clearfix">
-        <input class="new-solution-title" type="text" placeholder="Describe the solution...">
-        <button class="add-new-solution display-none">Add a solution</button>
-    </div>
-</template>
-
 <template name="loadMoreSolutions">
     {{#if canLoadMore}}
     <div class="story-feed-item-wrapper">
@@ -28,7 +21,7 @@
 <template name="solutions">
     {{>solutionsSidebar}}
     <div class="twelve columns content">
-        {{>newSolution}}
+        {{>addItem placeholder='Describe the solution...' buttonText='Add a solution' minCharacters=5}}
         <div class="story-feed">
             {{#each items}}
                 {{>storyFeedItem}}

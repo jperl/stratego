@@ -2,12 +2,7 @@ VotesCount = new Meteor.Collection('votes-count');
 
 // ------------------ add new association ------------------------ //
 
-var addNewAssociation = function (sourceStory, event) {
-    var addItemInput = $(event.target).parent().find('.add-item-input');
-
-    var title = addItemInput.val();
-    if (title.length <= 0) return;
-
+Template.associationsWidget.addItem = function (title, sourceStory) {
     if (sourceStory.type === Story.Type.PROBLEM) {
         var solution = Story.create(Story.Type.SOLUTION, title);
         Activity.vote(sourceStory, solution);
@@ -15,18 +10,7 @@ var addNewAssociation = function (sourceStory, event) {
         var problem = Story.create(Story.Type.PROBLEM, title);
         Activity.vote(sourceStory, problem);
     }
-
-    addItemInput.val('');
 };
-
-Template.associationsWidget.events({
-    'click .add-item-button': function () {
-        addNewAssociation(this, event);
-    },
-    'keypress .add-item-input': function (event) {
-        if (event.keyCode === 13) addNewAssociation(this, event);
-    }
-});
 
 Template.associationsWidget.buttonText = function () {
     return this.type === Story.Type.PROBLEM ? 'Add Solution' : 'Add Problem';

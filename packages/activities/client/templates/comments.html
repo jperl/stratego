@@ -10,7 +10,7 @@
 </template>
 
 <template name="commentsWidget">
-    {{>addItem placeholder='Add a comment...' buttonText='Add Comment'}}
+    {{>addItem placeholder='Add a comment...' buttonText='Add Comment' minCharacters=1 context=this}}
     <div class="item-section">
         {{#each comments}}
         {{>commentWidget}}

@@ -1,5 +1,5 @@
 <template name="associationsWidget">
-    {{>addItem}}
+    {{>addItem minCharacters=5 context=this}}
     <div class="item-section">
         {{#each items this}}
         {{#storyCard sourceStory=..}}{{/storyCard}}
