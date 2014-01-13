@@ -1,18 +1,22 @@
 <template name="storyFeedItem">
     <div class="story-feed-item-wrapper comments-hidden associations-hidden {{typeClass}}">
         <div class="story-feed-item clearfix">
+            {{#if isProblem}}
             <div class="vote">
                 <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
             </div>
+            {{/if}}
             <div class="story-body">
-                <div class="story-meta">
-                    <span class="story-favorite"><i class="fa fa-star"></i></span>
-                </div>
+                <!--<div class="story-meta">-->
+                    <!--<span class="story-favorite"><i class="fa fa-star"></i></span>-->
+                <!--</div>-->
                 <h2 class="story-title" title={{title}}>{{title}}</h2>
                 <p class="story-description">{{{description}}}</p>
             </div>
             <div class="story-footer">
+                {{#if isProblem}}
                 <div class="vote-count">{{votesCount}}</div>
+                {{/if}}
                 <a class="story-comments-link story-footer-link" href="#">{{commentsText}}</a>
                 <a class="story-associations-link story-footer-link" href="#">{{associationIds.length}} {{associationText}}</a>
                 <span class="story-time-submitted">Added 4 Days Ago</span>

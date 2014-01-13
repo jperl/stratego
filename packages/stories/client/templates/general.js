@@ -39,10 +39,10 @@ Template.storyFeedItem.events({
             Activity.unvote(this);
             target.removeClass('voted');
         }
-    },
-    'click .story-favorite': function (event) {
-        $(event.currentTarget).toggleClass('favorited');
     }
+//    'click .story-favorite': function (event) {
+//        $(event.currentTarget).toggleClass('favorited');
+//    }
 });
 
 Template.storyFeedItem.typeClass = function () {
@@ -55,6 +55,10 @@ Template.storyFeedItem.associationText = function () {
     return (this.type === Story.Type.PROBLEM ? 'Solution' : 'Problem') +
         //plural or singular
         (this.associationIds.length === 1 ? '' : 's');
+};
+
+Template.storyFeedItem.isProblem = function () {
+    return this.type === Story.Type.PROBLEM;
 };
 
 Template.storyFeedItem.commentsText = function () {
