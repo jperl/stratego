@@ -57,7 +57,7 @@
 
 @media only screen and (max-width: 767px) {
     .logo {
-        padding: 0 15px;
+        padding-right: 15px;
     }
 
     .logo, .nav-links {
