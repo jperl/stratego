@@ -11,7 +11,7 @@
                 <!--<span class="story-favorite"><i class="fa fa-star"></i></span>-->
                 <!--</div>-->
                 <h2 class="story-title" title={{title}}>{{title}}</h2>
-                <p class="story-description">{{{description}}}</p>
+                <p class="story-description" data-placeholder="Enter a description..." contenteditable="true">{{description}}</p>
             </div>
             <div class="story-footer">
                 {{#unless isSolution sourceStory}}
@@ -20,8 +20,11 @@
                 {{#unless sourceStory}}
                 <a class="story-comments-link story-footer-link" href="#">{{commentsText}}</a>
                 <a class="story-associations-link story-footer-link" href="#">{{associationIds.length}} {{associationText}}</a>
-                <a class="story-delete-link" href="#">Delete</a>
-                <time class="timestamp">Added 4 Days Ago</time>
+
+                <div class="l-pull-right">
+                    <a class="story-delete-link" href="#">Delete</a>
+                    <time class="timestamp" datetime="2014-01-20T06:47:58.024Z"></time>
+                </div>
                 {{/unless}}
             </div>
         </div>

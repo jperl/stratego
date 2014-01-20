@@ -29,7 +29,6 @@
 @solution-color:    @green;
 
 // Utility
-.center         { text-align: center; }
 .display-none   { display: none; }
 
 // General
@@ -62,21 +61,52 @@ a {
 
 img { height: 100%; }
 
-input {
-    .border-box();
+// Override webkit outline.
+input, p {
     outline: none;
-    border: none;
-    background: transparent;
-    padding: .75em;
 }
 
-.input-wrapper {
-    position: relative;
+.input() {
     .border-radius(3px);
     border: 1px solid @light-grey;
     box-shadow: inset 0 0 5px @light-grey;
     background: white;
-    height: 46px;   //48px total with border
+}
+
+
+input {
+    .border-box();
+    border: none;
+    background: transparent;
+    padding: .75em;
+    width: 100%;
+}
+
+input, button, p[contenteditable=true] {
+    padding: 12px;
+}
+
+p[contenteditable=true] {
+    margin: 0;
+    margin-left: -12px; // Offset the padding.
+    border: 1px solid transparent;
+}
+
+p[contenteditable=true]:empty:before{
+    content: attr(data-placeholder);
+}
+
+p[contenteditable=true]:hover, p[contenteditable=true]:focus, .input-wrapper {
+    .input();
+}
+
+// Layout
+.l-pull-right   { float: right; }
+.l-pull-left    { float: left; }
+
+// Input module
+.input-wrapper {
+    position: relative;
 
     > input {
         float: left;
@@ -108,9 +138,7 @@ input {
 // Sidebar
 .sidebar { font-size: .875em; }
 
-.category-links {
-    margin-bottom: 1em;
-}
+.category-links { margin-bottom: 1em; }
 
 // General Content
 .content-container {

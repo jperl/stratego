@@ -7,38 +7,6 @@
     box-shadow: 0 1px 5px @light-grey;
     line-height: @nav-height;
 
-    .logo {
-        text-transform: uppercase;
-        font-weight: 300;
-        color: @primary-text;
-    }
-
-    .nav-links {
-        > li {
-            float: left;
-            text-align: center;
-            font-size: 18px;
-            > a {
-                position: relative;
-                padding: 0 1em;
-                color: @primary-text;
-                display: inline-block;
-                height: 100%;
-                border-left: 1px solid transparent;
-                border-right: 1px solid transparent;
-
-                &:hover {
-                    text-decoration: none;
-                    border-color: @light-grey;
-                }
-            }
-        }
-
-        .fa {
-            padding-right: .25em;
-        }
-    }
-
     .profile-link {
         position: absolute; top: 50%; right: 10px;
         margin-top: -@profile-size / 2;
@@ -55,8 +23,48 @@
     }
 }
 
+.nav-links {
+    > li {
+        float: left;
+        text-align: center;
+        font-size: 18px;
+        > a {
+            position: relative;
+            padding: 0 1em;
+            color: @primary-text;
+            display: inline-block;
+            height: 100%;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+
+            &:hover {
+                text-decoration: none;
+                border-color: @light-grey;
+            }
+        }
+    }
+
+    .fa {
+        padding-right: .25em;
+    }
+}
+
+.logo {
+    text-transform: uppercase;
+    font-weight: 300;
+    color: @primary-text;
+}
+
 @media only screen and (max-width: 767px) {
-    .nav-links {
+    .logo {
+        padding: 0 15px;
+    }
+
+    .logo, .nav-links {
+        width: auto !important;
+    }
+
+    .nav-link-text {
         display: none !important;
     }
 }

@@ -1,11 +1,17 @@
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Stratego (Working Name)</title>
+    <title>Curia</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <script src="/vendor/jquery.timeago.js"></script>
+    <script>
+        $(window).load(function() {
+            $(".timestamp").timeago();
+        });
+    </script>
 </head>
 
 <body>
@@ -14,17 +20,17 @@
 <template name="header">
     <nav class="nav {{page}}">
         <div class="container">
-            <a href="/" title="Home"><h1 class="logo four columns">Stratego</h1></a>
+            <a href="/" title="Home"><h1 class="logo four columns">Curia</h1></a>
             <ul class="nav-links ten columns">
-                <li><a class="problems" href="/problems"><i class="fa fa-exclamation-triangle"></i>Problems</a></li>
-                <li><a class="solutions" href="/solutions"><i class="fa fa-lightbulb-o"></i>Solutions</a></li>
+                <li><a class="problems" href="/problems"><i class="fa fa-exclamation-triangle"></i><span class="nav-link-text">Problems</span></a></li>
+                <li><a class="solutions" href="/solutions"><i class="fa fa-lightbulb-o"></i><span class="nav-link-text">Solutions</span></a></li>
             </ul>
             <div class="nav-sidelinks">
                 <a class="profile-link" href="#"><img src="/images/Jordan.png" class="profile-img" alt="Profile Image" /></a>
-                <!--<a class="mobile-menu"><i class="fa fa-bars"></i></a>-->
             </div>
         </div>
     </nav>
+
 </template>
 
 <template name="layout">

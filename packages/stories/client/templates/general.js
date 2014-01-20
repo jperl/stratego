@@ -58,6 +58,9 @@ Template.storyFeedItem.events({
 
             target.removeClass('voted');
         }
+    },
+    'blur .story-description': function (event) {
+        // TODO: Post updated description data.
     }
 });
 
