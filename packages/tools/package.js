@@ -15,5 +15,6 @@ Package.on_use(function (api) {
     api.add_files('templates/navListItem.html', 'client');
     api.add_files('templates/navListItem.js', 'client');
 
+    api.export('Future');
     api.export('Tools');
 });

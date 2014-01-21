@@ -33,8 +33,10 @@ Template.storyFeedItem.events({
         } else if (target.hasClass('story-associations-link')) {
             if (expanded) {
                 Associations.subscribe(storyId);
+                Session.set('associationsType', this.type === Story.Type.PROBLEM ? Story.Type.SOLUTION : Story.Type.PROBLEM);
                 parent.children('.association-section-wrapper').removeClass('display-none');
             } else {
+                Session.set('storyAssociationsSearch', '');
                 Associations.unsubscribe(storyId);
             }
         }
@@ -61,7 +63,11 @@ Template.storyFeedItem.events({
     },
     'blur .story-description': function (event) {
         // TODO: Post updated description data.
-    }
+    },
+    'keyup .add-item-input': _.debounce(function (event, template) {
+        var searchText = $(event.target).val();
+        Session.set('storyAssociationsSearch', searchText);
+    }, 1000)
 });
 
 Template.storyCard.associationText = function () {

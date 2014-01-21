@@ -20,18 +20,56 @@ Template.associationsWidget.placeholder = function () {
     return this.type === Story.Type.PROBLEM ? 'Add a solution...' : 'Add a problem...';
 };
 
-// ------------------ story cards ------------------------ //
+// ------------------ search  ------------------------ //
 
-Template.associationsWidget.items = function (sourceStory) {
-    var cursor = Stories.find({ associationIds: this._id });
+StoriesSearch = new Meteor.Collection('stories-search');
+
+Deps.autorun(function () {
+    var searchText = Session.get('storyAssociationsSearch');
+    var associationsType = Session.get('associationsType');
+
+    if (searchText && searchText.length >= 4) {
+        Meteor.subscribe('stories-search', searchText, associationsType);
+    }
+});
+
+Template.associationsWidget.searchResults = function () {
+    var story = this;
+
+    var cursor = StoriesSearch.find();
 
     //subscribe to the vote counts on all of the items
     cursor.observeChanges({
-        added: function (id) {
-            Associations.subscribeToVoteCount(sourceStory, id);
+        added: function (associationId) {
+            Associations.subscribeToVoteCount(story, associationId);
         },
-        removed: function (id) {
-            Associations.unsubscribeFromVoteCount(sourceStory, id);
+        removed: function (associationId) {
+            Associations.unsubscribeFromVoteCount(story, associationId);
+        }
+    });
+
+    return cursor;
+};
+
+Template.associationsWidget.searching = function () {
+    var searchText = Session.get('storyAssociationsSearch');
+    return searchText && searchText.length > 0;
+};
+
+// ------------------ story cards ------------------------ //
+
+Template.associationsWidget.items = function () {
+    var story = this;
+
+    var cursor = Stories.find({ associationIds: story._id });
+
+    //subscribe to the vote counts on all of the items
+    cursor.observeChanges({
+        added: function (associationId) {
+            Associations.subscribeToVoteCount(story, associationId);
+        },
+        removed: function (associationId) {
+            Associations.unsubscribeFromVoteCount(story, associationId);
         }
     });
 

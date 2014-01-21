@@ -1,8 +1,14 @@
 <template name="associationsWidget">
     {{>addItem minCharacters=5 context=this}}
     <div class="item-section">
-        {{#each items this}}
-        {{#storyCard sourceStory=..}}{{/storyCard}}
-        {{/each}}
+        {{#if searching}}
+            {{#each searchResults}}
+            {{#storyCard sourceStory=..}}{{/storyCard}}
+            {{/each}}
+        {{else}}
+            {{#each items}}
+            {{#storyCard sourceStory=..}}{{/storyCard}}
+            {{/each}}
+        {{/if}}
     </div>
 </template>

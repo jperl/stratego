@@ -1,3 +1,5 @@
+Future = Npm.require('fibers/future');
+
 Tools.publishCounter = function (params) {
     var collection = params.collection,
         count = 0,
@@ -26,6 +28,21 @@ Tools.publishCounter = function (params) {
     init = false;
     pub.added(params.name, id, {
         count: count
+    });
+    pub.ready();
+    return pub.onStop(function () {
+        return handle.stop();
+    });
+};
+
+Tools.publishCursor = function (pub, name, cursor) {
+    var handle = cursor.observe({
+        added: function (item) {
+            return pub.added(name, item._id, item);
+        },
+        changed: function (item) {
+            return pub.changed(name, item._id, item);
+        }
     });
     pub.ready();
     return pub.onStop(function () {
