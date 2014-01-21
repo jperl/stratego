@@ -1,4 +1,24 @@
+// ----------------------- vote count ---------------------------- //
+
 VotesCount = new Meteor.Collection('votes-count');
+
+var subscribeToVoteCount = function (storiesCursor, story) {
+    //subscribe to the vote counts on all of the items
+    storiesCursor.observeChanges({
+        added: function (associationId) {
+            Associations.subscribeToVoteCount(story, associationId);
+        },
+        removed: function (associationId) {
+            Associations.unsubscribeFromVoteCount(story, associationId);
+        }
+    });
+
+    Deps.onInvalidate(function () {
+        storiesCursor.forEach(function (association) {
+            Associations.unsubscribeFromVoteCount(story, association._id);
+        });
+    });
+};
 
 // ------------------ add new association ------------------------ //
 
@@ -22,57 +42,22 @@ Template.associationsWidget.placeholder = function () {
 
 // ------------------ search  ------------------------ //
 
-StoriesSearch = new Meteor.Collection('stories-search');
-
-Deps.autorun(function () {
-    var searchText = Session.get('storyAssociationsSearch');
-    var associationsType = Session.get('associationsType');
-
-    if (searchText && searchText.length >= 4) {
-        Meteor.subscribe('stories-search', searchText, associationsType);
-    }
-});
-
 Template.associationsWidget.searchResults = function () {
-    var story = this;
-
     var cursor = StoriesSearch.find();
-
-    //subscribe to the vote counts on all of the items
-    cursor.observeChanges({
-        added: function (associationId) {
-            Associations.subscribeToVoteCount(story, associationId);
-        },
-        removed: function (associationId) {
-            Associations.unsubscribeFromVoteCount(story, associationId);
-        }
-    });
-
+    subscribeToVoteCount(cursor, this);
     return cursor;
 };
 
 Template.associationsWidget.searching = function () {
-    var searchText = Session.get('storyAssociationsSearch');
+    var searchText = Session.get('storiesSearchText');
     return searchText && searchText.length > 0;
 };
 
 // ------------------ story cards ------------------------ //
 
-Template.associationsWidget.items = function () {
-    var story = this;
-
-    var cursor = Stories.find({ associationIds: story._id });
-
-    //subscribe to the vote counts on all of the items
-    cursor.observeChanges({
-        added: function (associationId) {
-            Associations.subscribeToVoteCount(story, associationId);
-        },
-        removed: function (associationId) {
-            Associations.unsubscribeFromVoteCount(story, associationId);
-        }
-    });
-
+Template.associationsWidget.items = function (a, b) {
+    var cursor = Stories.find({ associationIds: this._id });
+    subscribeToVoteCount(cursor, this);
     return cursor;
 };
 

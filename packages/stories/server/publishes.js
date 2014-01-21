@@ -92,5 +92,5 @@ var searchStoriesCursor = function (searchText, storyType) {
 };
 
 Meteor.publish('stories-search', function (searchText, storyType) {
-    return Tools.publishCursor(this, 'stories-search', searchStoriesCursor(searchText, storyType));
+    return Tools.publishCursor('stories-search', this, searchStoriesCursor(searchText, storyType));
 });

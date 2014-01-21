@@ -1,14 +1,13 @@
 Associations = {}; //votes with a problemId and solutionId
 
-var subscriptions = {}, countSubscriptions = {};
-
 Associations.subscribe = function (storyId) {
-    subscriptions[storyId] = Meteor.subscribe('associations', storyId);
+    Tools.subscribe('associations', storyId, function () {
+        return Meteor.subscribe('associations', storyId);
+    });
 };
 
 Associations.unsubscribe = function (storyId) {
-    subscriptions[storyId].stop();
-    delete subscriptions[storyId];
+    Tools.unsubscribe('associations', storyId);
 };
 
 var hashMapping = {};
@@ -23,12 +22,14 @@ Associations.getSubscriptionId = function (source, associationId) {
 
 Associations.subscribeToVoteCount = function (source, associationId) {
     var subscriptionId = Associations.getSubscriptionId(source, associationId);
-    countSubscriptions[subscriptionId] =
-        Meteor.subscribe('votes-count', subscriptionId, source._id, associationId, Activity.getVoteType(source, associationId));
+
+    Tools.subscribe('votes-count', subscriptionId, function () {
+        return Meteor.subscribe('votes-count', subscriptionId, source._id, associationId, Activity.getVoteType(source, associationId));
+    });
 };
 
 Associations.unsubscribeFromVoteCount = function (source, associationId) {
     var subscriptionId = Associations.getSubscriptionId(source, associationId);
-    countSubscriptions[subscriptionId].stop();
-    delete countSubscriptions[subscriptionId];
+
+    Tools.unsubscribe('votes-count', subscriptionId);
 };

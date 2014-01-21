@@ -35,16 +35,21 @@ Tools.publishCounter = function (params) {
     });
 };
 
-Tools.publishCursor = function (pub, name, cursor) {
+Tools.publishCursor = function (name, pub, cursor) {
     var handle = cursor.observe({
         added: function (item) {
             return pub.added(name, item._id, item);
         },
         changed: function (item) {
             return pub.changed(name, item._id, item);
+        },
+        removed: function (item) {
+            return pub.removed(name, item._id);
         }
     });
+
     pub.ready();
+
     return pub.onStop(function () {
         return handle.stop();
     });
