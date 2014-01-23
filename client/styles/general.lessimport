@@ -50,8 +50,10 @@ li { list-style: none; }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-weight: normal;
 }
+
+h1, h2  { font-weight: 100; }
+h3      { font-weight: normal; }
 
 a {
     color: @blue;
@@ -103,6 +105,9 @@ p[contenteditable=true]:hover, p[contenteditable=true]:focus, .input-wrapper {
 // Layout
 .l-pull-right   { float: right; }
 .l-pull-left    { float: left; }
+.grid           { .l-pull-left; }
+.grid-10        { width: 10%; }
+.grid-90        { width: 90%; }
 
 // Input module
 .input-wrapper {

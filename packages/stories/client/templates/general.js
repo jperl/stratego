@@ -1,5 +1,5 @@
 Template.storyFeedItem.events({
-    'click .story-delete-link': function (event, template) {
+    'click .card-story-delete-link': function (event, template) {
         var sourceStory = template.data;
         var confirmationMessage = 'Are you sure you want to delete the ' + (sourceStory.type === Story.Type.PROBLEM ? 'problem' : 'solution') + '?';
         if (confirm(confirmationMessage)) {
@@ -10,12 +10,12 @@ Template.storyFeedItem.events({
             else throw 'Associations delete not implemented yet';
         }
     },
-    'click .story-footer-link': function (event) {
+    'click .card-story-footer-link': function (event) {
         var target = $(event.target);
-        var parent = target.parents('.story-feed-item-wrapper');
+        var parent = target.parents('.card-story-wrapper');
 
         var expanded = !target.hasClass('active');
-        parent.find('.story-footer-link.active').removeClass('active');
+        parent.find('.card-story-footer-link.active').removeClass('active');
         if (expanded) target.addClass('active');
 
         var storyId = this._id;
@@ -23,14 +23,14 @@ Template.storyFeedItem.events({
         parent.children('.comment-section-wrapper').addClass('display-none');
         parent.children('.association-section-wrapper').addClass('display-none');
 
-        if (target.hasClass('story-comments-link')) {
+        if (target.hasClass('card-story-comments-link')) {
             if (expanded) {
                 Comments.subscribe(storyId);
                 parent.children('.comment-section-wrapper').removeClass('display-none');
             } else {
                 Comments.unsubscribe(storyId);
             }
-        } else if (target.hasClass('story-associations-link')) {
+        } else if (target.hasClass('card-story-associations-link')) {
             if (expanded) {
                 Associations.subscribe(storyId);
                 parent.children('.association-section-wrapper').removeClass('display-none');
@@ -59,7 +59,7 @@ Template.storyFeedItem.events({
             target.removeClass('voted');
         }
     },
-    'blur .story-description': function (event) {
+    'blur .card-story-description': function (event) {
         // TODO: Post updated description data.
     }
 });
@@ -82,5 +82,9 @@ Template.storyCard.isSolution = function (sourceStory) {
 };
 
 Template.storyCard.typeClass = function () {
-    return this.type === Story.Type.PROBLEM ? 'story-type-problem' : 'story-type-solution';
+    return this.type === Story.Type.PROBLEM ? 'card-story-problem' : 'card-story-solution';
+};
+
+Template.storyCard.rendered = function () {
+    $(".card-story .timestamp").timeago();
 };

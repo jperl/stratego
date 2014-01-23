@@ -1,59 +1,57 @@
 // Problems Page Content
-.story-feed {
-    margin-top: 1em;
-}
+.story-feed { margin-top: 1em; }
 
-.story-feed-item-wrapper {
-    .border-radius(3px);
+.card {
     margin-top: 10px;
-}
-
-.story-feed-item {
+    padding: .75em;
     .border-radius(3px);
-    position: relative;
-    z-index: @story-z-index;
-    padding: .5em 1em 0 0;
     box-shadow: 0 2px 0 @light-grey;
     background: white;
 }
 
-.story-type(@name, @color) {
-    .story-type-@{name} {
-        > .story-feed-item            {
-            border-left: 3px solid @color;
+.card-hero {
+    text-align: center;
+}
 
-            .vote-up {
-                &:hover, &.voted        { color: @color; }
-            }
+.card-story {
+    position: relative;
+    z-index: @story-z-index;
+}
 
-            .vote-count                 { color: @color; }
-            .story-favorite.favorited   { color: @color; }
+.card-story, .comment {
+    padding-top: 0; padding-bottom: 0;
+}
+
+.card-story-type(@name, @color) {
+    .card-story-@{name} {
+        border-left: 3px solid @color;
+
+        .vote-up {
+            &:hover, &.voted        { color: @color; }
         }
+
+        .vote-count                 { color: @color; }
+        .story-favorite.favorited   { color: @color; }
     }
 }
 
-.story-type(problem, @problem-color);
-.story-type(solution, @solution-color);
+.card-story-type(problem, @problem-color);
+.card-story-type(solution, @solution-color);
 
-//TODO: Simplify layout.
-.story-type-solution .story-feed-item {
-    padding-left: 1em;
+// TODO: Change to variants of the card type and add association type.
+.card-story, .comment { padding-left: 0; }
+
+.solutions-page .card-story-solution {
+    padding-left: .75em;
 }
 
-.vote, .vote-count, .comment-icon-wrapper {
-    float: left;
-    width: 10%;
-}
-
-.story-body, .comment-content {
-    float: left;
-    width: 90%;
+//TODO: Fix
+.footer-section-wrapper .vote-count {
+    bottom: 14px;
 }
 
 // Vote styling (left side)
-.vote {
-    text-align: center;
-}
+.vote { text-align: center; }
 
 .vote-up {
     font-size: 24px;
@@ -68,46 +66,39 @@
     line-height: 1;
     font-size: 16px;
     min-height: 16px;   //Note: Only used to prevent div collapse w/o content. Possibly remove.
-    text-align: center;
     font-weight: bold;
+    position: absolute; bottom: 6px; left: 0;
+    width: 10%;
 }
 
 // Story content styling (right side)
-.story-title {
+.card-story-title {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    margin-bottom: .5em;
-    font-weight: 100;
+    margin-bottom: .25em;
 }
 
-.story-favorite { float: right; }
-
-.story-favorite {
+.card-story-favorite {
     color: @light-grey;
     cursor: pointer;
     font-size: 1.5em;
 }
 
-.story-description {
+.card-story-description {
     font-size: .875em;
     color: @secondary-text;
 }
 
-
-
-.story-footer {
-    float: left;
+.card-story-footer {
     width: 100%;
     position: relative; top: 2px;
-    font-size: .75em;
     padding: 7px 0;
 }
 
-.story-footer-link {
+.card-story-footer-link {
     position: relative;
     left: -7px;
-
     .border-top-radius(3px);
     padding: 7px;
     border: 1px solid transparent;
@@ -120,24 +111,11 @@
     }
 }
 
-// TODO: Make this less hardcoded.
-.story-delete-link {
-    padding-right: 14px;
-}
-
 .footer-section-wrapper {
     .border-bottom-radius(3px);
     border: 1px solid @light-grey;
     background: @lighter-grey;
     padding: 20px;
-}
-
-.comment {
-    margin-top: 10px;
-    padding: 0 .5em;
-    background: white;
-    border-radius: 3px;
-    box-shadow: 0 2px 0 @light-grey;
 }
 
 .comment-icon {
@@ -152,7 +130,8 @@
     .border-box();
 }
 
-.load-stories-button {
+// Module: Load more button.
+.card-btn {
     text-align: center;
     padding: 1em;
     display: block;
@@ -160,6 +139,6 @@
     box-sizing: border-box;
 }
 
-.timestamp, .story-favorite {
-    font-size: 12px;
+.card-story-footer, .comment-footer {
+    font-size: .75em;
 }

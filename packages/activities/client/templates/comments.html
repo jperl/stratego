@@ -1,18 +1,24 @@
 <template name="commentWidget">
-    <div class="comment clearfix">
-        <div class="comment-icon-wrapper">
+    <div class="card comment clearfix">
+        <div class="grid grid-10">
             <a class="comment-icon profile-link" href="#">
                 <img src="/images/Jordan.png" class="profile-img" alt="Profile Image" />
             </a>
         </div>
-        <p class="comment-content">{{value}}</p>
-        <footer class="l-pull-right"><a href="#" class="story-delete-link story-footer-link">Delete</a><time class="timestamp" datetime="2014-01-20T06:47:58.024Z"></time></footer>
+        <p class="grid grid-90">{{value}}</p>
+        <footer class="l-pull-right comment-footer"><a href="#" class="card-story-footer-link">Delete</a><time class="timestamp" datetime="2014-01-20T06:47:58.024Z"></time></footer>
     </div>
 </template>
 
 <template name="commentsWidget">
     {{>addItem placeholder='Add a comment...' buttonText='Add Comment' minCharacters=1 context=this}}
     <div class="item-section">
+        {{#unless comments.count}}
+        <div class="card card-hero">
+            <h1>There aren't any comments!</h1>
+            <h3>(People are talking about it, just not here. Probably...)</h3>
+        </div>
+        {{/unless}}
         {{#each comments}}
         {{>commentWidget}}
         {{/each}}

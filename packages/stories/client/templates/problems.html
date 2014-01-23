@@ -12,9 +12,7 @@
 
 <template name="loadMoreProblems">
     {{#if canLoadMore}}
-    <div class="story-feed-item-wrapper">
-        <a class="load-stories-button">Load more problems</a>
-    </div>
+    <a class="card card-btn" href="#">Load more problems</a>
     {{/if}}
 </template>
 
@@ -23,6 +21,12 @@
     <div class="twelve columns content">
         {{>addItem placeholder='Describe the problem...' buttonText='Add a problem' minCharacters=5}}
         <div class="story-feed">
+            {{#unless items.count}}
+            <div class="card card-hero">
+                <h1>There aren't any problems!</h1>
+                <h3>(Stop lying to yourself)</h3>
+            </div>
+            {{/unless}}
             {{#each items}}
                 {{>storyFeedItem}}
             {{/each}}

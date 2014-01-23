@@ -1,29 +1,31 @@
 <template name="storyCard">
-    <div class="story-feed-item-wrapper comments-hidden associations-hidden {{typeClass}}">
-        <div class="story-feed-item clearfix">
+    <div class="card-story-wrapper">
+        <div class="card card-story clearfix {{typeClass}}">
             {{#unless isSolution sourceStory}}
-            <div class="vote">
+            <div class="vote grid grid-10">
                 <div class="vote-up"><i class="fa fa-arrow-up"></i></div>
-            </div>
-            {{/unless}}
-            <div class="story-body">
-                <!--<div class="story-meta">-->
-                <!--<span class="story-favorite"><i class="fa fa-star"></i></span>-->
-                <!--</div>-->
-                <h2 class="story-title" title={{title}}>{{title}}</h2>
-                <p class="story-description" data-placeholder="Enter a description..." contenteditable="true">{{description}}</p>
-            </div>
-            <div class="story-footer">
                 {{#unless isSolution sourceStory}}
                 <div class="vote-count">{{votesCount sourceStory}}</div>
                 {{/unless}}
+            </div>
+            {{/unless}}
+            <div class="{{#unless isSolution sourceStory}}grid grid-90{{/unless}}">
+                {{! ignore favorites for mvp
+                    <div class="card-story-meta">
+                        <span class="card-story-favorite l-pull-right"><i class="fa fa-star"></i></span>
+                    </div>
+                }}
+                <h2 class="card-story-title" title={{title}}>{{title}}</h2>
+                <p class="card-story-description" data-placeholder="Enter a description..." contenteditable="true">{{description}}</p>
                 {{#unless sourceStory}}
-                <a class="story-comments-link story-footer-link" href="#">{{commentsText}}</a>
-                <a class="story-associations-link story-footer-link" href="#">{{associationIds.length}} {{associationText}}</a>
+                <div class="card-story-footer l-pull-left">
+                    <a class="card-story-comments-link card-story-footer-link" href="#">{{commentsText}}</a>
+                    <a class="card-story-associations-link card-story-footer-link" href="#">{{associationIds.length}} {{associationText}}</a>
 
-                <div class="l-pull-right">
-                    <a class="story-delete-link" href="#">Delete</a>
-                    <time class="timestamp" datetime="2014-01-20T06:47:58.024Z"></time>
+                    <div class="l-pull-right">
+                        <a class="card-story-footer-link card-story-delete-link" href="#">Delete</a>
+                        <time class="timestamp" datetime="2014-01-20T06:47:58.024Z"></time>
+                    </div>
                 </div>
                 {{/unless}}
             </div>

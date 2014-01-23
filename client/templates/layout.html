@@ -7,11 +7,6 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <script src="/vendor/jquery.timeago.js"></script>
-    <script>
-        $(window).load(function() {
-            $(".timestamp").timeago();
-        });
-    </script>
 </head>
 
 <body>
@@ -36,7 +31,7 @@
 <template name="layout">
     {{>header}}
 
-    <div class="container content-container">
+    <div class="container content-container {{page}}">
         {{>yield}}
     </div>
 </template>

@@ -5,7 +5,7 @@ Template.problems.addItem = function (title) {
 Template.loadMoreProblems.canLoadMore = StoryTools.canLoadMore;
 
 Template.loadMoreProblems.events({
-    'click .load-stories-button': StoryTools.loadMore
+    'click .card-btn': StoryTools.loadMore
 });
 
 Template.problems.items = function () {

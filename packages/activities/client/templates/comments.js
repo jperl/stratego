@@ -19,3 +19,7 @@ Template.commentsWidget.events({
         }
     }
 });
+
+Template.commentWidget.rendered = function () {
+    $(".comment .timestamp").timeago();
+};
