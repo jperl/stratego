@@ -11,7 +11,7 @@
 </template>
 
 <template name="commentsWidget">
-    {{>addItem placeholder='Add a comment...' buttonText='Add Comment' minCharacters=1 context=this}}
+    {{>addItem placeholder='Add a comment...' buttonText='Add Comment' minCharacters=1 model=addItemModel}}
     <div class="item-section">
         {{#each comments}}
         {{>commentWidget}}

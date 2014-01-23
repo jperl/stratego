@@ -1,4 +1,10 @@
-Template.commentsWidget.addItem = Activity.comment;
+Template.commentsWidget.addItemModel = function () {
+    var story = this;
+
+    return new AddItemModel(function () {
+        Activity.comment(this._text, story);
+    });
+};
 
 Template.commentsWidget.comments = function () {
     return Activities.find({

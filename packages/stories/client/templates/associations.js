@@ -22,16 +22,6 @@ var subscribeToVoteCount = function (storiesCursor, story) {
 
 // ------------------ add new association ------------------------ //
 
-Template.associationsWidget.addItem = function (title, sourceStory) {
-    if (sourceStory.type === Story.Type.PROBLEM) {
-        var solution = Story.create(Story.Type.SOLUTION, title);
-        Activity.vote(sourceStory, solution);
-    } else {
-        var problem = Story.create(Story.Type.PROBLEM, title);
-        Activity.vote(sourceStory, problem);
-    }
-};
-
 Template.associationsWidget.buttonText = function () {
     return this.type === Story.Type.PROBLEM ? 'Add Solution' : 'Add Problem';
 };
@@ -42,20 +32,63 @@ Template.associationsWidget.placeholder = function () {
 
 // ------------------ search  ------------------------ //
 
-Template.associationsWidget.searchResults = function () {
-    var cursor = StoriesSearch.find();
-    subscribeToVoteCount(cursor, this);
-    return cursor;
+Template.associationsWidget.created = function () {
+    var sourceStory = this.data;
+
+    var addItemModel = new AddItemModel(function () {
+        var title = this._text;
+
+        if (sourceStory.type === Story.Type.PROBLEM) {
+            var solution = Story.create(Story.Type.SOLUTION, title);
+            Activity.vote(sourceStory, solution);
+        } else {
+            var problem = Story.create(Story.Type.PROBLEM, title);
+            Activity.vote(sourceStory, problem);
+        }
+
+        Search.clear(sourceStory);
+    });
+
+    this.__component__.helpers({
+        addItemModel: function () {
+            return addItemModel;
+        }
+    });
 };
 
-Template.associationsWidget.searching = function () {
-    var searchText = Session.get('storiesSearchText');
-    return searchText && searchText.length > 0;
+Template.associationsWidget.events({
+    'keyup .add-item-input': _.debounce(function (event) {
+        var story = this;
+
+        Search.clear(story);
+
+        var search = $(event.target).val();
+        if (search.length > 0) Search.associations(story, search);
+    }, 1000)
+});
+
+var searchResultsCursor = function (addItemModel, story) {
+    return StoriesSearch.find({
+        search: addItemModel.getText(),
+        "story.type": story.type === Story.Type.PROBLEM ? Story.Type.SOLUTION : Story.Type.PROBLEM
+    });
+};
+
+Template.associationsWidget.searchResults = function (addItemModel, story) {
+    var searchCursor = searchResultsCursor(addItemModel, story);
+    subscribeToVoteCount(searchCursor, story);
+    return searchCursor.map(function (item) {
+        return item.story;
+    });
+};
+
+Template.associationsWidget.searching = function (addItemModel,story) {
+    return searchResultsCursor(addItemModel, story).count() > 0;
 };
 
 // ------------------ story cards ------------------------ //
 
-Template.associationsWidget.items = function (a, b) {
+Template.associationsWidget.items = function () {
     var cursor = Stories.find({ associationIds: this._id });
     subscribeToVoteCount(cursor, this);
     return cursor;

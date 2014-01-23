@@ -1,9 +1,3 @@
-var clearSearch = function (storyId, target) {
-    target.val('');
-    Session.set('storiesSearchText', '');
-    Tools.unsubscribe('stories-search', storyId);
-};
-
 Template.storyFeedItem.events({
     'click .story-delete-link': function (event, template) {
         var sourceStory = template.data;
@@ -41,7 +35,9 @@ Template.storyFeedItem.events({
                 Tools.unsubscribe('comments', storyId);
             }
         } else if (target.hasClass('story-associations-link')) {
-            clearSearch(storyId, associationSection.find('.add-item-input'));
+            //clear the input / search
+            associationSection.find('.add-item-input').val('');
+            Search.clear(this);
 
             if (expanded) {
                 Associations.subscribe(storyId);
@@ -73,24 +69,8 @@ Template.storyFeedItem.events({
     },
     'blur .story-description': function (event) {
         // TODO: Post updated description data.
-    },
-    'keyup .add-item-input': _.debounce(function (event, template) {
-        var searchText = $(event.target).val();
-
-        var story = this;
-        Tools.unsubscribe('stories-search', story._id);
-
-        if (searchText.length >= 4) {
-            Tools.subscribe('stories-search', story._id, function () {
-                return Meteor.subscribe('stories-search', searchText, story.type === Story.Type.PROBLEM ? Story.Type.SOLUTION : Story.Type.PROBLEM);
-            });
-        }
-
-        Session.set('storiesSearchText', searchText);
-    }, 1000)
+    }
 });
-
-StoriesSearch = new Meteor.Collection('stories-search');
 
 Template.storyCard.associationText = function () {
     return (this.type === Story.Type.PROBLEM ? 'Solution' : 'Problem') +

@@ -12,9 +12,11 @@ Package.on_use(function (api) {
     api.add_files('shared/mocks.js', ['client', 'server']);
 
     api.add_files('server/collection.js', 'server');
-    api.add_files('server/publishes.js', 'server');
+    api.add_files('server/publishStories.js', 'server');
+    api.add_files('server/searchStories.js', 'server');
 
     api.add_files('client/storyTools.js', 'client');
+    api.add_files('client/search.js', 'client');
 
     api.add_files('client/templates/general.html', 'client');
     api.add_files('client/templates/general.js', 'client');

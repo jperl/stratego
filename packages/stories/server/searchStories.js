@@ -1,35 +1,3 @@
-Meteor.publish('stories', function (type, details, options) {
-    if (!options) {
-        options = {
-            limit: 25
-        };
-    }
-
-    //this will change
-    options.sort = { votesCount: -1 };
-
-    return Stories.find({
-        type: type
-    }, options);
-});
-
-Meteor.publish('stories-count', function (type, details) {
-    var params = {
-        type: type
-    };
-
-    return Tools.publishCounter({
-        handle: this,
-        name: 'stories-count',
-        collection: Stories,
-        filter: params
-    });
-});
-
-Meteor.publish('associations', function (storyId) {
-    return Stories.find({ associationIds: storyId });
-});
-
 Meteor.startup(function () {
     var searchIndexName = 'search_stories_index';
 
@@ -43,12 +11,12 @@ Meteor.startup(function () {
 });
 
 // Mongo text search function
-var searchStoriesText = function (searchText, filter, limit) {
+var textSearchStories = function (search, filter, limit) {
     var fut = new Future();
 
     MongoInternals.defaultRemoteCollectionDriver().mongo.db.executeDbCommand({
         text: 'stories',
-        search: searchText,
+        search: search,
         limit: limit,
         project: {
             _id: 1 // Only take the ids
@@ -66,15 +34,15 @@ var searchStoriesText = function (searchText, filter, limit) {
     return fut.wait();
 };
 
-var searchStoriesCursor = function (searchText, storyType) {
-    check(searchText, String);
+var searchStoriesCursor = function (search, storyType) {
+    check(search, String);
     check(storyType, Tools.MatchEnum(Story.Type));
 
     var limit = 10;
 
     var query = {};
-    if (searchText && searchText !== '') {
-        var results = searchStoriesText(searchText, {
+    if (search && search !== '') {
+        var results = textSearchStories(search, {
             type: storyType
         }, limit);
 
@@ -91,6 +59,11 @@ var searchStoriesCursor = function (searchText, storyType) {
     return Stories.find(query, {limit: limit});
 };
 
-Meteor.publish('stories-search', function (searchText, storyType) {
-    return Tools.publishCursor('stories-search', this, searchStoriesCursor(searchText, storyType));
+Meteor.publish('stories-search', function (search, storyType) {
+    return Tools.publishCursor('stories-search', this, searchStoriesCursor(search, storyType), function (item) {
+        return {
+            search: search,
+            story: item
+        };
+    });
 });
