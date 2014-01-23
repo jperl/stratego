@@ -14,12 +14,8 @@ var addItem = function (event, template) {
     parent.find('.add-item-button').animate({opacity: 'hide'});
 };
 
-var showOrHideAddButton =  _.throttle(function (minCharacters, textLength, addItemButton) {
-    if (textLength > minCharacters) {
-        addItemButton.animate({opacity: 'show'});
-    } else {
-        addItemButton.animate({opacity: 'hide'});
-    }
+var showOrHideAddButton = _.throttle(function (minCharacters, textLength, addItemButton) {
+    addItemButton.animate({opacity: textLength > minCharacters ? 'show' : 'hide'});
 }, 1000);
 
 Template.addItem.events({
