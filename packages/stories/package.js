@@ -18,8 +18,8 @@ Package.on_use(function (api) {
     api.add_files('client/storyTools.js', 'client');
     api.add_files('client/search.js', 'client');
 
-    api.add_files('client/templates/general.html', 'client');
-    api.add_files('client/templates/general.js', 'client');
+    api.add_files('client/templates/storyCard.html', 'client');
+    api.add_files('client/templates/storyCard.js', 'client');
 
     api.add_files('client/templates/problems.html', 'client');
     api.add_files('client/templates/problems.js', 'client');

@@ -1,4 +1,4 @@
-Template.storyFeedItem.events({
+Template.storyCardDetail.events({
     'click .card-story-delete-link': function (event, template) {
         var sourceStory = template.data;
         var confirmationMessage = 'Are you sure you want to delete the ' + (sourceStory.type === Story.Type.PROBLEM ? 'problem' : 'solution') + '?';
@@ -94,5 +94,5 @@ Template.storyCard.typeClass = function () {
 };
 
 Template.storyCard.rendered = function () {
-    $(".card-story .timestamp").timeago();
+    $('.card-story .timestamp').timeago();
 };
