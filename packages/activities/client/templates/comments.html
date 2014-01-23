@@ -1,4 +1,4 @@
-<template name="commentWidget">
+<template name="comment">
     <div class="card comment clearfix">
         <div class="grid grid-10">
             <a class="comment-icon profile-link" href="#">
@@ -10,17 +10,17 @@
     </div>
 </template>
 
-<template name="commentsWidget">
+<template name="comments">
     {{>addItem placeholder='Add a comment...' buttonText='Add Comment' minCharacters=1 model=addItemModel}}
     <div class="item-section">
-        {{#unless comments.count}}
+        {{#unless items.count}}
         <div class="card card-hero">
             <h1>There aren't any comments!</h1>
             <h3>(People are talking about it, just not here. Probably...)</h3>
         </div>
         {{/unless}}
-        {{#each comments}}
-        {{>commentWidget}}
+        {{#each items}}
+        {{>comment}}
         {{/each}}
     </div>
 </template>

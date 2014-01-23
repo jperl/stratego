@@ -1,4 +1,4 @@
-Template.commentsWidget.created = function () {
+Template.comments.created = function () {
     var story = this.data;
 
     var addItemModel = new AddItemModel(function () {
@@ -12,7 +12,7 @@ Template.commentsWidget.created = function () {
     });
 };
 
-Template.commentsWidget.comments = function () {
+Template.comments.items = function () {
     return Activities.find({
         $or: [
             { problemId: this._id },
@@ -22,7 +22,7 @@ Template.commentsWidget.comments = function () {
     })
 };
 
-Template.commentsWidget.events({
+Template.comments.events({
     'click .story-delete-link': function (event) {
         event.stopPropagation();
 
@@ -32,6 +32,6 @@ Template.commentsWidget.events({
     }
 });
 
-Template.commentWidget.rendered = function () {
+Template.comment.rendered = function () {
     $(".comment .timestamp").timeago();
 };

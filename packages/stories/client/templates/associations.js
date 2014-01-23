@@ -22,17 +22,17 @@ var subscribeToVoteCount = function (storiesCursor, story) {
 
 // ------------------ add new association ------------------------ //
 
-Template.associationsWidget.buttonText = function () {
+Template.associations.buttonText = function () {
     return this.type === Story.Type.PROBLEM ? 'Add Solution' : 'Add Problem';
 };
 
-Template.associationsWidget.placeholder = function () {
+Template.associations.placeholder = function () {
     return this.type === Story.Type.PROBLEM ? 'Add a solution...' : 'Add a problem...';
 };
 
 // ------------------ search  ------------------------ //
 
-Template.associationsWidget.created = function () {
+Template.associations.created = function () {
     var sourceStory = this.data;
 
     var addItemModel = new AddItemModel(function () {
@@ -56,7 +56,7 @@ Template.associationsWidget.created = function () {
     });
 };
 
-Template.associationsWidget.events({
+Template.associations.events({
     'keyup .add-item-input': _.debounce(function (event) {
         var story = this;
 
@@ -74,7 +74,7 @@ var searchResultsCursor = function (addItemModel, story) {
     });
 };
 
-Template.associationsWidget.searchResults = function (addItemModel, story) {
+Template.associations.searchResults = function (addItemModel, story) {
     var searchCursor = searchResultsCursor(addItemModel, story);
     subscribeToVoteCount(searchCursor, story);
     return searchCursor.map(function (item) {
@@ -82,19 +82,19 @@ Template.associationsWidget.searchResults = function (addItemModel, story) {
     });
 };
 
-Template.associationsWidget.searching = function (addItemModel,story) {
+Template.associations.searching = function (addItemModel,story) {
     return searchResultsCursor(addItemModel, story).count() > 0;
 };
 
 // ------------------ story cards ------------------------ //
 
-Template.associationsWidget.items = function () {
+Template.associations.items = function () {
     var cursor = Stories.find({ associationIds: this._id });
     subscribeToVoteCount(cursor, this);
     return cursor;
 };
 
-Template.associationsWidget.votesCount = function (sourceStory) {
+Template.associations.votesCount = function (sourceStory) {
     var votesCount = VotesCount.findOne(Associations.getSubscriptionId(sourceStory, this._id));
     return votesCount ? votesCount.count : 0;
 };
