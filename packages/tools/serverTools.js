@@ -1,3 +1,5 @@
+Future = Npm.require('fibers/future');
+
 Tools.publishCounter = function (params) {
     var collection = params.collection,
         count = 0,
@@ -28,6 +30,32 @@ Tools.publishCounter = function (params) {
         count: count
     });
     pub.ready();
+    return pub.onStop(function () {
+        return handle.stop();
+    });
+};
+
+Tools.publishCursor = function (name, pub, cursor, map) {
+    var handle = cursor.observe({
+        added: function (item) {
+            var id = item._id;
+            if (map) item = map(item);
+
+            return pub.added(name, id, item);
+        },
+        changed: function (item) {
+            var id = item._id;
+            if (map) item = map(item);
+
+            return pub.changed(name, id, item);
+        },
+        removed: function (item) {
+            return pub.removed(name, item._id);
+        }
+    });
+
+    pub.ready();
+
     return pub.onStop(function () {
         return handle.stop();
     });

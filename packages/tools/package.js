@@ -5,6 +5,7 @@ Package.describe({
 Package.on_use(function (api) {
     api.use('templating', 'client');
     api.use('underscore', 'client');
+    api.use('deps', 'client');
 
     api.add_files('tools.js', ['client', 'server']);
 
@@ -12,8 +13,11 @@ Package.on_use(function (api) {
 
     api.add_files('templates/addItem.html', 'client');
     api.add_files('templates/addItem.js', 'client');
+    api.add_files('templates/addItemModel.js', 'client');
     api.add_files('templates/navListItem.html', 'client');
     api.add_files('templates/navListItem.js', 'client');
 
+    api.export('AddItemModel');
+    api.export('Future');
     api.export('Tools');
 });

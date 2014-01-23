@@ -3,21 +3,20 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use('templating', 'client');
-    api.use('underscore', 'client');
+    api.use(['deps', 'session', 'templating', 'underscore'], 'client');
 
-    api.use('mocks');
-    api.use('tools');
-    api.use('activities');
+    api.use(['mocks', 'tools', 'activities']);
 
     api.add_files('shared/collection.js', ['client', 'server']);
     api.add_files('shared/story.js', ['client', 'server']);
     api.add_files('shared/mocks.js', ['client', 'server']);
 
     api.add_files('server/collection.js', 'server');
-    api.add_files('server/publishes.js', 'server');
+    api.add_files('server/publishStories.js', 'server');
+    api.add_files('server/searchStories.js', 'server');
 
     api.add_files('client/storyTools.js', 'client');
+    api.add_files('client/search.js', 'client');
 
     api.add_files('client/templates/general.html', 'client');
     api.add_files('client/templates/general.js', 'client');

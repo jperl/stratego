@@ -19,7 +19,7 @@
 <template name="problems">
     {{>problemsSidebar}}
     <div class="twelve columns content">
-        {{>addItem placeholder='Describe the problem...' buttonText='Add a problem' minCharacters=5}}
+        {{>addItem placeholder='Describe the problem...' buttonText='Add a problem' minCharacters=5 model=addItemModel}}
         <div class="story-feed">
             {{#unless items.count}}
             <div class="card card-hero">

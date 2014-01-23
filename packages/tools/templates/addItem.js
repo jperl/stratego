@@ -5,28 +5,30 @@ var addItem = function (event, template) {
     var minCharacters = template.__component__.minCharacters();
     if (inputVal.length < minCharacters) return;
 
-    var context = template.__component__.context || function () {
-        return null;
-    };
-    template.__component__.parent.addItem(inputVal, context());
+    var model = template.__component__.model();
+    model._onAddItem();
 
     inputElement.val('');
+    model.setText('');
+
     parent.find('.add-item-button').animate({opacity: 'hide'});
 };
 
+var showOrHideAddButton = _.throttle(function (minCharacters, textLength, addItemButton) {
+    addItemButton.animate({opacity: textLength > minCharacters ? 'show' : 'hide'});
+}, 1000);
+
 Template.addItem.events({
-    'keyup .add-item-input': _.throttle(function (event, template) {
-        var addItemButton = $(event.target).siblings('.add-item-button');
+    'keyup .add-item-input': function (event, template) {
+        var text = $(event.target).val();
+
+        var model = template.__component__.model();
+        model.setText(text);
 
         var minCharacters = template.__component__.minCharacters();
-
-        var valLength = $(event.target).val().length;
-        if (valLength > minCharacters) {
-            addItemButton.animate({opacity: 'show'});
-        } else {
-            addItemButton.animate({opacity: 'hide'});
-        }
-    }, 1000),
+        var addItemButton = $(event.target).siblings('.add-item-button');
+        showOrHideAddButton(minCharacters, text.length, addItemButton);
+    },
     'click .add-item-button': addItem,
     'keypress .add-item-input': function (event, template) {
         if (event.keyCode === 13) addItem(event, template);

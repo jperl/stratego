@@ -1,5 +1,13 @@
-Template.problems.addItem = function (title) {
-    Story.create(Story.Type.PROBLEM, title);
+Template.problems.created = function () {
+    var addItemModel = new AddItemModel(function () {
+        Story.create(Story.Type.PROBLEM, this._text);
+    });
+
+    this.__component__.helpers({
+        addItemModel: function () {
+            return addItemModel;
+        }
+    });
 };
 
 Template.loadMoreProblems.canLoadMore = StoryTools.canLoadMore;

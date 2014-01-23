@@ -7,6 +7,10 @@ Stratego (Working Name)
 
 2. Run mrt install
 
-3. Run the application
+3. Run mongo with text search
 
-		meteor
+    mongod --setParameter textSearchEnabled=true
+
+4. Run the application
+
+    MONGO_URL="mongodb://localhost:27017/meteor" meteor

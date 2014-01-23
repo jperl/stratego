@@ -7,7 +7,7 @@ Template.storyFeedItem.events({
             if (sourceStory._id === associatedStory._id) associatedStory = null;
 
             if (!associatedStory) Story.remove(sourceStory);
-            else throw 'Associations delete not implemented yet';
+            else throw 'Cannot delete associations';
         }
     },
     'click .card-story-footer-link': function (event) {
@@ -21,16 +21,24 @@ Template.storyFeedItem.events({
         var storyId = this._id;
 
         parent.children('.comment-section-wrapper').addClass('display-none');
-        parent.children('.association-section-wrapper').addClass('display-none');
+
+        var associationSection = parent.children('.association-section-wrapper');
+        associationSection.addClass('display-none');
 
         if (target.hasClass('card-story-comments-link')) {
             if (expanded) {
-                Comments.subscribe(storyId);
+                Tools.subscribe('comments', storyId, function () {
+                    return Meteor.subscribe('comments', storyId);
+                });
                 parent.children('.comment-section-wrapper').removeClass('display-none');
             } else {
-                Comments.unsubscribe(storyId);
+                Tools.unsubscribe('comments', storyId);
             }
         } else if (target.hasClass('card-story-associations-link')) {
+            //clear the input / search
+            associationSection.find('.add-item-input').val('');
+            Search.clear(this);
+
             if (expanded) {
                 Associations.subscribe(storyId);
                 parent.children('.association-section-wrapper').removeClass('display-none');
