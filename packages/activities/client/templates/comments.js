@@ -1,8 +1,14 @@
-Template.commentsWidget.addItemModel = function () {
-    var story = this;
-
-    return new AddItemModel(function () {
+Template.commentsWidget.created = function () {
+    var story = this.data;
+    
+    var addItemModel = new AddItemModel(function () {
         Activity.comment(this._text, story);
+    });
+
+    this.__component__.helpers({
+        addItemModel: function () {
+            return addItemModel;
+        }
     });
 };
 
