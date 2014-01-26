@@ -15,22 +15,19 @@ Package.on_use(function (api) {
     api.add_files('server/publishStories.js', 'server');
     api.add_files('server/searchStories.js', 'server');
 
-    api.add_files('client/storyTools.js', 'client');
     api.add_files('client/search.js', 'client');
 
     api.add_files('client/templates/storyCard.html', 'client');
     api.add_files('client/templates/storyCard.js', 'client');
 
     api.add_files('client/templates/problems.html', 'client');
-    api.add_files('client/templates/problems.js', 'client');
-
     api.add_files('client/templates/solutions.html', 'client');
-    api.add_files('client/templates/solutions.js', 'client');
+    api.add_files('client/templates/storyList.js', 'client');
 
     api.add_files('client/templates/associations.html', 'client');
     api.add_files('client/templates/associations.js', 'client');
 
     api.export('Stories');
     api.export('Story');
-    api.export('StoryTools');
+    api.export('StoryList');
 });

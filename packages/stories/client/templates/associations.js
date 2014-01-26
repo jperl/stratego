@@ -35,24 +35,20 @@ Template.associations.placeholder = function () {
 Template.associations.created = function () {
     var sourceStory = this.data;
 
-    var addItemModel = new AddItemModel(function () {
-        var title = this._text;
-
-        if (sourceStory.type === Story.Type.PROBLEM) {
-            var solution = Story.create(Story.Type.SOLUTION, title);
-            Activity.vote(sourceStory, solution);
-        } else {
-            var problem = Story.create(Story.Type.PROBLEM, title);
-            Activity.vote(sourceStory, problem);
-        }
-
-        Search.clear(sourceStory);
-    });
-
     this.__component__.helpers({
-        addItemModel: function () {
-            return addItemModel;
-        }
+        addItemModel: new AddItemModel(function () {
+            var title = this._text;
+
+            if (sourceStory.type === Story.Type.PROBLEM) {
+                var solution = Story.create(Story.Type.SOLUTION, title);
+                Activity.vote(sourceStory, solution);
+            } else {
+                var problem = Story.create(Story.Type.PROBLEM, title);
+                Activity.vote(sourceStory, problem);
+            }
+
+            Search.clear(sourceStory);
+        })
     });
 };
 
