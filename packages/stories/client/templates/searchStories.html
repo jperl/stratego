@@ -1,0 +1,11 @@
+<template name="searchStories">
+    {{#each results model}}
+        {{#storyCard sourceStory=..}}{{/storyCard}}
+    {{/each}}
+
+    {{#if searching model}}
+        {{> content}}
+    {{else}}
+        {{> elseContent}}
+    {{/if}}
+</template>

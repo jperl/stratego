@@ -15,10 +15,11 @@ Package.on_use(function (api) {
     api.add_files('server/publishStories.js', 'server');
     api.add_files('server/searchStories.js', 'server');
 
-    api.add_files('client/search.js', 'client');
-
     api.add_files('client/templates/storyCard.html', 'client');
     api.add_files('client/templates/storyCard.js', 'client');
+
+    api.add_files('client/templates/searchStories.html', 'client');
+    api.add_files('client/templates/searchStories.js', 'client');
 
     api.add_files('client/templates/problems.html', 'client');
     api.add_files('client/templates/solutions.html', 'client');
@@ -29,5 +30,6 @@ Package.on_use(function (api) {
 
     api.export('Stories');
     api.export('Story');
-    api.export('StoryList');
+
+    api.export('StoryList', 'client');
 });

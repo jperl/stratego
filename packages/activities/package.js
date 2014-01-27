@@ -13,8 +13,6 @@ Package.on_use(function (api) {
     api.add_files('shared/collection.js', ['client', 'server']);
     api.add_files('shared/mocks.js', ['client', 'server']);
 
-    api.add_files('client/associations.js', 'client');
-
     api.add_files('client/templates/comments.html', 'client');
     api.add_files('client/templates/comments.js', 'client');
 
@@ -23,7 +21,4 @@ Package.on_use(function (api) {
 
     api.export('Activities');
     api.export('Activity');
-
-    api.export('Associations', 'client');
-    api.export('Comments', 'client');
 });

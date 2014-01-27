@@ -1,14 +1,11 @@
 <template name="associations">
     {{>addItem minCharacters=5 model=addItemModel}}
     <div class="item-section">
-        {{#if searching addItemModel this}}
-            {{#each searchResults addItemModel this}}
-            {{#storyCard sourceStory=..}}{{/storyCard}}
-            {{/each}}
+        {{#searchStories model=searchStoriesModel sourceStory=sourceStory}}
         {{else}}
             {{#each items}}
-            {{#storyCard sourceStory=..}}{{/storyCard}}
+                {{#storyCard sourceStory=..}}{{/storyCard}}
             {{/each}}
-        {{/if}}
+        {{/searchStories}}
     </div>
 </template>

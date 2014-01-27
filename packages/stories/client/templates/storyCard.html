@@ -36,11 +36,15 @@
 
 <template name="storyCardDetail">
     {{#storyCard}}
-    <div class="footer-section-wrapper comment-section-wrapper display-none">
+    {{#if showComments}}
+    <div class="footer-section-wrapper comment-section-wrapper">
         {{>comments}}
     </div>
-    <div class="footer-section-wrapper association-section-wrapper display-none">
+    {{/if}}
+    {{#if showAssociations}}
+    <div class="footer-section-wrapper association-section-wrapper">
         {{>associations}}
     </div>
+    {{/if}}
     {{/storyCard}}
 </template>

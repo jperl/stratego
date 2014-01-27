@@ -27,39 +27,3 @@ Tools.randomTimes = function (minInclusive, maxExclusive, func, items) {
         else func();
     }
 };
-
-// { name-id : { count: 1, sub: subscription }, .. }
-var handles = Tools.handles = {};
-
-Tools.subscribe = function (name, id, subscribeFunc) {
-    var key = name + '-' + id;
-
-    var handle = handles[key];
-
-    if (handle) {
-        handle.count++;
-    } else {
-        handles[key] = {
-            count: 1,
-            sub: subscribeFunc()
-        };
-
-//        console.log('subscribe', key);
-    }
-};
-
-Tools.unsubscribe = function (name, id) {
-    var key = name + '-' + id;
-
-    var handle = handles[key];
-    if (!handle) return;
-
-    handle.count--;
-
-    if (handle.count === 0) {
-        handle.sub.stop();
-        delete handles[key];
-
-//        console.log('unsubscribe', key, handle.count);
-    }
-};

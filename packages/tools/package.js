@@ -13,7 +13,6 @@ Package.on_use(function (api) {
 
     api.add_files('templates/addItem.html', 'client');
     api.add_files('templates/addItem.js', 'client');
-    api.add_files('templates/addItemModel.js', 'client');
     api.add_files('templates/navListItem.html', 'client');
     api.add_files('templates/navListItem.js', 'client');
 
