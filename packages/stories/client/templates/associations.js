@@ -3,7 +3,7 @@
 Template.associations.created = function () {
     var sourceStory = this.data;
 
-    Meteor.subscribe('associations', sourceStory._id)
+    Meteor.subscribe('associations', sourceStory._id);
 
     var addItemModel = new AddItemModel(function () {
         var title = this._text;

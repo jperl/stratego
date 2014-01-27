@@ -11,10 +11,10 @@ AddItemModel.prototype.getText = function () {
     return this._text;
 };
 
-AddItemModel.prototype._setText = _.debounce(function (text) {
+AddItemModel.prototype._setText = function (text) {
     this._text = text;
     this._textDependency.changed();
-}, 250);
+};
 
 // -------------------------------- Template --------------------------------------- //
 
