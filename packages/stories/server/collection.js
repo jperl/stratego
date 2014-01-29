@@ -3,6 +3,8 @@ Stories._insertHelper = function (story) {
     story.commentsCount = 0;
     story.votesCount = 0;
 
+    story.created = new Date();
+
     Activity.add(story);
 };
 

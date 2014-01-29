@@ -1,4 +1,6 @@
 Activities._insertHelper = function (activity) {
+    activity.created = new Date();
+
     if (activity.type === Activity.Type.COMMENT) {
         Stories.update({ _id: activity.problemId || activity.solutionId }, { $inc: { commentsCount: 1 } });
     }

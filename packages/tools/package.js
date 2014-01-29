@@ -15,6 +15,8 @@ Package.on_use(function (api) {
     api.add_files('templates/addItem.js', 'client');
     api.add_files('templates/navListItem.html', 'client');
     api.add_files('templates/navListItem.js', 'client');
+    api.add_files('templates/timeago.html', 'client');
+    api.add_files('templates/timeago.js', 'client');
 
     api.export('AddItemModel');
     api.export('Future');

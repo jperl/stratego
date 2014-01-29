@@ -8,6 +8,8 @@ Story.Type = {
 Story.check = function (story) {
     check(story, {
         _id: Match.Any,
+        //optional because it is set on the server
+        created: Match.Optional(Date),
         type: Tools.MatchEnum(Story.Type),
         title: Match.Optional(String),
         description: Match.Optional(String),

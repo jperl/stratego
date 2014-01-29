@@ -30,6 +30,6 @@ Template.comments.events({
     }
 });
 
-Template.comment.rendered = function () {
-    $(".comment .timestamp").timeago();
+Template.comment.time = function () {
+    return this.created;
 };

@@ -21,6 +21,9 @@ Activity.check = function (activity) {
     check(activity, {
         _id: Match.Any,
 
+        //optional because it is set on the server
+        created: Match.Optional(Date),
+
         type: Tools.MatchEnum(Activity.Type),
         voteType: Match.Optional(Tools.MatchEnum(Activity.VoteType)),
 
@@ -75,6 +78,10 @@ var constructor = function (type, value, sourceStory, associatedStory) {
 
 Activity.add = function (story) {
     var activity = constructor(Activity.Type.ADD, null, story);
+
+    if (Meteor.isServer) {
+        Activities._insertHelper(activity);
+    }
 
     Activities.insert(activity);
 };

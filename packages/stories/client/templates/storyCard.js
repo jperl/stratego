@@ -19,12 +19,11 @@ Template.storyCard.created = function () {
 };
 
 Template.storyCard.rendered = function () {
-    $('.card-story .timestamp').timeago();
-
     // description contenteditable double render workaround
     // https://groups.google.com/forum/#!topic/meteor-core/gHSSlyxifec%5B76-100-false%5D
     // after this is fixed replace with simple binding {{description}} -- this will reenable realtime updates
-    this.find('.card-story-description').innerHTML = this.data.description;
+    if (this.data.description)
+        this.find('.card-story-description').innerHTML = this.data.description;
 };
 
 Template.storyCardDetail.events({
@@ -124,4 +123,8 @@ Template.storyCard.commentsText = function () {
     return this.commentsCount + ' ' + 'Comment' +
         //plural or singular
         (this.commentsCount === 1 ? '' : 's');
+};
+
+Template.storyCard.time = function () {
+    return this.created;
 };
