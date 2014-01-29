@@ -18,6 +18,15 @@ Template.storyCard.created = function () {
     };
 };
 
+Template.storyCard.rendered = function () {
+    $('.card-story .timestamp').timeago();
+
+    // description contenteditable double render workaround
+    // https://groups.google.com/forum/#!topic/meteor-core/gHSSlyxifec%5B76-100-false%5D
+    // after this is fixed replace with simple binding {{description}} -- this will reenable realtime updates
+    this.find('.card-story-description').innerHTML = this.data.description;
+};
+
 Template.storyCardDetail.events({
     'click .card-story-delete-link': function (event, template) {
         var sourceStory = template.data;
@@ -71,8 +80,10 @@ Template.storyCardDetail.events({
             target.removeClass('voted');
         }
     },
-    'blur .card-story-description': function (event) {
-        // TODO: Post updated description data.
+    'blur .card-story-description': function (event, template) {
+        var story = template.data;
+        var description = $(event.target).text();
+        Meteor.call('updateStoryDescription', story._id, description);
     }
 });
 
@@ -113,10 +124,4 @@ Template.storyCard.commentsText = function () {
     return this.commentsCount + ' ' + 'Comment' +
         //plural or singular
         (this.commentsCount === 1 ? '' : 's');
-};
-
-//time
-
-Template.storyCard.rendered = function () {
-    $('.card-story .timestamp').timeago();
 };

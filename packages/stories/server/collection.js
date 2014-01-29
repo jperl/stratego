@@ -35,3 +35,9 @@ Stories.allow({
         return true;
     }
 });
+
+Meteor.methods({
+    updateStoryDescription: function (storyId, description) {
+        Stories.update(storyId, { $set: {description: description} });
+    }
+});
