@@ -18,19 +18,23 @@
 
 <template name="problems">
     {{>problemsSidebar}}
+
     <div class="twelve columns content">
         {{>addItem placeholder='Describe the problem...' buttonText='Add a problem' minCharacters=5 model=addItemModel}}
         <div class="story-feed">
-            {{#unless items.count}}
-            <div class="card card-hero">
-                <h1>There aren't any problems!</h1>
-                <h3>(Stop lying to yourself)</h3>
-            </div>
-            {{/unless}}
-            {{#each items}}
-                {{>storyCardDetail}}
-            {{/each}}
-            {{>loadMoreProblems}}
+            {{#searchStories model=searchStoriesModel sourceStory=false}}
+            {{else}}
+                {{#unless items.count}}
+                <div class="card card-hero">
+                    <h1>There aren't any problems!</h1>
+                    <h3>(Stop lying to yourself)</h3>
+                </div>
+                {{/unless}}
+                {{#each items}}
+                    {{>storyCardDetail sourceStory=false}}
+                {{/each}}
+                {{>loadMoreProblems}}
+            {{/searchStories}}
         </div>
     </div>
 </template>

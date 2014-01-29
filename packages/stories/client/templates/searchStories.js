@@ -2,14 +2,13 @@ var storiesSearch = new Meteor.Collection('stories-search');
 
 // -------------------------------- Model --------------------------------------- //
 
-SearchStoriesModel = function (sourceStory) {
+SearchStoriesModel = function (storyType) {
     var self = this;
 
     self._search = '';
     self._searchDep = new Deps.Dependency;
 
-    self._sourceStory = sourceStory;
-    self._searchStoryType = sourceStory.type === Story.Type.PROBLEM ? Story.Type.SOLUTION : Story.Type.PROBLEM;
+    self._searchStoryType = storyType;
 };
 
 SearchStoriesModel.prototype.getSearch = function () {

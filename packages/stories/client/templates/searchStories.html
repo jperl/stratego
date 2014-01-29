@@ -1,6 +1,6 @@
 <template name="searchStories">
     {{#each results model}}
-        {{#storyCard sourceStory=..}}{{/storyCard}}
+        {{>storyCardDetail sourceStory=sourceStory}}
     {{/each}}
 
     {{#if searching model}}

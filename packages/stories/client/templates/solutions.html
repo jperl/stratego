@@ -21,16 +21,19 @@
     <div class="twelve columns content">
         {{>addItem placeholder='Describe the solution...' buttonText='Add a solution' minCharacters=5 model=addItemModel}}
         <div class="story-feed">
-            {{#unless items.count}}
-            <div class="card card-hero">
-                <h1>There aren't any solutions!</h1>
-                <h3>(Burn it all down and start over)</h3>
-            </div>
-            {{/unless}}
-            {{#each items}}
-                {{>storyCardDetail}}
-            {{/each}}
-            {{>loadMoreSolutions}}
+            {{#searchStories model=searchStoriesModel sourceStory=false}}
+            {{else}}
+                {{#unless items.count}}
+                <div class="card card-hero">
+                    <h1>There aren't any solutions!</h1>
+                    <h3>(Burn it all down and start over)</h3>
+                </div>
+                {{/unless}}
+                {{#each items}}
+                    {{>storyCardDetail sourceStory=false}}
+                {{/each}}
+                {{>loadMoreSolutions}}
+            {{/searchStories}}
         </div>
     </div>
 </template>

@@ -19,7 +19,7 @@ Template.associations.created = function () {
         searchStoriesModel.search('');
     });
 
-    var searchStoriesModel = new SearchStoriesModel(sourceStory);
+    var searchStoriesModel = new SearchStoriesModel(sourceStory.type === Story.Type.PROBLEM ? Story.Type.SOLUTION : Story.Type.PROBLEM);
 
     Deps.autorun(function () {
         var searchText = addItemModel.getText();

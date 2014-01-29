@@ -4,7 +4,7 @@
         {{#searchStories model=searchStoriesModel sourceStory=sourceStory}}
         {{else}}
             {{#each items}}
-                {{#storyCard sourceStory=..}}{{/storyCard}}
+                {{#storyCard sourceStory=sourceStory}}{{/storyCard}}
             {{/each}}
         {{/searchStories}}
     </div>

@@ -27,10 +27,19 @@ StoryList.unload = function () {
 
 var initializeStoryListTemplates = function (listTemplateName, pagerTemplateName, storyType) {
     Template[listTemplateName].created = function () {
+        var addItemModel = new AddItemModel(function () {
+            Story.create(storyType, this._text);
+        });
+        var searchStoriesModel = new SearchStoriesModel(storyType);
+
+        Deps.autorun(function () {
+            var searchText = addItemModel.getText();
+            searchStoriesModel.search(searchText);
+        });
+
         this.__component__.helpers({
-            addItemModel: new AddItemModel(function () {
-                Story.create(storyType, this._text);
-            })
+            addItemModel: addItemModel,
+            searchStoriesModel: searchStoriesModel
         });
     };
 
