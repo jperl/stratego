@@ -23,7 +23,7 @@ Package.on_use(function (api) {
 
     api.add_files('client/templates/problems.html', 'client');
     api.add_files('client/templates/solutions.html', 'client');
-    api.add_files('client/templates/storyList.js', 'client');
+    api.add_files('client/templates/storyFeed.js', 'client');
 
     api.add_files('client/templates/associations.html', 'client');
     api.add_files('client/templates/associations.js', 'client');
@@ -31,5 +31,5 @@ Package.on_use(function (api) {
     api.export('Stories');
     api.export('Story');
 
-    api.export('StoryList', 'client');
+    api.export('StoryFeed', 'client');
 });

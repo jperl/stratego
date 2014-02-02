@@ -2,20 +2,20 @@ StoriesCount = new Meteor.Collection('stories-count');
 
 // ----------------------- interface for controller ----------------------- //
 
-StoryList = {};
+StoryFeed = {};
 
 var pagingSubscriptions = [],
     pageDetails,
     currentPage = 0,
     currentPageSize = 25;
 
-StoryList.subscribedTo = function (details, pageSize) {
+StoryFeed.subscribedTo = function (details, pageSize) {
     pageDetails = details;
     currentPage = 1;
     currentPageSize = pageSize;
 };
 
-StoryList.unload = function () {
+StoryFeed.unload = function () {
     _.each(pagingSubscriptions, function (subscription) {
         subscription.stop();
     });
@@ -25,7 +25,7 @@ StoryList.unload = function () {
 
 // ------------------------------- templates -------------------------------- //
 
-var initializeStoryListTemplates = function (listTemplateName, pagerTemplateName, storyType) {
+var initializeStoryFeedTemplates = function (listTemplateName, pagerTemplateName, storyType) {
     Template[listTemplateName].created = function () {
         var addItemModel = new AddItemModel(function () {
             Story.create(storyType, this._text);
@@ -69,6 +69,6 @@ var initializeStoryListTemplates = function (listTemplateName, pagerTemplateName
     });
 };
 
-initializeStoryListTemplates('problems', 'loadMoreProblems', Story.Type.PROBLEM);
+initializeStoryFeedTemplates('problems', 'loadMoreProblems', Story.Type.PROBLEM);
 
-initializeStoryListTemplates('solutions', 'loadMoreSolutions', Story.Type.SOLUTION);
+initializeStoryFeedTemplates('solutions', 'loadMoreSolutions', Story.Type.SOLUTION);

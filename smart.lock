@@ -2,11 +2,15 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "iron-router": {}
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router",
+        "branch": "shark"
+      }
     },
     "packages": {
       "iron-router": {
-        "git": "https://github.com/EventedMind/iron-router.git",
+        "git": "https://github.com/EventedMind/iron-router",
+        "branch": "shark",
         "commit": "4f55d0acc293abb4a9492229e8d2be0ec0e176c1"
       }
     }

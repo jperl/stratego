@@ -19,7 +19,7 @@ StoryController = RouteController.extend({
 
         this.subscribe('stories', type, details, { limit: pageSize });
         this.subscribe('stories-count', type, details);
-        StoryList.subscribedTo(details, pageSize);
+        StoryFeed.subscribedTo(details, pageSize);
 
         if (details) {
             this.render(name);
@@ -30,5 +30,5 @@ StoryController = RouteController.extend({
         this.render('notFound');
         this.stop();
     },
-    unload: StoryList.unload
+    unload: StoryFeed.unload
 });
