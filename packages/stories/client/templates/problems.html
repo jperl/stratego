@@ -17,10 +17,10 @@
 </template>
 
 <template name="problems">
-    {{>problemsSidebar}}
+    {{> problemsSidebar}}
 
     <div class="twelve columns content">
-        {{>addItem placeholder='Describe the problem...' buttonText='Add a problem' minCharacters=5 model=addItemModel}}
+        {{> addItem placeholder='Describe the problem...' buttonText='Add a problem' minCharacters=5 model=addItemModel}}
         <div class="story-feed">
             {{#searchStories model=searchStoriesModel sourceStory=false}}
             {{else}}

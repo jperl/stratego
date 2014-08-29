@@ -7,11 +7,11 @@ Router.map(function () {
     this.route('home', {
         path: '/',
 
-        before: function () {
+        onBeforeAction: function (pause) {
             //TODO if they are logged in
             Router.go('/problems/top');
 
-            this.stop();
+            pause();
         }
     });
 
@@ -38,5 +38,5 @@ Router.map(function () {
 //call the route unload onbeforeunload
 window.onbeforeunload = function () {
     var currentRoute = Router.current().route;
-    if (currentRoute && currentRoute.options.unload) return currentRoute.options.unload();
+    if (currentRoute && currentRoute.options.onStop) return currentRoute.options.onStop();
 };

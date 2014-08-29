@@ -5,9 +5,7 @@
 
 check
 ejson
-iron-router
 less
-preserve-inputs
 standard-app-packages
 underscore
 
@@ -18,3 +16,5 @@ tools
 insecure
 
 populate-mocks #remove for deployment
+iron:router
+

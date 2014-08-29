@@ -1,7 +1,7 @@
-<template name="navListItemActive">
-    <li class="active">{{> content}}</li>
-</template>
-
-<template name="navListItemLink">
-    <li class="link"><a href="{{href}}">{{> content}}</a></li>
+<template name="navListItem">
+    {{#if active}}
+    <li class="active">{{> UI.contentBlock}}</li>
+    {{else}}
+    <li class="link"><a href="{{href}}">{{> UI.elseBlock}}</a></li>
+    {{/if}}
 </template>

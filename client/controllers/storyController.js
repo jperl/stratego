@@ -1,7 +1,7 @@
 var pageSize = 5;
 
 StoryController = RouteController.extend({
-    before: function () {
+    onBeforeAction: function (pause) {
         var details = this.params.details;
 
         var name = 'problems';
@@ -11,7 +11,7 @@ StoryController = RouteController.extend({
 
         if (!details) {
             Router.go('/' + name + '/top');
-            this.stop();
+            pause();
             return;
         }
 
@@ -23,12 +23,12 @@ StoryController = RouteController.extend({
 
         if (details) {
             this.render(name);
-            this.stop();
+            pause();
             return;
         }
 
         this.render('notFound');
-        this.stop();
+        pause();
     },
-    unload: StoryFeed.unload
+    onStop: StoryFeed.stop
 });
