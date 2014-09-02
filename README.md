@@ -3,14 +3,12 @@ Stratego (Working Name)
 
 ###Getting Started
 
-1. Install [meteor](http://docs.meteor.com/#quickstart) and [meteorite](http://oortcloud.github.com/meteorite/)
+1. Install [meteor](http://docs.meteor.com/#quickstart)
 
-2. Run mrt install
+2. Run mongo with text search
 
-3. Run mongo with text search
+    `mongod --setParameter textSearchEnabled=true`
 
-    mongod --setParameter textSearchEnabled=true
+3. Run the application
 
-4. Run the application
-
-    MONGO_URL="mongodb://localhost:27017/meteor" meteor
+    `MONGO_URL="mongodb://localhost:27017/meteor" meteor`

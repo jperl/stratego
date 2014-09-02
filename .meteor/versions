@@ -30,6 +30,7 @@ minifiers@1.0.2
 minimongo@1.0.1
 mocks@0.0.0
 mongo-livedata@1.0.3
+navigation@0.0.0
 observe-sequence@1.0.1
 ordered-dict@1.0.0
 populate-mocks@0.0.0
@@ -43,6 +44,7 @@ spacebars-compiler@1.0.1
 spacebars@1.0.0
 standard-app-packages@1.0.0
 stories@0.0.0
+styles@0.0.0
 templating@1.0.4
 tools@0.0.0
 ui@1.0.0

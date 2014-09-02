@@ -1,3 +1,5 @@
+// HTTP authentication for the prototype
+
 //Meteor.startup(function () {
 //    WebApp.connectHandlers.stack.splice(0, 0, {
 //        route: '',

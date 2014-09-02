@@ -3,18 +3,27 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+# Meteor Core
+
 check
 ejson
 less
 standard-app-packages
 underscore
 
-activities
-stories
-tools
+# Atmosphere
 
-insecure
-
-populate-mocks #remove for deployment
 iron:router
 
+# Our Packages
+
+activities
+navigation
+stories
+styles
+tools
+
+# Development Packages -- remove before deployment
+
+insecure
+populate-mocks

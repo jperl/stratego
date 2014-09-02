@@ -3,22 +3,16 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
-    api.use('templating', 'client');
-    api.use('underscore', 'client');
-    api.use('deps', 'client');
+    api.use(['deps', 'templating', 'underscore'], 'client');
 
-    api.add_files('tools.js', ['client', 'server']);
+    api.addFiles('tools.js', ['client', 'server']);
+    api.addFiles('server_tools.js', 'server');
 
-    api.add_files('serverTools.js', 'server');
+    api.addFiles([
+        'templates/add_item.html', 'templates/add_item.js',
+        'templates/nav_list_item.html', 'templates/nav_list_item.js',
+        'templates/timeago.html', 'templates/timeago.js',
+    ], 'client');
 
-    api.add_files('templates/addItem.html', 'client');
-    api.add_files('templates/addItem.js', 'client');
-    api.add_files('templates/navListItem.html', 'client');
-    api.add_files('templates/navListItem.js', 'client');
-    api.add_files('templates/timeago.html', 'client');
-    api.add_files('templates/timeago.js', 'client');
-
-    api.export('AddItemModel');
-    api.export('Future');
-    api.export('Tools');
+    api.export(['AddItemModel', 'Future', 'Tools']);
 });

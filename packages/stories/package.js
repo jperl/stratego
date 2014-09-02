@@ -7,29 +7,25 @@ Package.on_use(function (api) {
 
     api.use(['mocks', 'tools', 'activities']);
 
-    api.add_files('shared/collection.js', ['client', 'server']);
-    api.add_files('shared/story.js', ['client', 'server']);
-    api.add_files('shared/mocks.js', ['client', 'server']);
+    api.addFiles([
+        'stories.js',
+        'story.js',
+        'mocks.js'
+    ], ['client', 'server']);
 
-    api.add_files('server/collection.js', 'server');
-    api.add_files('server/publishStories.js', 'server');
-    api.add_files('server/searchStories.js', 'server');
+    api.addFiles([
+        'stories_server.js',
+        'stories_search_server.js'
+    ], 'server');
 
-    api.add_files('client/templates/storyCard.html', 'client');
-    api.add_files('client/templates/storyCard.js', 'client');
+    api.addFiles([
+        'templates/story_card.html', 'templates/story_card.js',
+        'templates/search_stories.html', 'templates/search_stories.js',
+        'templates/problems.html',
+        'templates/solutions.html',
+        'templates/story_feed.js',
+        'templates/associations.html', 'templates/associations.js'
+    ], 'client');
 
-    api.add_files('client/templates/searchStories.html', 'client');
-    api.add_files('client/templates/searchStories.js', 'client');
-
-    api.add_files('client/templates/problems.html', 'client');
-    api.add_files('client/templates/solutions.html', 'client');
-    api.add_files('client/templates/storyFeed.js', 'client');
-
-    api.add_files('client/templates/associations.html', 'client');
-    api.add_files('client/templates/associations.js', 'client');
-
-    api.export('Stories');
-    api.export('Story');
-
-    api.export('StoryFeed', 'client');
+    api.export(['Stories', 'Story', 'StoryFeed'], ['client', 'server']);
 });
